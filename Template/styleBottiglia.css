@@ -258,17 +258,21 @@ body{
 	background-color: #050505;
 	opacity: 0.2;
 }
+
 .case-study-images li:nth-child(1) .img-hero-background{
-	background-image: url("http://www.ivang-design.com/svg-load/1.jpg");
+	background-image: url("img/Linea_Frati/4_bott_F.png");
 }
 .case-study-images li:nth-child(2) .img-hero-background{
-	background-image: url("http://www.ivang-design.com/svg-load/2.jpg");
+	background-image: url("img/Linea_Frati/1_bott_F.png");
 }
 .case-study-images li:nth-child(3) .img-hero-background{
-	background-image: url("http://www.ivang-design.com/svg-load/3.jpg");
+	background-image: url("img/Linea_Frati/2_bott_F.png");
 }
 .case-study-images li:nth-child(4) .img-hero-background{
-	background-image: url("http://www.ivang-design.com/svg-load/4.jpg");
+	background-image: url("img/Linea_Frati/3_bott.png");
+}
+.case-study-images li:nth-child(5) .img-hero-background{
+	background-image: url("img/Linea_Frati/4_bot_F.png");
 }
 
 /* #Media
