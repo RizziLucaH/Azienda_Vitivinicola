@@ -1,0 +1,41 @@
+/* AGGIUNTA DAL CANCELLIERE*/
+.input-group-text{
+	color: #ccac00;
+	background-color:#14151a;
+	border: 1px solid black;
+}
+/*AGGIUNTA DAL CANCELLIERE*/
+.custom-select{
+	color: #ccac00;
+	background-color:#14151a;
+	border: 1px solid black;
+}
+/*AGGIUNTA DAL CANCELLIERE*/
+.form-control{
+	color: #ccac00;
+	background-color:#14151a;
+	border: 1px solid black;
+}
+/*AGGIUNTA DAL CANCELLIERE*/
+.form-control:focus{
+	color: #ccac00;
+	background-color:#14151a;
+}
+
+.card{
+	background-color:#14151a;
+	color: #ccac00;
+}
+
+.card-body{
+	text-align: center;
+}
+
+.card-link{
+	text-decoration: none;
+}
+.list-group-item{
+	background-color:#14151a;
+	color: #ccac00;
+	text-align: center;
+}
