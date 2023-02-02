@@ -134,21 +134,28 @@ label {
     clear: both;
     width: 79%;
 }
-.totals .totals-item .totals-value  {
+.totals{
+    width: 50%;
+    margin: auto;
+}
+.totals-item .totals-value  {
     float: right;
+    text-align: right;
     width: 21%;
 }
+
 .totals .totals-item-total {
     font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
 }
-input{
-    float: right;
-    margin-right:7px ;
-}
-
 .btn-warning {
-    float: right;
+    width: 100%;
 }
+.gift {
+    width: 40px;
+    float: right;
+    width: 21%;
+    text-align: right;
+    }
 
 /* Make adjustments for tablet */
 @media screen and (max-width: 650px) {
@@ -200,6 +207,11 @@ input{
     .product-line-price {
     float: right;
     width: 70px;
+    }
+.gift {
+    width: 100px;
+    margin-left: 20px;
+    border: none;
     }
 }
 /* Make more adjustments for phone */
