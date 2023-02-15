@@ -1,3 +1,5 @@
+<!--DA MODIFICARE GRAFICAMENTE PARTE RESPONSIVE PER IL MOBILE E COSA APPARE CON LA FUNZIONE DI JS CHE VERIFICA CARRELLO VUOTO-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,7 +198,6 @@
     function verificaCarrello(){
         let prodotti=document.getElementsByName("prodotto");
         let carrello=document.getElementById("carrello");
-        console.log(prodotti.length);
         if(prodotti.length-1==0)
         {
             carrello.innerHTML="CARRELLO VUOTO";

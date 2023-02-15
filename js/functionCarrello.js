@@ -29,13 +29,13 @@ var tax = subtotal * taxRate;
 
 if(subtotal+tax>=60)
 {
-    total=subtotal+tax;
-    shipping=0;
+    var total = subtotal + tax;
+    var shipping=(total>60 ? 0:shippingRate);
 }
 else
 {
+    var shipping = (total>60 ? 0:shippingRate);
     var total = subtotal + tax + shipping;
-    var shipping = (subtotal > 0 ? shippingRate : 0);
 } 
 
 /* Update totals display */
