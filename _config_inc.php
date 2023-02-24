@@ -3,9 +3,10 @@
 
 
 $servername = "localhost";
-$username = "ambulatoriopicc";
+$username = "aziendavitivinicola_db";
 $password = "password.123";
-$dbname = "ambulatoriopicc";
+$dbname = "aziendavitivinicola_db";
 
 
 ?>
+
