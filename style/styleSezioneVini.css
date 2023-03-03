@@ -1,3 +1,7 @@
+body{
+	overflow-y: hidden;
+}
+
 /* AGGIUNTA DAL CANCELLIERE*/
 .input-group-text{
 	color: #ccac00;
@@ -29,13 +33,24 @@
 
 .card-body{
 	text-align: center;
+	height: 100%;
+	padding-top:5px;
+	padding-bottom: 15px;
 }
 
 .card-link{
 	text-decoration: none;
+	color: #ccac00;
 }
+
 .list-group-item{
 	background-color:#14151a;
 	color: #ccac00;
 	text-align: center;
+
+	padding: 6px;
+}
+
+.btn{
+	width:100px;
 }

@@ -106,22 +106,10 @@
 
 <!-- CONTENT -->
 	<div class="row" style="height: 100%;">
-		<div class="col-3 pt-5 pl-5 pr-5 border border-dark " style="height: 100%;">
-			<h3>FILTRA</h3>
+		<div class="col-3 pt-5 pl-4 pr-4 border-right" style="height: auto;">
+			<h3 style="font-family: serif; margin-bottom: 20px; margin-left: 5px;">FILTRA</h3>
 			<form action="" method="">
 				<!--PRIMA SELECT-->
-				<div class="input-group pb-4">
-					<div class="input-group-prepend">
-					<label class="input-group-text" for="tv">Tipologia vino</label>
-				</div>
-					<select class="custom-select" id="tv" >
-					<option selected >Scegli...</option>
-					<option value="" >Bianco</option>
-					<option value="" >Spumante</option>
-					<option value="" >Rosso</option>
-					<option value="" >Rosé</option>
-					</select>
-				</div>
 
 					<!--SECONDA SELECT-->
 					<div class="input-group pb-4">
@@ -186,23 +174,23 @@
 					</div>
 			</form>
 		</div>
-			<div class="col-9 py-5">
+			<div class="col-14 px-5 py-5">
 				<!--Metodo che crea una carta per ogni vino nel db (DA FARE MINERZZZ)-->
-			<div class="card border border-dark rounded" style="width: 18rem;">
-				<div class="card-body">
-				<h5 class="card-title">Card title</h5>
+			<div class="card border border-secondary rounded" style="width: 18rem;">
+				<img class="card-img-top" src="./img/Linea_Frati/4_bot_F.png" alt="Card image cap">
+				<div class="card-text">
+					<ul class="list-group list-group-flush">
+					<li class="list-group-item">Piripicchio</li>
+					<li class="list-group-item">20€</li>
 				</div>
-				<img class="card-img-top" src="..." alt="Card image cap">
-				<ul class="list-group list-group-flush">
-				<li class="list-group-item">Cras justo odio</li>
-				<li class="list-group-item">Dapibus ac facilisis in</li>
-				<li class="list-group-item">Vestibulum at eros</li>
-				</ul>
-				<div class="card-body">
-					<button type="button" class="btn btn-outline-warning">Acquista ora</button>
+			</ul>
+			<div class="card-body">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" class="btn btn-outline-warning">Acquista</button>
+					<button type="button" class="btn btn-outline-warning"><a class="card-link" href="dettagli_vino.html">Dettagli</a> </button>
 				</div>
 			</div>
-		</div>
+	</div>
 	</div>
 
 
