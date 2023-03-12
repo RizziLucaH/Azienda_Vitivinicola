@@ -15,7 +15,8 @@
 
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/styleBottiglia.css">
-	<link rel="stylesheet" href="../style/styleSezioneVini.css">
+    <link rel="stylesheet" href="../style/styleSezioneVini2.css">
+
 
 
 </head>
@@ -104,99 +105,147 @@
 		<a href="login.html" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
 	</div>
 
-<!-- CONTENT -->
-	<!-- TRISTE TENTATIVO DI FARE UN FILTRA DECENTE DAL PAGLIOT -->
-	<div class="row" style="height: 100%;">
-		<div class="col-3 pt-5 pl-4 pr-4 border-right" style="height: auto;">
-			<h3 style="font-family: serif; margin-bottom: 20px; margin-left: 5px;">FILTRA</h3>
-			<form action="" method="">
 
-					<div class="input-group pb-4">
-						<div class="input-group-prepend">
-						<label class="input-group-text" for="cantina">Cantina</label>
-						</div>
-						<select class="custom-select" id="tv">
-						<option selected >Scegli...</option>
-						<option value="" >Pippo</option>
-						<option value="" >Topolinia</option>
-						<option value="" >Minera di minatori</option>
-						<option value="" >Vinatori</option>
-						<option value="" >Beees</option>
-						<option value="" >APES</option>
-						<option value="">Scimmioni</option>
-						</select>
-					</div>
+	<!-- ---------------------------------------------------------------------------------------------------- -->
+	<!-- ------------------------------------FILTRA/ORDINA--------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------------- -->
+	<div class="mb-5">
 
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						<span class="input-group-text">Prezzo Min.(€)</span>
-						</div>
-						<input type="text" class="form-control"  onkeypress="return onlyNumberKey(event)">
-						<div class="input-group-append">
-						<span class="input-group-text">.00</span>
-						</div>
-					</div>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						<span class="input-group-text">Prezzo Max.(€)</span>
-						</div>
-						<input type="text" class="form-control"  onkeypress="return onlyNumberKey(event)">
-						<div class="input-group-append">
-						<span class="input-group-text">.00</span>
-						</div>
-					</div>
-
-					<script>
-						function onlyNumberKey(evt) {
-							// Only ASCII character in that range allowed
-							var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-							if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-								return false;
-							return true;
-						}
-					</script>
-
-					<div class="input-group pb-4">
-						<div class="input-group-prepend">
-						<label class="input-group-text" for="cantina">Certificazione</label>
-						</div>
-						<select class="custom-select" id="tv">
-						<option selected >Scegli...</option>
-						<option value="" >DOC</option>
-						<option value="" >DOCG</option>
-						<option value="" >DOP</option>
-						<option value="" >IGP</option>
-						</select>
-					</div>
-			</form>
-		</div>
-
-		<!-- TRISTE TENTATIVO DI FARE DELLE CARD DAL PAGLIOT -->
-
-			<div class="col-14 px-5 py-5">
-			<div class="card border border-secondary rounded" style="width: 18rem;">
-				<img class="card-img-top" src="../img/Linea_Frati/4_bot_F.png" alt="Card image cap">
-				<div class="card-text">
-					<ul class="list-group list-group-flush">
-					<li class="list-group-item">Piripicchio</li>
-					<li class="list-group-item">20€</li>
+		<p>
+			<button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseFiltra" aria-expanded="false" aria-controls="collapseFiltra">
+				Filtra
+			</button>
+			<button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseOrdina" aria-expanded="false" aria-controls="collapseOrdina">
+				Ordina
+			</button>
+		</p>
+		<div class="collapse row " id="collapseFiltra" >
+			
+			<!-- Selezione Cantine -->
+			<div class=" wrapper col m-3">
+				<h5>-Cantina</h5>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+					<label class="form-check-label" for="defaultCheck1">
+						Cantina 1
+					</label>
 				</div>
-			</ul>
-			<div class="card-body">
-				<div class="btn-group" role="group" aria-label="Basic example">
-					<button type="button" class="btn btn-outline-warning">Acquista</button>
-					<button type="button" class="btn btn-outline-warning"><a class="card-link" href="dettagli_vino.html">Dettagli</a> </button>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+					<label class="form-check-label" for="defaultCheck1">
+						Cantina 2
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+					<label class="form-check-label" for="defaultCheck1">
+						Cantina 3
+					</label>
 				</div>
 			</div>
-		</div>
-		</div>
+			<div class="wrapper col m-3">
+				<header>
+					<h2>Price Range</h2>
+					<p>Use slider or enter min and max price</p>
+				</header>
+				<div class="price-input">
+					<div class="field">
+					<span>Min</span>
+					<input type="number" class="input-min" value="2500">
+					</div>
+					<div class="separator">-</div>
+					<div class="field">
+					<span>Max</span>
+					<input type="number" class="input-max" value="7500">
+					</div>
+				</div>
+				<div class="slider">
+					<div class="progress"></div>
+				</div>
+				<div class="range-input">
+					<input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+					<input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+				</div>
+				</div>
+
+				<div class="wrapper col m-3">
+
+				</div>
+
+			</div>
 
 
+		</div>
+
+		<div class="collapse" id="collapseOrdina">
+			<div class="">
+				QUI CI SARANNO GLI ORDINAMENTI
+			</div>
+		</div>
+	</div>
+
+	<div class="d-flex">
+
+		<figure class="card mx-4  ">
+			<img src="../img/Linea_Frati/2_bott_F.png" alt="">
+			<figcaption>
+				<p class="h5 text-dark">Nome Vino</p>
+				<p class="text-dark"> 69.99€</p>
+			</figcaption>
+		</figure>
+		<figure class="card mx-4 ">
+			<img src="../img/Linea_Frati/1_bott_F.png" alt="">
+			<figcaption>
+				<p class="h5 text-dark">Nome Vino</p>
+				<p class="text-dark"> 69.99€</p>
+			</figcaption>
+		</figure>
+		<figure class="card mx-4 ">
+			<img src="../img/Linea_Frati/3_bott.png" alt="">
+			<figcaption>
+				<p class="h5 text-dark">Nome Vino</p>
+				<p class="text-dark"> 69.99€</p>
+			</figcaption>
+		</figure>
+		<figure class="card mx-4">
+			<img src="../img/Linea_Frati/4_bot_F.png" alt="">
+			<figcaption>
+				<p class="h5 text-dark ">Nome Vino</p>
+				<p class="text-dark"> 69.99€</p>
+			</figcaption>
+		</figure>
+
+	
+	</div>
+
+	<style>
+		.card{
+			width: 20rem;
+			height: 20rem;
+			display: grid;
+			grid-template-rows: 1fr 0;
+			transition: grid-template-rows 400ms;
+			overflow: hidden;
+			background-color: #9e9600;
+		}
+	
+		.card img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+	
+		}
+	
+		.card:hover{
+			grid-template-rows: 1fr 6rem;
+		}
+	</style>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 <script src="../js/function.js"></script>
 <script src="../js/functionBottiglia.js"></script>
+<script src="../js/functionSezioneVini2.js"></script>
 
 </body>
 </html>
