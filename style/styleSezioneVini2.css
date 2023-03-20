@@ -75,8 +75,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .slider .progress{
   height: 100%;
-  left: 25%;
-  right: 25%;
+  left: 0%;
+  right: 45%;
   position: absolute;
   border-radius: 5px;
   background: #17A2B8;
@@ -112,4 +112,17 @@ input[type="range"]::-moz-range-thumb{
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0,0,0,0.05);
+}
+
+/* 3 */
+hr{
+  border: 2px solid white;
+  border-radius: 5px;
+  
+}
+.filtra{
+  background-color: whitesmoke;
+  border-radius: 20px;
+  height: 800px;
+  color: #000000;
 }
