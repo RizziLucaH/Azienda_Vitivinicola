@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/styleBottiglia.css">
 
-
+<!-- ciao -->
 </head>
-<body class="dark hero-anime" style="overflow: auto; height: 2000px;">
+<body class="dark hero-anime" style="overflow: auto;">
 
     <!-- TITOLO -->
     
     <!-- NAVBAR -->
+    
 	<div class=" bg-light start-header start-style" style="position: sticky; z-index: 3;">
 		<!-- <span class="nav-item icon pl-4 pl-md-0 ml-0 ml-md-5">
 			<a class="nav-link"> <i class="fa-solid fa-bag-shopping fa-3x"></i></a>
@@ -54,7 +55,7 @@
 							</li>
 
 							<!-- DROPDOWN VINI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 ">
+							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Vini</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="sezione_vini.php">Bianco</a>
@@ -67,7 +68,7 @@
 							</li>
 
 							<!-- VISITACI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active">
+							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
 								<a class="nav-link" href="visitaci.php">Visitaci</a>
 							</li>
 
@@ -98,21 +99,85 @@
 			<!-- DIV UTENTE -->
 		</div>
 		
-        <a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
 	</div>
-
-
 
 	<div >
+        <div class="section">
+            <ul class="case-study-wrapper">
+                <li class="case-study-name">                            	
+                    <a href="#" class="hover-target">LINEA FRATI</a>
+                </li>
+                <li class="case-study-name">                            	
+                    <a href="#" class="hover-target">La Gran Puttana</a>
+                </li>
+                <li class="case-study-name">                                         	
+                    <a href="#" class="hover-target">L'Eterno Innamorato</a>
+                </li>
+                <li class="case-study-name">                                        	
+                    <a href="#" class="hover-target">Respiro</a>
+                </li>
+                <li class="case-study-name">                                         	
+                    <a href="#" class="hover-target">Barolo</a>
+                </li>
+            </ul>
+            <ul class="case-study-images">
+                <li>
+                    <div class="img-hero-background"></div> 
+                    <div class="dark-over-hero"></div>  
+                    <div class="hero-number-back">LINEA FRATI</div> 
+                    <div class="hero-number">FRATI</div> 
+                    <div class="hero-number-fixed">04</div> 
+                    <div class="case-study-title">graphic design, interaction</div> 
+                </li>
+                <li>
+                    <div class="img-hero-background"></div> 
+                    <div class="dark-over-hero"></div>  
+                    <div class="hero-number-back">L</div> 
+                    <div class="hero-number">01</div> 
+                    <div class="hero-number-fixed">04</div> 
+                    <div class="case-study-title">graphic design, interaction</div> 
+                </li>
+                <li>
+                    <div class="img-hero-background"></div> 
+                    <div class="hero-number-back">N</div> 
+                    <div class="hero-number">02</div>  
+                    <div class="case-study-title">advertising, art direction</div> 
+                </li>
+                <li>
+                    <div class="img-hero-background"></div>
+                    <div class="hero-number-back">T</div>  
+                    <div class="hero-number">03</div> 
+                    <div class="case-study-title">photography, retouching</div> 
+                </li>
+                <li>
+                    <div class="img-hero-background"></div> 
+                    <div class="hero-number-back">D</div> 
+                    <div class="hero-number">04</div> 
+                    <div class="case-study-title">photography, advertising</div> 
+                </li>
+            </ul>	
+        </div>
+        
+        <!-- Page cursor
+        ================================================== -->
+        
+        <div class='cursor' id="cursor"></div>
+        <div class='cursor2' id="cursor2"></div>
+        <div class='cursor3' id="cursor3"></div> 
 
-	</div>
+<!-- Link to page
+    ================================================== -->
+
+    
+    
+    <a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
+
+</div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 <script src="js/function.js"></script>
 <script src="js/functionBottiglia.js"></script>
 
-
 </body>
-
 </html>
