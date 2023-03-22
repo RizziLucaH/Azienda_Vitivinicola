@@ -161,11 +161,11 @@
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="piva" name="signup_piva" class="form-style" placeholder="P.Iva" id="signup_piva" autocomplete="off">
+                                                    <input type="piva" name="signup_piva" class="form-style" placeholder="P.Iva" id="signup_piva" autocomplete="off" onkeydown="VerificaFatt()">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="address" name="signup_indirizzo" class="form-style" placeholder="Indirizzo di Fatturazione" id="signup_indirizzo" autocomplete="off">
+                                                    <input type="address" name="signup_indirizzo" class="form-style" placeholder="Indirizzo di Fatturazione" id="signup_indirizzo" autocomplete="off" oninput="VerificaFatt()">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>		
                                                 <div class="form-group mt-2">
@@ -173,7 +173,7 @@
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <!-- <p class="form-style">* Campi obbligatori</p> -->
-                                                <button type="submit" class="btn mt-4">Registrati</button>
+                                                <button type="submit" class="btn mt-4" id="submit">Registrati</button>
                                                 </div>
 
                                             </form>
@@ -192,7 +192,21 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
-
+<script>
+    function VerificaFatt(){
+        $(document).ready(function(){
+            let fatt= $("#signup_indirizzo").val();
+            let piva=$("#signup_piva").val();
+            console.log(piva);
+            console.log(fatt);
+            if(piva!="" && fatt=="" ){
+                $("#submit").prop('disabled',"true");
+                $("#signup_indirizzo").css("border","4px dotted red")
+                console.log("VERO");
+            }else{$("#submit").removeAttr('disabled'); $("#signup_indirizzo").css("border","none"); console.log("FLS");}
+        });
+    }
+</script>
 
 </body>
 </html>
