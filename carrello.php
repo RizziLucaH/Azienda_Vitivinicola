@@ -49,44 +49,44 @@
 
 							<!-- HOME -->
 							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 ">
-								<a class="nav-link" href="index.html">Home</a>
+								<a class="nav-link" href="index.php">Home</a>
 							</li>
 
 							<!-- CANTINE -->
 							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link" href="cantine.html">Cantine</a>
+								<a class="nav-link" href="cantine.php">Cantine</a>
 							</li>
 
 							<!-- DROPDOWN VINI -->
 							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 ">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Vini</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="sezione_vini.html">Bianco</a>
-									<a class="dropdown-item" href="sezione_vini.html">Spumante</a>
-									<a class="dropdown-item" href="sezione_vini.html">Rosso</a>
-									<a class="dropdown-item" href="sezione_vini.html">Rosé</a>
-									<a class="dropdown-item" href="vini_limited_edition.html">Linea Frati Limited</a>
-									<a class="dropdown-item" href="bottiglia2.html">Linea Frati Limited 2</a>
+									<a class="dropdown-item" href="sezione_vini.php">Bianco</a>
+									<a class="dropdown-item" href="sezione_vini.php">Spumante</a>
+									<a class="dropdown-item" href="sezione_vini.php">Rosso</a>
+									<a class="dropdown-item" href="sezione_vini.php">Rosé</a>
+									<a class="dropdown-item" href="vini_limited_edition.php">Linea Frati Limited</a>
+									<a class="dropdown-item" href="bottiglia2.php">Linea Frati Limited 2</a>
 								</div>
 							</li>
 
 							<!-- VISITACI -->
 							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link" href="visitaci.html">Visitaci</a>
+								<a class="nav-link" href="visitaci.php">Visitaci</a>
 							</li>
 
 							<!-- DROPDOWN SERVIZI -->
 							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="servizi.html" role="button" aria-haspopup="true" aria-expanded="false">Servizi</a>
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="servizi.php" role="button" aria-haspopup="true" aria-expanded="false">Servizi</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="dettaglio_servizio.html">Imbottigliamento</a>
-									<a class="dropdown-item" href="dettaglio_servizio.html">Corso ONAV</a>
-									<a class="dropdown-item" href="dettaglio_servizio.html">Feste Private</a>
+									<a class="dropdown-item" href="dettaglio_servizio.php">Imbottigliamento</a>
+									<a class="dropdown-item" href="dettaglio_servizio.php">Corso ONAV</a>
+									<a class="dropdown-item" href="dettaglio_servizio.php">Feste Private</a>
 								</div>
 							</li>
 
 							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active" >
-								<a class="nav-link" href="carrello.html"> <i class="fa-solid fa-bag-shopping fa-2x"></i></a>
+								<a class="nav-link" href="carrello.php"> <i class="fa-solid fa-bag-shopping fa-2x"></i></a>
 							</li>
 							<!-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5" >
 								<a class="nav-link" > <i class="fa-solid fa-user fa-2x"></i></a>
@@ -102,7 +102,7 @@
 			<!-- DIV UTENTE -->
 		</div>
 		
-        <a href="login.html" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
+        <a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
 	</div>
 
     <!-- CONTENT -->
