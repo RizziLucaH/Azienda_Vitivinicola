@@ -13,10 +13,11 @@
 
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/styleBottiglia.css">
+	<link rel="stylesheet" href="style/stylePuntiVendita.css">
 
 
 </head>
-<body class="dark hero-anime" style="overflow: auto; height: 2000px;">
+<body class="dark hero-anime" style="overflow: auto;">
 
     <!-- TITOLO -->
     
@@ -67,7 +68,7 @@
 							</li>
 
 							<!-- VISITACI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active">
+							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
 								<a class="nav-link" href="visitaci.php">Visitaci</a>
 							</li>
 
@@ -98,21 +99,46 @@
 			<!-- DIV UTENTE -->
 		</div>
 		
-        <a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
+		<a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
 	</div>
 
-
-
-	<div >
-
-	</div>
+<!-- CONTENT -->
+<!--POSSIAMO USARLO ANCHE PER PAGINA VINI-->
+<main class="page-content">
+    <div class="card">
+    <div class="content">
+        <h2 class="title">Mountain View</h2>
+        <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
+        <button class="btn">View Trips</button>
+    </div>
+    </div>
+    <div class="card">
+    <div class="content">
+        <h2 class="title">To The Beach</h2>
+        <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+        <button class="btn">View Trips</button>
+    </div>
+    </div>
+    <div class="card">
+    <div class="content">
+        <h2 class="title">Desert Destinations</h2>
+        <p class="copy">It's the desert you've always dreamed of</p>
+        <button class="btn">Book Now</button>
+    </div>
+    </div>
+    <div class="card">
+    <div class="content">
+        <h2 class="title">Explore The Galaxy</h2>
+        <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+        <button class="btn">Book Now</button>
+    </div>
+    </div>
+</main>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
-<script src="js/function.js"></script>
-<script src="js/functionBottiglia.js"></script>
-
+<script src="./js/function.js"></script>
+<script src="./js/functionBottiglia.js"></script>
 
 </body>
-
 </html>

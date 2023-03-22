@@ -67,12 +67,12 @@
 							</li>
 
 							<!-- VISITACI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active">
+							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
 								<a class="nav-link" href="visitaci.php">Visitaci</a>
 							</li>
 
 							<!-- DROPDOWN SERVIZI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
+							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="servizi.php" role="button" aria-haspopup="true" aria-expanded="false">Servizi</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="dettaglio_servizio.php">Imbottigliamento</a>
@@ -98,13 +98,12 @@
 			<!-- DIV UTENTE -->
 		</div>
 		
-        <a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
 	</div>
 
 
 
 	<div >
-
+		
 	</div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
