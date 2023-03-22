@@ -116,48 +116,67 @@
                             <div class="card-3d-wrapper">
                                 <div class="card-front">
                                     <div class="center-wrap">
+
+                                        <?php
+                                        // <!-- ---------------------------------------------------------------------------------- -->
+                                        // <!-- -------------------------------FORM ACCEDI---------------------------------------- -->
+                                        // <!-- ---------------------------------------------------------------------------------- -->
+                                        ?>
                                         <div class="section_Login text-center">
                                             <h4 class="mb-4 pb-3">Accedi</h4>
-                                            <div class="form-group">
-                                                <input type="email" name="logemail" class="form-style" placeholder="Email" id="logemail" autocomplete="off">
-                                                <i class="input-icon uil uil-at"></i>
-                                            </div>	
-                                            <div class="form-group mt-2">
-                                                <input type="password" name="logpass" class="form-style" placeholder="Password" id="logpass" autocomplete="off">
-                                                <i class="input-icon uil uil-lock-alt"></i>
-                                            </div>
-                                            <a href="#" class="btn mt-4">Accedi</a>
-                                            <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Password dimenticata?</a></p>
-                                            </div>
+                                            <form method="post" action="login_act.php">
+
+                                                <div class="form-group">
+                                                    <input type="email" name="email" class="form-style" placeholder="Email" id="email" autocomplete="off">
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>	
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="psw" class="form-style" placeholder="Password" id="psw" autocomplete="off">
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                </div>
+                                                <button type="submit" class="btn mt-4">Accedi</button>
+                                                <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Password dimenticata?</a></p>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 <div class="card-back">
                                     <div class="center-wrap">
+
+                                        <?php
+                                        // <!-- ---------------------------------------------------------------------------------- -->
+                                        // <!-- -------------------------------FORM REGISTRATI------------------------------------ -->
+                                        // <!-- ---------------------------------------------------------------------------------- -->
+                                        ?>
                                         <div class="section_Login text-center">
                                             <h4 class="mb-4 pb-3">Registrati</h4>
-                                            <div class="form-group">
-                                                <input type="text" name="logname" class="form-style" placeholder="Nome completo o Ragione Sociale *" id="logname" autocomplete="off">
-                                                <i class="input-icon uil uil-user"></i>
-                                            </div>	
-                                            <div class="form-group mt-2">
-                                                <input type="email" name="logemail" class="form-style" placeholder="Email *" id="logemail" autocomplete="off">
-                                                <i class="input-icon uil uil-at"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="piva" name="logpiva" class="form-style" placeholder="P.Iva" id="logpiva" autocomplete="off">
-                                                <i class="input-icon uil uil-at"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="address" name="logaddress" class="form-style" placeholder="Indirizzo di Fatturazione" id="logaddress" autocomplete="off">
-                                                <i class="input-icon uil uil-at"></i>
-                                            </div>		
-                                            <div class="form-group mt-2">
-                                                <input type="password" name="logpass" class="form-style" placeholder="Password *" id="logpass" autocomplete="off">
-                                                <i class="input-icon uil uil-lock-alt"></i>
-                                            </div>
-                                            <!-- <p class="form-style">* Campi obbligatori</p> -->
-                                            <a href="#" class="btn mt-4">Registrati</a>
-                                            </div>
+                                            <form method="post" action="login_act.php">
+
+                                                <div class="form-group">
+                                                    <input type="text" name="signup_nome" class="form-style" placeholder="Nome completo o Ragione Sociale *" id="signup_nome" autocomplete="off">
+                                                    <i class="input-icon uil uil-user"></i>
+                                                </div>	
+                                                <div class="form-group mt-2">
+                                                    <input type="email" name="email" class="form-style" placeholder="Email *" id="signup_email" autocomplete="off">
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="piva" name="signup_piva" class="form-style" placeholder="P.Iva" id="signup_piva" autocomplete="off">
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="address" name="signup_indirizzo" class="form-style" placeholder="Indirizzo di Fatturazione" id="signup_indirizzo" autocomplete="off">
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>		
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="psw" class="form-style" placeholder="Password *" id="psw" autocomplete="off">
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                </div>
+                                                <!-- <p class="form-style">* Campi obbligatori</p> -->
+                                                <button type="submit" class="btn mt-4">Registrati</button>
+                                                </div>
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
