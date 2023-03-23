@@ -137,17 +137,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="booking-form" style="border-radius: 20px;">
-                            
+
                             <form>
                                 <div class="form-header">
                                     <h2>Prenota ora la tua visita!</h2>
                                 </div>
-                                
-								<div class="form-group">
+
+                                <div class="form-group">
                                     <span class="form-label">Nome e Cognome</span>
                                     <input class="form-control" type="email" placeholder="Inserisci nome e cognome">
                                 </div>
-								<div class="row">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <span class="form-label">Data di nascita</span>
@@ -160,12 +160,12 @@
                                         </div>
                                     </div>
                                 </div>
-								<div class="form-group">
+                                <div class="form-group">
                                     <span class="form-label">Email</span>
                                     <input class="form-control" type="email" placeholder="Enter your email">
                                 </div>
-                                
-								<div class="row">
+
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <span class="form-label">Data della visita</span>
@@ -181,28 +181,34 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <span class="form-label">Adults</span>
-                                            <select class="form-control">
-                                                <input type="number" id="persone" min="1" max="10">
-                                            </select>
+                                            <span class="form-label">Partecipanti</span>
+                                            <br>
+                                                <span class="input-number-decrement">-</span>
+                                                <input class="input-number" type="number" id="persone" min="1" max="10">
+                                                <span class="input-number-increment">+</span>
+
                                             <span class="select-arrow"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <span class="form-label">Children</span>
+                                            <span class="form-label">Cantina</span>
                                             <select class="form-control">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
+                                                <option>Tenuta Dadomo</option>
+                                                <option>Azienda agricola Pagliarini</option>
+                                                <option>Azienda agricola Berg</option>
+                                                <option>Villa Rizzi</option>
+                                                <option>Castello Ferrari</option>
+                                                <option>Tenuta grande Sese</option>
+                                                <option>Distilleria il sole</option>
                                             </select>
                                             <span class="select-arrow"></span>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-btn">
-                                    <button class="submit-btn">Book Now</button>
+                                    <button class="submit-btn">Prenota</button>
                                 </div>
                             </form>
                         </div>
@@ -227,3 +233,47 @@
     </body>
 
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    (function () {
+
+        window.inputNumber = function (el) {
+
+            var min = el.attr('min') || false;
+            var max = el.attr('max') || false;
+
+            var els = {};
+
+            els.dec = el.prev();
+            els.inc = el.next();
+
+            el.each(function () {
+                init($(this));
+            });
+
+            function init(el) {
+
+                els.dec.on('click', decrement);
+                els.inc.on('click', increment);
+
+                function decrement() {
+                    var value = el[0].value;
+                    value--;
+                    if (!min || value >= min) {
+                        el[0].value = value;
+                    }
+                }
+
+                function increment() {
+                    var value = el[0].value;
+                    value++;
+                    if (!max || value <= max) {
+                        el[0].value = value++;
+                    }
+                }
+            }
+        }
+    })();
+
+    inputNumber($('.input-number'));    
+</script>

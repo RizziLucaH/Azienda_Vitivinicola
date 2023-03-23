@@ -25,9 +25,8 @@
 	max-width: 642px;
 	width: 100%;
 	margin: auto;
-	background: #3f3d3dd0;
-	-webkit-box-shadow: 0px 5px 10px -5px rgba(197, 50, 50, 0);
-	box-shadow: 0px 5px 10px -5px rgba(182, 17, 17, 0);
+	background: #252525f6;
+	
 }
 
 .booking-form>.booking-bg {
@@ -67,39 +66,40 @@
 }
 
 .booking-form .form-control {
-	background-color: #55373700;
+	/*background placeholder*/
+	background-color: #5e5e5ea8;
 	height: 40px;
 	padding: 0px 10px;
 	border-radius: 0px;
 	-webkit-transition: 0.2s;
 	transition: 0.2s;
-	color: #122244;
+	color: #000000;
 	border: 0px;
 	font-size: 16px;
 	font-weight: 700;
-	-webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
-	box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+	/*-webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+	box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);*/
 }
 
 .booking-form .form-control::-webkit-input-placeholder {
-	color: #277946;
+	color: #794f27;
 }
 
 .booking-form .form-control:-ms-input-placeholder {
-	color: #108d2b;
+	
 }
 
 .booking-form .form-control::placeholder {
+	/*placeholder*/
 	color: #373c4186;
 }
 
 .booking-form .form-control:focus {
-	-webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
-	box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+	
 }
 
 .booking-form input[type="date"].form-control:invalid {
-	color: #373c4186;
+	color: #ffffff81;
 }
 
 .booking-form select.form-control {
@@ -124,12 +124,12 @@
 	display: block;
 	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);
-	color: #dddee9;
+	color: #ffffff;
 	font-size: 14px;
 }
 
 .booking-form .form-label {
-	color: #b5c1cc;
+	color: #ffffff;
 	font-weight: 700;
 	-webkit-transition: 0.2s;
 	transition: 0.2s;
@@ -159,7 +159,60 @@
 	.booking-form>.booking-bg {
 		display: none;
 	}
+
 	.booking-form>form {
 		margin-left: 0px;
 	}
+}
+
+/*INPUT NUMBER*/
+/*Eliminazione delle frecce di unput number*/
+input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+.input-number {
+	width: 120px;
+	padding: 0 12px;
+	vertical-align: top;
+	text-align: center;
+	outline: none;
+	background-color: #1b1b1b;
+	border: 1px;
+}
+
+.input-number,
+.input-number-decrement,
+.input-number-increment {
+	
+	height: 40px;
+	user-select: none;
+	cursor: pointer;
+	
+}
+
+.input-number-decrement,
+.input-number-increment {
+	display: inline-block;
+	width: 30px;
+	line-height: 38px;
+	background: #1b1b1b;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+	
+}
+
+.input-number-decrement:active,
+.input-number-increment:active {
+	background: #252323;
+}
+
+.input-number-decrement {
+	border-right: none;
+	
+}
+
+.input-number-increment {
+	border-left: none;
+	
 }
