@@ -73,7 +73,7 @@
 	border-radius: 0px;
 	-webkit-transition: 0.2s;
 	transition: 0.2s;
-	color: #000000;
+	color: #dfd8d8;
 	border: 0px;
 	font-size: 16px;
 	font-weight: 700;
@@ -90,16 +90,16 @@
 }
 
 .booking-form .form-control::placeholder {
-	/*placeholder*/
-	color: #373c4186;
+	/*placeholder */
+	color: #dfd8d8;
 }
 
 .booking-form .form-control:focus {
-	
+	border-color: #ccac00;
 }
 
 .booking-form input[type="date"].form-control:invalid {
-	color: #ffffff81;
+	color: #dfd8d8;
 }
 
 .booking-form select.form-control {
@@ -129,7 +129,7 @@
 }
 
 .booking-form .form-label {
-	color: #ffffff;
+	color: #ccac00;
 	font-weight: 700;
 	-webkit-transition: 0.2s;
 	transition: 0.2s;
@@ -176,18 +176,18 @@ input[type=number]::-webkit-inner-spin-button {
 	vertical-align: top;
 	text-align: center;
 	outline: none;
-	background-color: #1b1b1b;
+	
 	border: 1px;
 }
 
 .input-number,
 .input-number-decrement,
 .input-number-increment {
-	
 	height: 40px;
 	user-select: none;
 	cursor: pointer;
-	
+	background-color: #5e5e5ea8;
+	color: #ffffff;
 }
 
 .input-number-decrement,
@@ -195,8 +195,6 @@ input[type=number]::-webkit-inner-spin-button {
 	display: inline-block;
 	width: 30px;
 	line-height: 38px;
-	background: #1b1b1b;
-	color: #ffffff;
 	text-align: center;
 	font-weight: bold;
 	
