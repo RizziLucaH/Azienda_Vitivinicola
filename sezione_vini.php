@@ -1,4 +1,23 @@
 <!--DA MODIFICARE GRAFICAMENTE (RITOCCHI O RIFARE)-->
+<?php
+require('_config_inc.php');
+require('_db_dal_inc.php'); 
+
+// ----------------------------------------------------------------------------------
+// -----------------CONNESSIONE DB ED ESTRAZIONE sensori-----------------------------
+// ----------------------------------------------------------------------------------
+
+?>
+
+
+<?php
+// ----------------VERIFICA DELLA VALIDITA DELLA SESSION-----------------------------
+	// if(verifica_user($conn,$_SESSION['user'],$_SESSION['psw'])) { 
+		$conn=db_connect();
+		// $rows=sensori_pubblic($conn);
+		// $conn->close();
+?>
+<?php  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -239,7 +258,14 @@
 					<input type="text" class="form-control" style="border-radius: 0 10px 10px 0;" placeholder="Cerca" aria-label="Cerca" aria-describedby="basic-addon1">
 				</div>
 
-				<!-- CARD -->
+				<?php
+				// <!-- ---------------------------------------------------------------------------------- -->
+				// <!-- ---------------------------------CARD VINI------------------------------------- -->
+				// <!-- ---------------------------------------------------------------------------------- -->
+				?>
+
+				<?php 
+				//if(count($rows_sensori)>0) { ?>
 
 				<div class="row row-cols-1 row-cols-md-3 g-4">
 					<div class="col">
@@ -251,34 +277,6 @@
 							</figcaption>
 						</figure>
 					</div>
-					<div class="col">
-						<figure class="card  ">
-							<img src="img/Linea_Frati/1_bott_F.png" alt="">
-							<figcaption>
-								<p class="h5 text-dark">Nome Vino</p>
-								<p class="text-dark"> 69.99€</p>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="col">
-						<figure class="card  ">
-							<img src="img/Linea_Frati/3_bott.png" alt="">
-							<figcaption>
-								<p class="h5 text-dark">Nome Vino</p>
-								<p class="text-dark"> 69.99€</p>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="col">
-						<figure class="card ">
-							<img src="img/Linea_Frati/4_bot_F.png" alt="">
-							<figcaption>
-								<p class="h5 text-dark ">Nome Vino</p>
-								<p class="text-dark"> 69.99€</p>
-							</figcaption>
-						</figure>
-					</div>
-				  </div>
 
 				
 			</div>
@@ -317,3 +315,18 @@
 
 </body>
 </html>
+
+<?php   
+    // }
+    // else
+    // {
+    //     header("location: login.php");
+    // }
+		$conn->close();
+
+?>
+
+<?php 
+    // include('footer_inc.php');
+    // $conn->close();
+?>
