@@ -25,7 +25,7 @@ $conn=db_connect();
 if(array_key_exists('nome',$_POST))
 {
     //SE ESISTE IL NOME L'UTENTE SI STA REGISTRANDO
-    $result=new_user($conn,$signup_nome,$email,$signup_piva,$signup_indirizzo,$psw);
+    new_user($conn,$signup_nome,$email,$signup_piva,$signup_indirizzo,$psw);
     header("location: login.php");
 }
 else
