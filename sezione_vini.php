@@ -7,7 +7,7 @@ require('_db_dal_inc.php');
 $conn= $conn= db_connect();
 
 /*DISPLAY DEI VINI*/
-$sql= "SELECT nomevino, prezzo FROM `bottiglia`";
+$sql= "SELECT idB,nomevino, prezzo FROM `bottiglia`";
 $result = $conn->query($sql);
 ?>
 
@@ -261,13 +261,15 @@ $result = $conn->query($sql);
 				<?php if($result->num_rows>0){
 					while($row=$result->fetch_assoc()){  ?>
 							<div class="col">
-								<figure class="card ">
-									<img src="img/Linea_Frati/4_bot_F.png" alt="">
-									<figcaption>
-										<p id="nomevino" class="h6 text-dark "><?= $row['nomevino'] ?></p>
-										<p id="prezzo" class="text-dark"><?= $row['prezzo'] ?> € </p>
-									</figcaption>
-								</figure>
+								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
+									<figure class="card ">
+										<img src="img/Linea_Frati/4_bot_F.png" alt="">
+										<figcaption>
+											<p id="nomevino" class="h6 text-dark "><?=$row['nomevino'] ?></p>
+											<p id="prezzo" class="text-dark"><?=$row['prezzo'] ?> € </p>
+										</figcaption>
+									</figure>
+								</a>
 							</div>
 							<?php
 					}
