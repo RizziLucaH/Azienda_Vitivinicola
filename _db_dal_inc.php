@@ -1,6 +1,6 @@
 <?php
 
-require('_config.inc.php');
+require('_config_inc.php');
 
 function db_connect()
 {
