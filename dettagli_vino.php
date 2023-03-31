@@ -8,7 +8,12 @@ $id= intval($_GET['idB']);
 $conn=db_connect();
 
 /*DISPLAY DELLE INFO*/
-$sql= "SELECT nomevino, prezzo, descrizione, gradoalcolico, annoproduzione FROM bottiglia WHERE idB='$id'";
+$sql= "SELECT B.nomevino as nomevino, B.prezzo as prezzo, B.descrizione as descrizione, 
+B.gradoalcolico as gradoalcolico, B.annoproduzione as annoproduzione, V.profumo as profumo, V.gusto as gusto, V.retrogusto as retrogusto,
+V.tannino as tannino, V.colore as colore, V.temperatura as temperatura FROM bottiglia B 
+join vino V on V.idV=B.idV 
+WHERE idB='$id'";
+
 $result = $conn->query($sql);
 
 $row = $result->fetch_assoc();
@@ -17,6 +22,12 @@ $prezzo=$row['prezzo'];
 $desc=$row['descrizione'];
 $grado=$row['gradoalcolico'];
 $anno=$row['annoproduzione'];
+$profumo=$row['profumo'];
+$gusto=$row['gusto'];
+$retrogusto=$row['retrogusto'];
+$tannino=$row['tannino'];
+$colore=$row['colore'];
+$temperatura=$row['temperatura'];
 
 $conn->close();
 
@@ -151,22 +162,50 @@ $conn->close();
 		<button class="add-to-cart" style="margin:auto; display:block;">AGGIUNGI AL CARRELLO</button>
 		</div>
 		</div>
-		<div class="grid related-products">
+	<div class="grid related-products">
 		<div class="column-xs-12">
 			<h3 style="text-align: center;">Scheda Tecnica</h3>
 		</div>
-		<div class="column-xs-12 column-md-6">
-			<h4 style="text-align: center;">GRADO ALCOLICO</h4>
+		<div class="column-xs-12 column-md-6 border">
+			<h4 style="text-align: center;">Grado Alcolico</h4>
 			<p><?=$grado?>°</p>
 		</div>
-		<div class="column-xs-12 column-md-6">
-			<h4  style="text-align: center;">ANNO PRODUZIONE</h4>
+		<div class="column-xs-12 column-md-6 border">
+			<h4  style="text-align: center;">Anno Produzione</h4>
 			<p><?=$anno?></p>
 		</div>
+
+		<div class="column-xs-12 column-md-6 border">
+			<h4  style="text-align: center;">Profumo</h4>
+			<p><?=$profumo?></p>
 		</div>
+
+		<div class="column-xs-12 column-md-6 border">
+			<h4  style="text-align: center;">Gusto</h4>
+		<p><?=$gusto?></p>
 		</div>
+		
+		<div class="column-xs-12 column-md-6 border">
+			<h4  style="text-align: center;">Retrogusto</h4>
+			<p><?=$retrogusto?></p>
 		</div>
+
+		<div class="column-xs-12 column-md-6 border">
+			<h4  style="text-align: center;">Tannino</h4>
+			<p><?=$tannino?></p>
 		</div>
+
+		<div class="column-xs-12 column-md-6 border">
+			<h4  style="text-align: center;">Colore</h4>
+			<p><?=$colore?></p>
+		</div>
+
+		<div class="column-xs-12 column-md-6 border">
+			<h4  style="text-align: center;">Temperatura</h4>
+			<p><?=$temperatura?>°</p>
+		</div>
+
+	</div>
 		</main>
 		<footer>
 		<div class="grid">
