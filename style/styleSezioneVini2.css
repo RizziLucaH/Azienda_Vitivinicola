@@ -126,3 +126,10 @@ hr{
   height: 800px;
   color: #000000;
 }
+
+#invia{
+  margin: auto;
+  display: block;
+  width: 50%;
+  background-color: #caccac;
+}

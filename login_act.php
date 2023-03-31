@@ -22,7 +22,7 @@ $psw = $_POST['psw'];
 $conn=db_connect();
 
 
-if(array_key_exists('nome',$_POST))
+if(array_key_exists('signup_nome',$_POST))
 {
     //SE ESISTE IL NOME L'UTENTE SI STA REGISTRANDO
     new_user($conn,$signup_nome,$email,$signup_piva,$signup_indirizzo,$psw);
@@ -32,7 +32,7 @@ else
 {
     //SE NON ESISTE IL NOME L'UTENTE STA CERCANDO DI ACCEDERE
     
-    $result=verifica_user($conn,$user,$passwordUser);
+    $result=verifica_user($conn,$email,$psw);
     if(empty($result))
     {
         //SE è SBAGLAITO RICARICA LA STESSA PAGINA
@@ -42,13 +42,13 @@ else
     {
         //SE è GIUSTO AVVIA LA SESSION, CONSENTENDO COSI DI ACCEDERE ALLE PAGINE PRIVATE
         session_start();
-        $_SESSION['user'] = $user;
-        $_SESSION['psw'] = $passwordUser;
+        $_SESSION['email'] = $email;
+        $_SESSION['psw'] = $psw;
         $_SESSION['nome'] = $result['nome'];
-        $_SESSION['cognome'] = $result['cognome'];
-        $_SESSION['filtro'] = ' ';
+        $_SESSION['piva'] = $result['piva'];
+        // $_SESSION['filtro'] = ' ';
         
-        header("location: dati_priv.php");
+        header("location: index.php");
     }
 }
 
