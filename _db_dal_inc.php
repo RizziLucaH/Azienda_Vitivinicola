@@ -1,6 +1,6 @@
 <?php
 
-require('_config.inc.php');
+require('_config_inc.php');
 
 function db_connect()
 {
@@ -49,4 +49,31 @@ function verifica_user($conn,$mail,$password){
     }
 }
 
+function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisita,$orario,$nomecantina,$numeropartecipanti){
+    $cercaidcant="SELECT idCantina FROM cantina where nome='$nomecantina'";
+    $res=$conn->query($cercaidcant);
+    $row=$res->fetch_assoc();
+    $idCantina=$row['idCantina'];
+
+    $aggiungivisitatore="INSERT INTO visitatore (nome, cognome, datanascita, mail) VALUES ('$nome', '$cognome', '$datanascita', '$mail')";
+    $conn->query($aggiungivisitatore);
+
+    $cercaidvisitatore="SELECT MAX(idVisitatore) as idc FROM visitatore";
+    $resVis=$conn->query($cercaidvisitatore);
+    $rowVis=$resVis->fetch_assoc();
+    $idV=$rowVis['idc'];
+
+
+    $aggiungivisita="INSERT INTO visita_onav (motivo, data, orario, descrizione, idCantina) VALUES ('visita', '$datavisita', '$orario', NULL, '$idCantina')";
+    $conn->query($aggiungivisita);
+
+    $cercaidvisita="SELECT MAX(idVisita) as idv FROM visita_onav";
+    $resV=$conn->query($cercaidvisita);
+    $rowV=$resV->fetch_assoc();
+    $idVisita=$rowV['idv'];
+
+
+    $aggiungipartecipa="INSERT INTO partecipa (idVisitatore, idVisita, numeropartecipanti) VALUES ('$idV', '$idVisita', '$numeropartecipanti')";
+    $conn->query($aggiungipartecipa);
+}
 ?>
