@@ -7,7 +7,7 @@ require('_db_dal_inc.php');
 $conn= $conn= db_connect();
 
 /*DISPLAY DEI VINI*/
-$sql= "SELECT nomevino, prezzo FROM `bottiglia`";
+$sql= "SELECT idB,nomevino, prezzo FROM `bottiglia`";
 $result = $conn->query($sql);
 ?>
 
@@ -116,20 +116,21 @@ $result = $conn->query($sql);
 		
 		<a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
 	</div>
-
-
+	
+	
 	<!-- ---------------------------------------------------------------------------------------------------- -->
 	<!-- ------------------------------------FILTRA/ORDINA--------------------------------------------------- -->
 	<!-- ---------------------------------------------------------------------------------------------------- -->
-
+	
 	<div class="container-xl" >
 		<hr class="mt-5">
 		<div class="row align-items-start">
 			<div class="col-3 mt-5 pt-3 filtra">
-
+				
 				<!-- ----------------------------------------------------------------- -->
 				<!-- -----------------------------STATO------------------------------- -->
 				<!-- ----------------------------------------------------------------- -->
+				<form action="sezione_vini_act.php" method="POST">
 				<header>
 					<h6>Stato</h6>
 				</header>
@@ -137,13 +138,13 @@ $result = $conn->query($sql);
 				<div class="form-check mb-3">
 
 					<!-- COMPRA ORA -->
-					<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Compra Ora</label>
+					<input id="CK_compraora" class="form-check-input mt-0" type="checkbox" value="" >
+					<label for="CK_compraora">Compra Ora</label>
 					<br>
 
 					<!-- IN ARRIVO -->
-					<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">In arrivo</label>
+					<input id="CK_inarrivo" class="form-check-input mt-0" type="checkbox" value="" >
+					<label for="CK_inarrivo">In arrivo</label>
 				
 				</div>
 
@@ -171,8 +172,8 @@ $result = $conn->query($sql);
 					<div class="progress"></div>
 				</div>
 				<div class="range-input">
-					<input type="range" class="" min="0" max="500" value="0" step="1">
-					<input type="range" class="" min="0" max="500" value="269" step="1">
+					<input id="minimo" type="range" class="" min="0" max="500" value="0" step="1" oninput="FiltraPrezzo()">
+					<input id="massimo" type="range" class="" min="0" max="500" value="269" step="1" oninput="FiltraPrezzo()">
 				</div>
 
 				<hr style="border: 1px solid black;">
@@ -189,17 +190,17 @@ $result = $conn->query($sql);
 				<div class="form-check mb-3">
 
 					<!-- +20 -->
-					<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+					<input id="CK_20" class="form-check-input mt-0" type="checkbox" value="" >
 					<label for="CK_stato_compra_ora">+20</label>
 					<br>
 
 					<!-- +50 -->
-					<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+					<input id="CK_50" class="form-check-input mt-0" type="checkbox" value="" >
 					<label for="CK_stato_compra_ora">+50</label>
 					<br>
 
 					<!-- +100 -->
-					<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+					<input id="CK_100" class="form-check-input mt-0" type="checkbox" value="" >
 					<label for="CK_stato_compra_ora">+100</label>
 				
 				</div>
@@ -214,32 +215,31 @@ $result = $conn->query($sql);
 				<header>
 					<h6>Tipo</h6>
 				</header>
-				<form action="">
 
 					<div class="form-check mb-3">
 	
-						<!-- +20 -->
-						<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+						<!-- Bianco -->
+						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" >
 						<label for="CK_stato_compra_ora">Bianco</label>
 						<br>
 	
-						<!-- +50 -->
-						<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+						<!-- Spumante -->
+						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" >
 						<label for="CK_stato_compra_ora">Spumante</label>
 						<br>
 	
-						<!-- +50 -->
-						<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+						<!-- Rosso -->
+						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" >
 						<label for="CK_stato_compra_ora">Rosso</label>
 						<br>
 	
-						<!-- +100 -->
-						<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+						<!-- Rosé -->
+						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" >
 						<label for="CK_stato_compra_ora">Rosé</label>
 						<br>
 	
-						<!-- +100 -->
-						<input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
+						<!-- Grappa -->
+						<input id="CK_grappa" class="form-check-input mt-0" type="checkbox" value="" >
 						<label for="CK_stato_compra_ora">Grappa</label>
 						<br>
 						<br>
@@ -261,13 +261,15 @@ $result = $conn->query($sql);
 				<?php if($result->num_rows>0){
 					while($row=$result->fetch_assoc()){  ?>
 							<div class="col">
-								<figure class="card ">
-									<img src="img/Linea_Frati/4_bot_F.png" alt="">
-									<figcaption>
-										<p class="h6 text-dark "><?= $row['nomevino'] ?></p>
-										<p class="text-dark"><?= $row['prezzo'] ?> </p>
-									</figcaption>
-								</figure>
+								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
+									<figure class="card ">
+										<img src="img/Linea_Frati/4_bot_F.png" alt="">
+										<figcaption>
+											<p id="nomevino" class="h6 text-dark "><?=$row['nomevino'] ?></p>
+											<p id="prezzo" class="text-dark"><?=$row['prezzo'] ?> € </p>
+										</figcaption>
+									</figure>
+								</a>
 							</div>
 							<?php
 					}
@@ -309,6 +311,26 @@ $result = $conn->query($sql);
 <script src="js/function.js"></script>
 <script src="js/functionBottiglia.js"></script>
 <script src="js/functionSezioneVini2.js"></script>
+<script>
+	function FiltraPrezzo(){
+		$(document).ready(function(){
+			let min=$("#minimo").val();
+			let max=$("#massimo").val();
+			let arrayP=$("p[id=prezzo]");
+			$.each(arrayP,function(index,value){
+				let new_val= parseInt($(value).html().replace('€','').trim());
+
+				if(new_val< min || new_val>max){
+					$(value).closest("div").css("display","none");
+				}
+				else{$(value).closest("div").css("display","inline-block");}
+				console.log(min);
+				console.log(max);
+			})
+
+		});
+	}
+</script>
 
 </body>
 </html>

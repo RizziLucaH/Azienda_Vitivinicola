@@ -21,7 +21,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/less" ></script>
 
 </head>
-<body class="dark hero-anime" style="overflow: hidden;;">
+<body class="dark hero-anime" style="overflow: auto;;">
 
     <!-- TITOLO -->
     

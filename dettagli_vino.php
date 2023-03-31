@@ -1,4 +1,27 @@
 <!--DA MODIFICARE GRAFICAMENTE AD ESEMPIO IL BOTTONE E IL TESTO DI FIANCO ALLE IMMAGINI-->
+<?php
+require('_config_inc.php');
+require('_db_dal_inc.php');
+
+$id= intval($_GET['idB']);
+
+$conn=db_connect();
+
+/*DISPLAY DELLE INFO*/
+$sql= "SELECT nomevino, prezzo, descrizione, gradoalcolico, annoproduzione FROM bottiglia WHERE idB='$id'";
+$result = $conn->query($sql);
+
+$row = $result->fetch_assoc();
+$nome=$row['nomevino'];
+$prezzo=$row['prezzo'];
+$desc=$row['descrizione'];
+$grado=$row['gradoalcolico'];
+$anno=$row['annoproduzione'];
+
+$conn->close();
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,13 +143,12 @@
 			</div>
 		</div>
 		<div class="column-xs-12 column-md-5">
-			<h1>Bonsai</h1>
-			<h2>$19.99</h2>
+			<h1><?=$nome?></h1>
+			<h2 style="text-align: center; padding-top:10px"><?=$prezzo?> €</h2>
 			<div class="description">
-			<p>The purposes of bonsai are primarily contemplation for the viewer, and the pleasant exercise of effort and ingenuity for the grower.</p>
-			<p>By contrast with other plant cultivation practices, bonsai is not intended for production of food or for medicine. Instead, bonsai practice focuses on long-term cultivation and shaping of one or more small trees growing in a container.</p>
-			</div>
-			<button class="add-to-cart" style="margin-top: 10%;">Add To Cart</button>
+			<p style="padding-bottom: 30px;"><?=$desc?></p>
+		</div>
+		<button class="add-to-cart" style="margin:auto; display:block;">AGGIUNGI AL CARRELLO</button>
 		</div>
 		</div>
 		<div class="grid related-products">
@@ -134,12 +156,12 @@
 			<h3 style="text-align: center;">Scheda Tecnica</h3>
 		</div>
 		<div class="column-xs-12 column-md-6">
-			<h4 style="text-align: center;">DESCRIZIONE 1</h4>
-			<p>Magna non ut id esse consectetur in ut aute exercitation eiusmod est Lorem sint et.</p>
+			<h4 style="text-align: center;">GRADO ALCOLICO</h4>
+			<p><?=$grado?>°</p>
 		</div>
 		<div class="column-xs-12 column-md-6">
-			<h4  style="text-align: center;">DESCRIZIONE 2</h4>
-			<p>Magna non ut id esse consectetur in ut aute exercitation eiusmod est Lorem sint et.</p>
+			<h4  style="text-align: center;">ANNO PRODUZIONE</h4>
+			<p><?=$anno?></p>
 		</div>
 		</div>
 		</div>
