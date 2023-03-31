@@ -55,6 +55,11 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     $row=$res->fetch_assoc();
     $idCantina=$row['idCantina'];
 
+    $nome=$conn->real_escape_string($nome);
+    $cognome=$conn->real_escape_string($cognome);
+    $datanascita=$conn->real_escape_string($datanascita);
+    $mail=$conn->real_escape_string($mail);
+
     $aggiungivisitatore="INSERT INTO visitatore (nome, cognome, datanascita, mail) VALUES ('$nome', '$cognome', '$datanascita', '$mail')";
     $conn->query($aggiungivisitatore);
 
@@ -63,6 +68,9 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     $rowVis=$resVis->fetch_assoc();
     $idV=$rowVis['idc'];
 
+    $datavisita=$conn->real_escape_string($datavisita);
+    $orario=$conn->real_escape_string($orario);
+    $idCantina=$conn->real_escape_string($idCantina);
 
     $aggiungivisita="INSERT INTO visita_onav (motivo, data, orario, descrizione, idCantina) VALUES ('visita', '$datavisita', '$orario', NULL, '$idCantina')";
     $conn->query($aggiungivisita);
@@ -72,6 +80,7 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     $rowV=$resV->fetch_assoc();
     $idVisita=$rowV['idv'];
 
+    $numeropartecipanti=$conn->real_escape_string($numeropartecipanti);
 
     $aggiungipartecipa="INSERT INTO partecipa (idVisitatore, idVisita, numeropartecipanti) VALUES ('$idV', '$idVisita', '$numeropartecipanti')";
     $conn->query($aggiungipartecipa);
