@@ -1,4 +1,23 @@
 <!--DA MODIFICARE GRAFICAMENTE (RITOCCHI O RIFARE)-->
+<?php
+require('_config_inc.php');
+require('_db_dal_inc.php'); 
+
+// ----------------------------------------------------------------------------------
+// -----------------CONNESSIONE DB ED ESTRAZIONE sensori-----------------------------
+// ----------------------------------------------------------------------------------
+
+?>
+
+
+<?php
+// ----------------VERIFICA DELLA VALIDITA DELLA SESSION-----------------------------
+	// if(verifica_user($conn,$_SESSION['user'],$_SESSION['psw'])) { 
+		$conn=db_connect();
+		// $rows=sensori_pubblic($conn);
+		// $conn->close();
+?>
+<?php  ?>
 
 <?php
 require('_config_inc.php');
@@ -277,6 +296,7 @@ $result = $conn->query($sql);
 				<?php	}?>
 				
 				</div>
+
 				
 			</div>
 			
@@ -334,3 +354,18 @@ $result = $conn->query($sql);
 
 </body>
 </html>
+
+<?php   
+    // }
+    // else
+    // {
+    //     header("location: login.php");
+    // }
+		$conn->close();
+
+?>
+
+<?php 
+    // include('footer_inc.php');
+    // $conn->close();
+?>
