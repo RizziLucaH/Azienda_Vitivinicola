@@ -125,10 +125,19 @@
 						<div class="form-header">
 							<h2>Prenota ora la tua visita!</h2>
 						</div>
-
-						<div class="form-group">
-							<span class="form-label">Nome e Cognome</span>
-							<input class="form-control" type="text" placeholder="Inserisci nome e cognome">
+						<div class="row">
+							<div class="col-md-6">
+							<div class="form-group">
+								<span class="form-label">Nome</span>
+								<input class="form-control" type="text" placeholder="Inserisci il nome">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<span class="form-label">Cognome</span>
+								<input class="form-control" type="text" placeholder="Inserisci il cognome">
+							</div>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
@@ -137,11 +146,7 @@
 									<input class="form-control" type="date" required>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-
-								</div>
-							</div>
+							
 						</div>
 						<div class="form-group">
 							<span class="form-label">Email</span>
@@ -157,17 +162,23 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-
+									<span class="form-label">Orario della visita</span>
+									<select class="form-control">
+										<option>10:30</option>
+										<option>15:30</option>
+										<option>17:30</option>
+									</select>
 								</div>
 							</div>
 						</div>
+						
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<span class="form-label">Partecipanti</span>
 									<br>
 										<span class="input-number-decrement">-</span>
-										<input class="input-number" type="number" id="persone" min="1" max="10">
+										<input class="input-number" type="number" id="persone" min="1" max="10" value="1">
 										<span class="input-number-increment">+</span>
 
 									<span class="select-arrow"></span>
@@ -201,13 +212,13 @@
 </div>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
+<!-- <script>
 	window.dataLayer = window.dataLayer || [];
 	function gtag() { dataLayer.push(arguments); }
 	gtag('js', new Date());
 
 	gtag('config', 'UA-23581568-13');
-</script>
+</script> -->
 <script defer
 	src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993"
 	integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
@@ -216,6 +227,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <script>
+		//script per il counter dei partecipanti
         (function () {
     
             window.inputNumber = function (el) {
