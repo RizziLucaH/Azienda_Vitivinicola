@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js">
+    </script>
+</head>
+<body>
+    <div class="map-wrap">
+        <div id="map"></div>
+    </div>
+</body>
+<style>
+    .map-wrap {         
+        border: 3px solid #000;         
+        width: 400px;         
+        height: 400px;   
+    }   
+    #map {         
+        width: 400px;         
+        height: 400px;   
+    }
+    </style>
+</html>
+<script>
+var map = new L.Map('map');
+var url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osm = new L.TileLayer(url, {minZoom: 8, maxZoom: 16, attribution: attrib});
+map.setView(new L.LatLng(41.88,12.47),16);
+map.addLayer(osm);
+L.marker([41.88,12.47]).addTo(map).bindPopup("I’m here!").openPopup();
+</script>

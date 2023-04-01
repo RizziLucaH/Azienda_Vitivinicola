@@ -1,0 +1,216 @@
+.sectionform {
+	position: relative;
+	height: 100vh;
+}
+
+.sectionform .sectionform-center {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+#booking {
+	font-family: 'Cabin', sans-serif;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-image: url('../Template/img/sfondo_visitaci.png');
+}
+
+.booking-form {
+	position: relative;
+	max-width: 642px;
+	width: 100%;
+	margin: auto;
+	background: #252525f6;
+	
+}
+
+.booking-form>.booking-bg {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	width: 250px;
+	background-image: url('../img/background.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.booking-form>form {
+	/* margin-left: 250px; */
+	padding: 30px;
+	/*border: 1px solid #1da752;*/
+	border-left: 0px;
+}
+
+.booking-form .form-header {
+	margin-bottom: 30px;
+}
+
+.booking-form .form-header h2 {
+	margin: 0;
+	margin-bottom: 0px;
+	font-weight: 700;
+	color: #ccac00;
+	font-size: 35px;
+	text-transform: capitalize;
+}
+
+.booking-form .form-group {
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.booking-form .form-control {
+	/*background placeholder*/
+	background-color: #5e5e5ea8;
+	height: 40px;
+	padding: 0px 10px;
+	border-radius: 0px;
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+	color: #dfd8d8;
+	border: 0px;
+	font-size: 16px;
+	font-weight: 700;
+	/*-webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+	box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);*/
+}
+
+.booking-form .form-control::-webkit-input-placeholder {
+	color: #794f27;
+}
+
+.booking-form .form-control:-ms-input-placeholder {
+	
+}
+
+.booking-form .form-control::placeholder {
+	/*placeholder */
+	color: #dfd8d8;
+}
+
+.booking-form .form-control:focus {
+	border-color: #ccac00;
+}
+
+.booking-form input[type="date"].form-control:invalid {
+	color: #dfd8d8;
+}
+
+.booking-form select.form-control {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.booking-form select.form-control+.select-arrow {
+	position: absolute;
+	right: 0px;
+	bottom: 4px;
+	width: 32px;
+	line-height: 32px;
+	height: 32px;
+	text-align: center;
+	pointer-events: none;
+}
+
+.booking-form select.form-control+.select-arrow:after {
+	content: '\279C';
+	display: block;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	color: #ffffff;
+	font-size: 14px;
+}
+
+.booking-form .form-label {
+	color: #ccac00;
+	font-weight: 700;
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+	text-transform: uppercase;
+	line-height: 24px;
+	height: 24px;
+	font-size: 14px;
+	z-index: 1;
+}
+
+.booking-form .form-btn {
+	margin-top: 10px;
+}
+
+.booking-form .submit-btn {
+	color: #000000;
+	background-color: #ccac00;
+	font-weight: 700;
+	padding: 13px 35px;
+	font-size: 18px;
+	border-radius: 10px;
+	border: none;
+	width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+	.booking-form>.booking-bg {
+		display: none;
+	}
+
+	.booking-form>form {
+		margin-left: 0px;
+	}
+}
+
+/*INPUT NUMBER*/
+/*Eliminazione delle frecce di unput number*/
+input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+.input-number {
+	width: 120px;
+	padding: 0 12px;
+	vertical-align: top;
+	text-align: center;
+	outline: none;
+	
+	border: 1px;
+}
+
+.input-number,
+.input-number-decrement,
+.input-number-increment {
+	height: 40px;
+	user-select: none;
+	cursor: pointer;
+	background-color: #5e5e5ea8;
+	color: #ffffff;
+}
+
+.input-number-decrement,
+.input-number-increment {
+	display: inline-block;
+	width: 30px;
+	line-height: 38px;
+	text-align: center;
+	font-weight: bold;
+	
+}
+
+.input-number-decrement:active,
+.input-number-increment:active {
+	background: #252323;
+}
+
+.input-number-decrement {
+	border-right: none;
+	
+}
+
+.input-number-increment {
+	border-left: none;
+	
+}
