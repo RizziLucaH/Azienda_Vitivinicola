@@ -1,32 +1,11 @@
-<!--DA MODIFICARE GRAFICAMENTE (RITOCCHI O RIFARE)-->
-<?php
-require('_config_inc.php');
-require('_db_dal_inc.php'); 
-
-// ----------------------------------------------------------------------------------
-// -----------------CONNESSIONE DB ED ESTRAZIONE sensori-----------------------------
-// ----------------------------------------------------------------------------------
-
-?>
-
-
-<?php
-// ----------------VERIFICA DELLA VALIDITA DELLA SESSION-----------------------------
-	// if(verifica_user($conn,$_SESSION['user'],$_SESSION['psw'])) { 
-		$conn=db_connect();
-		// $rows=sensori_pubblic($conn);
-		// $conn->close();
-?>
-<?php  ?>
-
 <?php
 require('_config_inc.php');
 require('_db_dal_inc.php');
 
-$conn= $conn= db_connect();
+$conn= db_connect();
 
 /*DISPLAY DEI VINI*/
-$sql= "SELECT idB,nomevino, prezzo FROM `bottiglia`";
+$sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS FROM `bottiglia` B join vino V on V.idV=B.idV ";
 $result = $conn->query($sql);
 ?>
 
@@ -149,7 +128,6 @@ $result = $conn->query($sql);
 				<!-- ----------------------------------------------------------------- -->
 				<!-- -----------------------------STATO------------------------------- -->
 				<!-- ----------------------------------------------------------------- -->
-				<form action="sezione_vini_act.php" method="POST">
 				<header>
 					<h6>Stato</h6>
 				</header>
@@ -238,40 +216,42 @@ $result = $conn->query($sql);
 					<div class="form-check mb-3">
 	
 						<!-- Bianco -->
-						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" >
-						<label for="CK_stato_compra_ora">Bianco</label>
+						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<label for="CK_bianco">Bianco</label>
 						<br>
 	
 						<!-- Spumante -->
-						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" >
-						<label for="CK_stato_compra_ora">Spumante</label>
-						<br>
-	
-						<!-- Rosso -->
-						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" >
-						<label for="CK_stato_compra_ora">Rosso</label>
-						<br>
-	
-						<!-- Rosé -->
-						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" >
-						<label for="CK_stato_compra_ora">Rosé</label>
-						<br>
-	
-						<!-- Grappa -->
-						<input id="CK_grappa" class="form-check-input mt-0" type="checkbox" value="" >
-						<label for="CK_stato_compra_ora">Grappa</label>
-						<br>
+						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<label for="CK_spumante">Spumante</label>
 						<br>
 
+						<!-- Rosso -->
+						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<label for="CK_rosso">Rosso</label>
+						<br>
+
+						<!-- Rosé -->
+						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<label for="CK_rosé">Rosé</label>
+						<br>
+
+						<!-- Grappa -->
+						<input id="CK_grappa" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<label for="CK_grappa">Grappa</label>
+						<br>
+
+						<!-- Vino dolce -->
+						<input id="CK_passito" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<label for="CK_passito">Passito</label>
+						<br>
+						<br>
 					</div>
-					<input id="invia" type="submit" value="CERCA" style>
 				</div>
-				</form>
 
 			<div class="col-9 mt-5">
 				<div class="input-group mb-3" >
 					<span class="input-group-text" style="border-radius: 10px 0 0 10px ;" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-					<input type="text" class="form-control" style="border-radius: 0 10px 10px 0;" placeholder="Cerca" aria-label="Cerca" aria-describedby="basic-addon1">
+					<input id="cerca" type="text" class="form-control" style="border-radius: 0 10px 10px 0;" placeholder="Cerca" aria-label="Cerca" aria-describedby="basic-addon1" oninput="FiltraNome()">
 				</div>
 
 				<!-- CARD -->
@@ -279,7 +259,7 @@ $result = $conn->query($sql);
 				<div class="row row-cols-1 row-cols-md-3 g-4">
 				<?php if($result->num_rows>0){
 					while($row=$result->fetch_assoc()){  ?>
-							<div class="col">
+							<div data-tipoN="<?=$row['tipoN'] ?>" data-tipoS="<?=$row['tipoS'] ?>" class="col bottiglia">
 								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
 									<figure class="card ">
 										<img src="img/Linea_Frati/4_bot_F.png" alt="">
@@ -296,7 +276,6 @@ $result = $conn->query($sql);
 				<?php	}?>
 				
 				</div>
-
 				
 			</div>
 			
@@ -344,28 +323,89 @@ $result = $conn->query($sql);
 					$(value).closest("div").css("display","none");
 				}
 				else{$(value).closest("div").css("display","inline-block");}
-				console.log(min);
-				console.log(max);
+				/*console.log(min);
+				console.log(max);*/
 			})
 
 		});
+	}
+
+	function FiltraNome(){
+		$(document).ready(function(){
+			let arrayN=$("p[id=nomevino]");
+			let cerca=$("#cerca").val();
+
+			$.each(arrayN,function(index,value){
+				if($(value).html().indexOf(cerca)== -1){$(value).closest("div").hide();} else{$(value).closest("div").show();}
+			});
+		});
+	}
+
+	function FiltraTipo(){
+		$(document).ready(function(){
+			/*vini*/
+			let bianchi=$("div[data-tipoN='Bianco']");
+			let rossi=$("div[data-tipoN='Rosso']");
+			let Rosé=$("div[data-tipoN='Rosè']");
+			let grappe=$("div[data-tipoS='Grappa']");
+			let spumanti=$("div[data-tipoS='Spumante']");
+			let passiti=$("div[data-tipoS='Vino dolce']")
+
+			/*checkbox*/
+			let checkB= $("#CK_bianco").is(":checked");
+			let checkR=$("#CK_rosso").is(":checked");
+			let checkRosé=$("#CK_rosé").is(":checked");
+			let checkG=$("#CK_grappa").is(":checked");
+			let checkS=$("#CK_spumante").is(":checked");
+			let checkP=$("#CK_passito").is(":checked");
+			console.log(checkR);
+
+			/*EACH BIANCHI*/
+			$.each(bianchi,function(index,value){
+				if(checkR==true || checkG==true  || checkS==true  || checkRosé==true || checkP==true ){
+					if(checkB==false){$(value).hide();} else {$(value).show();}
+				}
+			})
+			
+			/*EACH ROSSI*/
+			$.each(rossi,function(index,value){
+				if(checkB==true || checkG==true  || checkS==true  || checkRosé==true || checkP==true ){
+					if(checkR==false){$(value).hide();} else {$(value).show();}
+				}
+			})
+
+			/*EACH ROSé*/
+			$.each(Rosé,function(index,value){
+				if(checkB==true || checkG==true  || checkS==true  || checkR==true || checkP==true ){
+					if(checkRosé==false){$(value).hide();} else {$(value).show();}
+				}
+			})
+
+			/*EACH GRAPPE*/
+			$.each(grappe,function(index,value){
+				if(checkB==true || checkRosé==true  || checkS==true  || checkR==true || checkP==true ){
+					if(checkG==false){$(value).hide();} else {$(value).show();}
+				}
+			})
+
+			/*EACH SPUMANTI*/
+			$.each(spumanti,function(index,value){
+				if(checkB==true || checkRosé==true  || checkG==true  || checkR==true || checkP==true ){
+					if(checkS==false){$(value).hide();} else {$(value).show();}
+				}
+			})
+
+			/*EACH PASSITO*/
+			$.each(passiti,function(index,value){
+				if(checkB==true || checkRosé==true  || checkG==true  || checkR==true || checkS==true ){
+					if(checkP==false){$(value).hide();} else {$(value).show();}
+				}
+			})
+
+		});
+		
 	}
 </script>
 
 </body>
 </html>
-
-<?php   
-    // }
-    // else
-    // {
-    //     header("location: login.php");
-    // }
-		$conn->close();
-
-?>
-
-<?php 
-    // include('footer_inc.php');
-    // $conn->close();
-?>
