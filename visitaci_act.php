@@ -9,7 +9,6 @@ $conn=db_connect();
 
 //---Valori del form---
 $NomeVisitatore=$_POST['nomevisitatore'];
-
 $CognomeVisitatore=$_POST['cognomevisitatore'];
 $DataNascita=$_POST['datanascita'];
 $MailVisitatore=$_POST['mailvisitatore'];
