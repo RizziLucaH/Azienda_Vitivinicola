@@ -33,11 +33,6 @@
                 </a>
             </li>
             <hr class="separatore">
-            <li style="list-style-type: none;">
-                <a href="visite.html">
-                    <span class="text">Visite</span>
-                </a>
-            </li>
         </ul>
     </div>
     <!---Sidebar di log out-->
@@ -46,32 +41,36 @@
 
     </div>
 
+<?php  
+require('../_db_dal_inc.php');
+require('../_config_inc.php');
+
+$conn=db_connect();
+$rows=seleziona_vigneti($conn);
+?>
+
     <!--Content-->
     <div class="content" style="padding-right: 5%;">
 
-        <h1>Visite</h1>
+        <h1>Vigneti</h1>
         
         <hr class="posth1" style="border-color: #ffd900;">
 
-        <table class="table  table-hover table-responsive">
+        <table class="table table-hover table-responsive">
             <tr>
-                <th></th>
-                <th>Nome e Cognome</th>
-                <th>Data di nascita</th>
-                <th>Mail</th>
-                <th>Data di visita</th>
-                <th>Numero Partecipanti</th>
-                <th>Cantina</th>
+                <th>Nome</th>
+                <th>Comune</th>
+                <th>Estensione(km^2)</th>
             </tr>
-            <tr>
-                <td><input type="checkbox" name="" id=""></td>
-                <td>PIPPO PLUTINO</td>
-                <td>04/10/3456</td>
-                <td>plutino@gmail.com</td>
-                <td>22/05/2023</td>
-                <td>34</td>
-                <td>Tenuta Dadomo</td>
-            </tr>
+            <?php foreach($rows as $row){?>
+
+                    <tr>
+                        <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['nome']?></a></td>
+                        <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['comune']?></a></td>
+                        <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['estensione']?></a></td>
+                    </tr>
+
+            <?php }?>
         </table>
     </div>
 
@@ -79,4 +78,17 @@
 </body>
 
 </html>
+
+
+
+<?php
+function seleziona_vigneti($conn){
+    $sql="SELECT * from vigneto";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+
+
+?>
 
