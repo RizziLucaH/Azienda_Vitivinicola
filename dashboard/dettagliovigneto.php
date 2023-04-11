@@ -2,6 +2,8 @@
 $idVigneto=$_GET['id'];
 $NomeVigneto=$_GET['vigneto']
 
+
+//aggiungere un insert per nuovi interventi o un nuovo vigneto
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,11 +35,22 @@ $NomeVigneto=$_GET['vigneto']
             </li>
             <hr class="separatore">
             <li style="list-style-type: none;">
-                <a href="vendite.html">
+                <a href="vendite.php">
                     <span class="text">Vendite</span>
                 </a>
             </li>
             <hr class="separatore">
+            <li style="list-style-type: none;">
+                <a href="visite.php">
+                    <span class="text">Visite</span>
+                </a>
+            </li>
+            <hr class="separatore">
+            <li style="list-style-type: none;">
+                <a href="vigneti.php">
+                    <span class="text">Vigneti</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!---Sidebar di log out-->
@@ -65,7 +78,8 @@ $citotropico=$output[2];
         <h1><?=$NomeVigneto?></h1>
 
         <hr class="posth1" style="border-color: #ffd900;">
-
+        <h3>Interventi effettuati</h3>
+        <br>
         <div class="row"> 
             <div class="col">
             <table class="table table-hover table-responsive">

@@ -28,14 +28,20 @@
             </li>
             <hr class="separatore">
             <li style="list-style-type: none;">
-                <a href="vendite.html">
+                <a href="vendite.php">
                     <span class="text">Vendite</span>
                 </a>
             </li>
             <hr class="separatore">
             <li style="list-style-type: none;">
-                <a href="visite.html">
+                <a href="visite.php">
                     <span class="text">Visite</span>
+                </a>
+            </li>
+            <hr class="separatore">
+            <li style="list-style-type: none;">
+                <a href="vigneti.php">
+                    <span class="text">Vigneti</span>
                 </a>
             </li>
         </ul>

@@ -11,7 +11,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #ebebeb;">
+<body>
 
     <!--Side Navbar-->
     <div class="sidebar">
@@ -52,37 +52,57 @@
 
     </div>
 
-<?php  
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
-$conn=db_connect();
-$rows=seleziona_vigneti($conn);
-?>
-
     <!--Content-->
-    <div class="content" style="padding-right: 5%;">
+    <?php
+    require('../_db_dal_inc.php');
+    require('../_config_inc.php');
+    
+    $conn=db_connect();
+    $success=Certificazioni_si($conn);
+    $nosuccess=Certificazioni_no($conn);
 
-        <h1>Vigneti</h1>
-        
+    ?>
+    <div class="content" style="padding-right: 5%;">
+        <h1>Certificazioni</h1>
         <hr class="posth1" style="border-color: #ffd900;">
 
-        <table class="table table-hover table-responsive">
-            <tr>
-                <th>Nome</th>
-                <th>Comune</th>
-                <th>Estensione(km^2)</th>
-            </tr>
-            <?php foreach($rows as $row){?>
+        <div class="row">
+            <div class="col">
+                <h5>Certificazioni andate a buon fine</h5>
+                <table class="table table-success">
+                        <tr>
+                            <th>Vino</th>
+                            <th>Tipo</th>
+                            <th>Data</th>
+                        </tr>
+                    <?php foreach($success as $row){?>
+                        <tr>
+                            <td><?=$row['nome']?></td>
+                            <td><?=$row['tipo']?></td>
+                            <td><?=$row['data']?></td>
+                        </tr>
+                    <?php }?>
+                </table>
+            </div>
+            <div class="col">
+                <h5>Certificazioni non andate a buon fine</h5>
+                <table class="table table-danger">
+                <tr>
+                            <th>Vino</th>
+                            <th>Tipo</th>
+                            <th>Data</th>
+                        </tr>
+                    <?php foreach($nosuccess as $row){?>
+                        <tr>
+                            <td><?=$row['nome']?></td>
+                            <td><?=$row['tipo']?></td>
+                            <td><?=$row['data']?></td>
+                        </tr>
+                    <?php }?>
+                </table>
+            </div>
+        </div>
 
-                    <tr>
-                        <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['nome']?></a></td>
-                        <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['comune']?></a></td>
-                        <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['estensione']?></a></td>
-                    </tr>
-
-            <?php }?>
-        </table>
     </div>
 
     
@@ -92,13 +112,25 @@ $rows=seleziona_vigneti($conn);
 
 
 
+
+
 <?php
-function seleziona_vigneti($conn){
-    $sql="SELECT * from vigneto";
+function Certificazioni_si($conn){
+    $sql="SELECT c.tipo, c.data, v.nome from certificazione c INNER join vino v on c.idV=v.idV where idoneo=1;";
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
 }
+
+
+function Certificazioni_no($conn){
+    $sql="SELECT c.tipo, c.data, v.nome from certificazione c INNER join vino v on c.idV=v.idV where idoneo=0;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+
+
 
 
 ?>
