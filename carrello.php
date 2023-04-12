@@ -106,5 +106,4 @@ $pagina="carrello";
         }
     }
 </script>
-</body>
-</html>
+<?php include('_footer_inc.php');?>

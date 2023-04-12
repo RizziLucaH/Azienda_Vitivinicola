@@ -182,13 +182,9 @@
         </div>
     </div>
     <!-- End -->
-</body>
-</html>
-
-</body>
-</html>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
-<script src="js/function.js"></script>
-<script src="js/functionBottiglia.js"></script>
-<script src="js/functionSezioneVini2.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+    <script src="js/function.js"></script>
+    <script src="js/functionBottiglia.js"></script>
+    <script src="js/functionSezioneVini2.js"></script>
+    <?php include('_footer_inc.php');?>

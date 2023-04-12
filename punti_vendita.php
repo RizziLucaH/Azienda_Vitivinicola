@@ -139,6 +139,4 @@
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 <script src="./js/function.js"></script>
 <script src="./js/functionBottiglia.js"></script>
-
-</body>
-</html>
+<?php include('_footer_inc.php');?>

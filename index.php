@@ -172,7 +172,7 @@ $pagina="home";
 <script src="js/functionBottiglia.js"></script>
 
 
-</body>
+
 <style>
 	.card{
 		width: 20rem;
@@ -195,4 +195,4 @@ $pagina="home";
 		grid-template-rows: 1fr 6rem;
 	}
 </style>
-</html>
+<?php include('_footer_inc.php');?>
