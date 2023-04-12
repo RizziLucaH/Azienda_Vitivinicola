@@ -112,6 +112,4 @@
 <script src="js/functionBottiglia.js"></script>
 
 
-</body>
-
-</html>
+<?php include('_footer_inc.php');?>
