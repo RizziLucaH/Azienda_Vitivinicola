@@ -27,29 +27,6 @@ $result = $conn->query($sql);
 			<div class="col-3 mt-5 pt-3 filtra">
 				
 				<!-- ----------------------------------------------------------------- -->
-				<!-- -----------------------------STATO------------------------------- -->
-				<!-- ----------------------------------------------------------------- -->
-				<header>
-					<h6>Stato</h6>
-				</header>
-
-				<div class="form-check mb-3">
-
-					<!-- COMPRA ORA -->
-					<input id="CK_compraora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_compraora">Compra Ora</label>
-					<br>
-
-					<!-- IN ARRIVO -->
-					<input id="CK_inarrivo" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_inarrivo">In arrivo</label>
-				
-				</div>
-
-				<hr style="border: 1px solid black;">
-				
-
-				<!-- ----------------------------------------------------------------- -->
 				<!-- ----------------------------PREZZO------------------------------- -->
 				<!-- ----------------------------------------------------------------- -->
 				<header>
@@ -272,35 +249,35 @@ $result = $conn->query($sql);
 			$.each(rossi,function(index,value){
 				if(checkB==true || checkG==true  || checkS==true  || checkRosé==true || checkP==true ){
 					if(checkR==false){$(value).hide();} else {$(value).show();}
-				}
+				} else{$(value).show()}
 			})
 
 			/*EACH ROSé*/
 			$.each(Rosé,function(index,value){
 				if(checkB==true || checkG==true  || checkS==true  || checkR==true || checkP==true ){
 					if(checkRosé==false){$(value).hide();} else {$(value).show();}
-				}
+				}else{$(value).show()}
 			})
 
 			/*EACH GRAPPE*/
 			$.each(grappe,function(index,value){
 				if(checkB==true || checkRosé==true  || checkS==true  || checkR==true || checkP==true ){
 					if(checkG==false){$(value).hide();} else {$(value).show();}
-				}
+				}else{$(value).show()}
 			})
 
 			/*EACH SPUMANTI*/
 			$.each(spumanti,function(index,value){
 				if(checkB==true || checkRosé==true  || checkG==true  || checkR==true || checkP==true ){
 					if(checkS==false){$(value).hide();} else {$(value).show();}
-				}
+				}else{$(value).show()}
 			})
 
 			/*EACH PASSITO*/
 			$.each(passiti,function(index,value){
 				if(checkB==true || checkRosé==true  || checkG==true  || checkR==true || checkS==true ){
 					if(checkP==false){$(value).hide();} else {$(value).show();}
-				}
+				}else{$(value).show()}
 			})
 
 		});
