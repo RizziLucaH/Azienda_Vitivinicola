@@ -1,110 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+<?php
+$pagina="contattaci";
+?>
+<?php include('header_inc.php');?>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="./style/styleVisitaci.css">
 
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/styleBottiglia.css">
-
-
-</head>
-<body class="dark hero-anime" style="overflow: auto; height: 2000px;">
-
-    <!-- TITOLO -->
-    
-    <!-- NAVBAR -->
-	<div class=" bg-light start-header start-style" style="position: sticky; z-index: 3;">
-		<!-- <span class="nav-item icon pl-4 pl-md-0 ml-0 ml-md-5">
-			<a class="nav-link"> <i class="fa-solid fa-bag-shopping fa-3x"></i></a>
-		</span> -->
-        <div >
-            <img src="img/LOGO_scritta_oro.png" class="title mx-auto d-block" style="width: 180px; " alt="">
-        </div>
-
-		<div class="container ">
-			<div class="row" >
-				<nav class="navbar navbar-expand-lg nav-fill w-100 navbar-light " >
-					
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					
-					
-					<div class="collapse navbar-collapse justify-content-md-center"  id="navbarSupportedContent">
-
-						
-						<ul class="navbar-nav col-10 " >
-
-							<!-- HOME -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 ">
-								<a class="nav-link" href="index.php">Home</a>
-							</li>
-
-							<!-- CANTINE -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link" href="cantine.php">Cantine</a>
-							</li>
-
-							<!-- DROPDOWN VINI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 ">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Vini</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="sezione_vini.php">Bianco</a>
-									<a class="dropdown-item" href="sezione_vini.php">Spumante</a>
-									<a class="dropdown-item" href="sezione_vini.php">Rosso</a>
-									<a class="dropdown-item" href="sezione_vini.php">Rosé</a>
-									<a class="dropdown-item" href="vini_limited_edition.php">Linea Frati Limited</a>
-									<a class="dropdown-item" href="bottiglia2.php">Linea Frati Limited 2</a>
+<div id="booking" class="sectionform m-4" style="border-radius: 20px;">
+		<div class="sectionform-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form" style="border-radius: 20px;">
+	
+						<form method="post" action="visitaci_act.php" >
+							<div class="form-header">
+								<h2>Contattaci</h2>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+								<div class="form-group">
+									<span class="form-label">Nome</span>
+									<input class="form-control" name="nomevisitatore" type="text" placeholder="Inserisci il nome">
 								</div>
-							</li>
-
-							<!-- VISITACI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active">
-								<a class="nav-link" href="visitaci.php">Visitaci</a>
-							</li>
-
-							<!-- DROPDOWN SERVIZI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="servizi.php" role="button" aria-haspopup="true" aria-expanded="false">Servizi</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="dettaglio_servizio.php">Imbottigliamento</a>
-									<a class="dropdown-item" href="dettaglio_servizio.php">Corso ONAV</a>
-									<a class="dropdown-item" href="dettaglio_servizio.php">Feste Private</a>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<span class="form-label">Cognome</span>
+									<input class="form-control" name="cognomevisitatore" type="text" placeholder="Inserisci il cognome">
 								</div>
-							</li>
-
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5" >
-								<a class="nav-link" href="carrello.php"> <i class="fa-solid fa-bag-shopping fa-2x"></i></a>
-							</li>
-							<!-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5" >
-								<a class="nav-link" > <i class="fa-solid fa-user fa-2x"></i></a>
-							</li> -->
-						</ul>
-						
-		
-						
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<span class="form-label">Email</span>
+								<input class="form-control" name="mailvisitatore" type="email" placeholder="Inserisci la tua email">
+							</div>
+	
+							<div class="row">
+								
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Tipo di richiesta</span>
+										<select name="orariovisita" class="form-control">
+											<option>Prodotti</option>
+											<option>Pagamenti</option>
+											<option>Account</option>
+											<option>Segnalazione Bug</option>
+											<option>Altro</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								
+								
+									<div class="form-group">
+										<span class="form-label">Descrizione</span>
+										<textarea class="form-control" name="" id="" cols="" rows="10"></textarea>
+										<!-- <input class="form-control" name="mailvisitatore" type="text" placeholder="Inserisci la tua email"> -->
+									</div>
+								
+							</div>
+	
+							<div class="form-btn">
+								<button class="submit-btn">Apri ticket</button>
+							</div>
+						</form>
 					</div>
-					
-				</nav>		
+				</div>
 			</div>
-			<!-- DIV UTENTE -->
 		</div>
-		
-        <a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
-	</div>
-
-
-
-	<div >
-
 	</div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
@@ -112,5 +77,64 @@
 <script src="js/function.js"></script>
 <script src="js/functionBottiglia.js"></script>
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+
+	gtag('config', 'UA-23581568-13');
+</script>
+<script defer
+	src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993"
+	integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
+	data-cf-beacon='{"rayId":"7a93c8bcab8259cb","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.2.0","si":100}'
+	crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <script>
+		//script per il counter dei partecipanti
+        (function () {
+    
+            window.inputNumber = function (el) {
+    
+                var min = el.attr('min') || false;
+                var max = el.attr('max') || false;
+    
+                var els = {};
+    
+                els.dec = el.prev();
+                els.inc = el.next();
+    
+                el.each(function () {
+                    init($(this));
+                });
+    
+                function init(el) {
+    
+                    els.dec.on('click', decrement);
+                    els.inc.on('click', increment);
+    
+                    function decrement() {
+                        var value = el[0].value;
+                        value--;
+                        if (!min || value >= min) {
+                            el[0].value = value;
+                        }
+                    }
+    
+                    function increment() {
+                        var value = el[0].value;
+                        value++;
+                        if (!max || value <= max) {
+                            el[0].value = value++;
+                        }
+                    }
+                }
+            }
+        })();
+    
+        inputNumber($('.input-number'));    
+    </script>
 
 <?php include('_footer_inc.php');?>

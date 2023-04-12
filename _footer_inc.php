@@ -1,4 +1,4 @@
-    <div class=" mt-4" style="display:flex; background-color:#14151a"> <!--  my-5 = margine, verticale, valore -->
+    <div class=" mt-4" style="display:flex; background-color:#14151a; text-decoration:none; color:white"> <!--  my-5 = margine, verticale, valore -->
         <div class="text-center">
             
                 <img src="./img/LOGO_uva_oro.png" width="200" alt="Agricolture IOT">
@@ -21,10 +21,12 @@
         </pre>
         
         <div class="border-start pl-3">
-        <a href="">FAQ</a><br>
-        <a href="">CHI SIAMO</a><br>
+        <a href="" style="color:white">FAQ</a><br>
+        <a href="" style="color:white">CHI SIAMO</a><br>
         
-        <button class="btn btn-warning">CONTATTACI</button>
+        <button class="btn btn-warning">
+            <a href="contattaci.php" style="color:black">CONTATTACI</a>    
+        </button>
         
         </div>
     </div>
