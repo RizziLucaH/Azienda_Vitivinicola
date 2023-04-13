@@ -67,70 +67,7 @@ $rows=seleziona_vigneti($conn);
         
         <hr class="posth1" style="border-color: #ffd900;">
         <div class="row">
-            <div class="col-2">
-                <div class="filtracard">
-                    <h6>Vitigno</h6>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Nebbiolo</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Chardonnay</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Turbiana</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Malvasia</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Cabernet franc</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Merlot</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Gewurztraminer</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Pinot bianco</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Riesling</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Sauvignon</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Lagrein</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Moscato d'Alessandria</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Cabernet Sauvignon</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Sangiovese</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Ortrugo</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Bonarda</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Trebbiano</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Pinot nero</label>
-					<br>
-                    <input id="CK_stato_compra_ora" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">Montepulciano</label>
-					<br>
-
-                </div>
-            </div>
-            <div class="col-10">
+            
             <table class="table table-hover table-responsive">
                     <tr>
                         <th>Nome</th>
@@ -161,7 +98,7 @@ $rows=seleziona_vigneti($conn);
 
 <?php
 function seleziona_vigneti($conn){
-    $sql="SELECT * from vigneto";
+    $sql="SELECT * FROM vigneto";
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
@@ -171,7 +108,7 @@ function seleziona_vigneti($conn){
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
-<script>
+<!-- <script>
     function customRange(){
   // $('input[type="range"]').next('output').css('border','1px solid red');
 };
@@ -185,7 +122,10 @@ jQuery('input[type="range"]').on('input', function() {
 thisInputOutput.text( thisInputValue );
 thisInputOutput.css( 'left', thisInputValue + '%');
 });
-</script>
+</script> -->
+
+
+
 
 
 

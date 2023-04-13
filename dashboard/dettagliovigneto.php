@@ -16,6 +16,8 @@ $NomeVigneto=$_GET['vigneto']
     <link rel="stylesheet" href="../style/styledashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body style="background-color: #ebebeb;">
@@ -54,7 +56,7 @@ $NomeVigneto=$_GET['vigneto']
         </ul>
     </div>
     <!---Sidebar di log out-->
-    <div class="LOsidebar position-absolute bottom-0 start-0">
+    <div class="LOsidebar  bottom-0 start-0">
         <!-- <button class="btnLO">LOG OUT</button> -->
 
     </div>
@@ -71,6 +73,8 @@ $sistemico=$output[0];
 $contatto=$output[1];
 $citotropico=$output[2];
 
+$vitigni=select_vitigno($conn,$idVigneto)
+
 ?>
     <!--Content-->
     <div class="content" style="padding-right: 5%;">
@@ -80,30 +84,92 @@ $citotropico=$output[2];
         <hr class="posth1" style="border-color: #ffd900;">
         <h3>Interventi effettuati</h3>
         <br>
-        <div class="row"> 
-            <div class="col">
-            <table class="table table-hover table-responsive">
-            <tr>
-                <th>Tipo di intervento</th>
-                <th>Data</th>
-                <th>Nome del prodotto utilizzato</th>
-                <th>Principio attivo del prodotto</th>
-            </tr>
-            <?php foreach($interventi as $row){?>
-                <tr>
-                    <td><?=$row['tipo']?></td>
-                    <td><?=$row['data']?></td>
-                    <td><?=$row['nome']?></td>
-                    <td><?=$row['principioattivo']?></td>
-                </tr>
-            <?php }?>
-        </table>
+        <div class="row row-cols-2"> 
+            <div class="col-7">
+                <table class="table table-hover table-responsive">
+                    <tr>
+                        <th>Tipo di intervento</th>
+                        <th>Data</th>
+                        <th>Nome del prodotto utilizzato</th>
+                        <th>Principio attivo del prodotto</th>
+                    </tr>
+                    <?php foreach($interventi as $row){?>
+                        <tr>
+                            <td><?=$row['tipo']?></td>
+                            <td><?=$row['data']?></td>
+                            <td><?=$row['nome']?></td>
+                            <td><?=$row['principioattivo']?></td>
+                        </tr>
+                    <?php }?>
+                </table>
+                <button  id=""class="btn" style="background-color: #ccac00" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Nuovo Intervento
+                </button>
+                <br>
+                <br>
+                <h3>Vitigni coltivati</h3>
+                <hr class="posth1" style="border-color: #ffd900; width:300px">
+                <table class="table table-hover table-responsive" style="width:300px">
+                        <tr>
+                            <th>Vitigno</th>
+                        </tr>
+                        <?php foreach($vitigni as $row){?>
+                            <tr>
+                                <td><?=$row['uva']?></td>
+
+                            </tr>
+                        <?php }?>
+                </table>
+                <br>
+                <button class="btn" style="background-color: #ccac00">
+                    Nuovo Vitigno
+                </button>
             </div>
-            <div class="col" style="width: 600px; height: 600px;">
+            <div class="col-4" style="width: 600px; height: 600px;" >
                 <canvas id="myChart"></canvas>
             </div>
         </div>
-    
+            
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Nuovo intervento</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+    <div class="modal-body">
+        <label for="type">Tipo di intervento</label>
+        <input type="text" id="type">
+        <br>
+        <label for="date">Data dell'intervento</label>
+        <input type="date" id="date">
+        <br>
+        <label for="Prodotto">Prodotto chimico utilizzato</label>
+        <select name="" id="Prodotto">
+            <option value=""></option>
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
 
@@ -113,7 +179,6 @@ $citotropico=$output[2];
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     var sistemico="<?php echo $sistemico; ?>";
@@ -175,6 +240,13 @@ function fill_chart($conn,$idVigneto){
     return $output;
     
 
+}
+
+function select_vitigno($conn,$idVigneto){
+    $sql="SELECT v.uva from vitigno v where v.idVigneto=$idVigneto;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
 }
 ?>
 
