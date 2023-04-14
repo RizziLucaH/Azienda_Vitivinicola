@@ -134,29 +134,29 @@ $pagina="home";
 				<figure class="card mx-4  ">
 					<img src="img/Linea_Frati/2_bott_F.png" alt="">
 					<figcaption>
-						<p class="h5 text-dark">Nome Vino</p>
-						<p class="text-dark"> 69.99€</p>
+						<p class="h5 text-dark">La Gatta Rossa</p>
+						<p class="text-dark"> 13.12€</p>
 					</figcaption>
 				</figure>
 				<figure class="card mx-4 ">
 					<img src="img/Linea_Frati/1_bott_F.png" alt="">
 					<figcaption>
-						<p class="h5 text-dark">Nome Vino</p>
-						<p class="text-dark"> 69.99€</p>
+						<p class="h5 text-dark">Ego di Luca</p>
+						<p class="text-dark"> 69.96€</p>
 					</figcaption>
 				</figure>
 				<figure class="card mx-4 ">
 					<img src="img/Linea_Frati/3_bott.png" alt="">
 					<figcaption>
-						<p class="h5 text-dark">Nome Vino</p>
-						<p class="text-dark"> 69.99€</p>
+						<p class="h5 text-dark">Cingolo di Tommaso</p>
+						<p class="text-dark"> 53.90€</p>
 					</figcaption>
 				</figure>
 				<figure class="card mx-4">
 					<img src="img/Linea_Frati/4_bot_F.png" alt="">
 					<figcaption>
-						<p class="h5 text-dark ">Nome Vino</p>
-						<p class="text-dark"> 69.99€</p>
+						<p class="h5 text-dark ">Barolo Davide</p>
+						<p class="text-dark"> GRATIS</p>
 					</figcaption>
 
 				</figure>

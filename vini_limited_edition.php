@@ -108,16 +108,16 @@
                     <a href="#" class="hover-target">LINEA FRATI</a>
                 </li>
                 <li class="case-study-name">                            	
-                    <a href="#" class="hover-target">La Gran Puttana</a>
+                    <a href="#" class="hover-target">Ego di Luca</a>
                 </li>
                 <li class="case-study-name">                                         	
-                    <a href="#" class="hover-target">L'Eterno Innamorato</a>
+                    <a href="#" class="hover-target">La Gatta Rossa</a>
                 </li>
                 <li class="case-study-name">                                        	
-                    <a href="#" class="hover-target">Respiro</a>
+                    <a href="#" class="hover-target">Cingolo di Tommaso</a>
                 </li>
                 <li class="case-study-name">                                         	
-                    <a href="#" class="hover-target">Barolo</a>
+                    <a href="#" class="hover-target">Barolo Davide</a>
                 </li>
             </ul>
             <ul class="case-study-images">
