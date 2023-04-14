@@ -102,7 +102,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
                         </tr>
                     <?php }?>
                 </table>
-                <button  id=""class="btn" style="background-color: #ccac00" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button  id=""class="btn" style="background-color: #ccac00" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuovointervento">
                     Nuovo Intervento
                 </button>
                 <br>
@@ -121,7 +121,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
                         <?php }?>
                 </table>
                 <br>
-                <button class="btn" style="background-color: #ccac00">
+                <button class="btn" style="background-color: #ccac00" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuovovitigno">
                     Nuovo Vitigno
                 </button>
             </div>
@@ -132,34 +132,61 @@ $vitigni=select_vitigno($conn,$idVigneto)
             
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Nuovo intervento</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-    <div class="modal-body">
-        <label for="type">Tipo di intervento</label>
-        <input type="text" id="type">
-        <br>
-        <label for="date">Data dell'intervento</label>
-        <input type="date" id="date">
-        <br>
-        <label for="Prodotto">Prodotto chimico utilizzato</label>
-        <select name="" id="Prodotto">
-            <option value=""></option>
-        </select>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-    </div>
+<!-- Modal nuovo intervento -->
+    <div class="modal fade" id="nuovointervento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuovo intervento</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+        <div class="modal-body">
+            <form  method="post" action="nuovo_intervento_act.php">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Tipo di intervento</label>
+                    <input type="text" class="form-control" name="tipo" id="tipo" aria-describedby="emailHelp" placeholder="Inserisci il tipo di intervento">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Data </label>
+                    <input type="date" class="form-control" id="data" name="data">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nome del prodotto utilizzato</label>
+                    <input type="text" class="form-control" id="prodotto" placeholder="Inserisci il prodotto utilizzato" name="prodotto">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Principio attivo del prodotto</label>
+                    <input type="text" class="form-control" id="principioattivo" name="principioattivo" placeholder="Inserisci il principio attivo del prodotto" >
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #ccac00">Salva</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
+<!---Modal nuovo vitigno -->
+<div class="modal fade" id="nuovovitigno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuovo Vitigno</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+        <div class="modal-body">
+            <form method="post" action="nuovo_vitigno_act.php?id=<?=$idVigneto?>">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Uva</label>
+                    <input type="text" class="form-control" name="uva" id="tipo" aria-describedby="emailHelp" placeholder="Inserisci il tipo di uva" >
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #ccac00">Salva</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
 
