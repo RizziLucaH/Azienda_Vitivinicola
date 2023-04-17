@@ -23,10 +23,16 @@ function new_user($conn,$signup_nome,$email,$signup_piva,$signup_indirizzo,$psw)
     $signup_piva=$conn->real_escape_string($signup_piva);
     $signup_indirizzo=$conn->real_escape_string($signup_indirizzo);
     $psw=$conn->real_escape_string($psw);
-
-
     $hash=password_hash($psw, PASSWORD_BCRYPT);
-    $sql="INSERT INTO utenteprivato (mail, password, nomecompleto, iva, indirizzofatturazione) VALUES ('$email', '$hash', '$signup_nome', '$signup_piva', '$signup_indirizzo')";
+    if($signup_piva=="NULL")
+    {
+        $sql="INSERT INTO utenteprivato (mail, password, nomecompleto) VALUES ('$email', '$hash', '$signup_nome')";
+    }
+    else
+    {
+        $sql="INSERT INTO utenteprivato (mail, password, nomecompleto, iva, indirizzofatturazione) VALUES ('$email', '$hash', '$signup_nome', '$signup_piva', '$signup_indirizzo')";
+    }
+
     return $conn->query($sql);
 }
 
@@ -83,6 +89,31 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     $numeropartecipanti=$conn->real_escape_string($numeropartecipanti);
 
     $aggiungipartecipa="INSERT INTO partecipa (idVisitatore, idVisita, numeropartecipanti) VALUES ('$idV', '$idVisita', '$numeropartecipanti')";
-    $conn->query($aggiungipartecipa);
+    NULL,
+}
+
+function aggiungi_carello($conn,$idUP,$idB,$idA,$tipopacco,$aziendacliente)
+{
+    $controlloingrosso="SELECT u.iva from utenteprivato u where u.idUP=$idUP";
+    $resControllo=$conn->query($controlloingrosso);
+    $rowControllo=$resControllo->fetch_assoc();
+    $iva=$rowControllo['iva'];
+
+    $trovaprezzo="SELECT b.prezzo from bottiglia b where b.idB=$idB";
+    $resPrezzo=$conn->query($trovaprezzo);
+    $rowPrezzo=$resPrezzo->fetch_assoc();
+    $prezzoBottiglia=$rowPrezzo['prezzo'];
+
+    if($iva=="NULL"){
+        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `tipopacco`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
+    VALUES (NULL, 0, '$tipopacco', '$aziendacliente', NULL, $prezzoBottiglia,  '$idUP', '$idA', '$idB')"
+    }
+    else
+    {
+        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `tipopacco`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
+    VALUES (NULL, 0, '$tipopacco', '$aziendacliente',  $prezzoBottiglia, NULL,  '$idUP', '$idA', '$idB')"
+    }
+
+    $conn->query($sql);
 }
 ?>
