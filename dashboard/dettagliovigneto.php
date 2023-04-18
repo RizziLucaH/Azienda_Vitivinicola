@@ -107,24 +107,32 @@ $vitigni=select_vitigno($conn,$idVigneto)
                 </button>
                 <br>
                 <br>
-                <h3>Vitigni coltivati</h3>
-                <hr class="posth1" style="border-color: #ffd900; width:300px">
-                <table class="table table-hover table-responsive" style="width:300px">
-                        <tr>
-                            <th>Vitigno</th>
-                        </tr>
-                        <?php foreach($vitigni as $row){?>
+                <form  method="post" action="elimina_vitigno_act.php" >
+                    <h3>Vitigni coltivati</h3>
+                    <hr class="posth1" style="border-color: #ffd900; width:300px">
+                    <table class="table table-hover table-responsive" style="width:300px">
                             <tr>
-                                <td><?=$row['uva']?></td>
-
+                                
+                                <th>Vitigno</th>
                             </tr>
-                        <?php }?>
-                </table>
-                <br>
-                <button class="btn" style="background-color: #ccac00" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuovovitigno">
-                    Nuovo Vitigno
-                </button>
-            </div>
+                            <?php foreach($vitigni as $row){?>
+                                <tr data-id="<?=$row['idVitigno']?>">
+                                    <td><input type="checkbox" name="" data-idvigneto="<?=$idVigneto?>" data-idvitigno="<?=$row['idVitigno']?>" class="checkbox"> <?=$row['uva']?></td>
+                                    
+                                    
+                                </tr>
+                                <input type='hidden' name="vitigno" value=" <?php echo $row['idVitigno'];?> " /> 
+                            <?php }?>
+                    </table>
+                    <input type='hidden' name="vigneto" value=" <?php echo $idVigneto; ?> " />  
+                    
+                    <button class="btn" style="background-color: #ccac00" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuovovitigno">
+                        Nuovo Vitigno
+                    </button>
+                    
+                    <button class="btn btn-danger" id="bottoneelimina"  style="margin-left :35px;" onclick="elimina_checkbox()">Elimina Vitigno</button>
+                </form>
+                </div>
             <div class="col-4" style="width: 600px; height: 600px;" >
                 <canvas id="myChart"></canvas>
             </div>
@@ -191,13 +199,6 @@ $vitigni=select_vitigno($conn,$idVigneto)
 
 
 
-
-
-
-
-
-
-
     </div>
 
     
@@ -236,7 +237,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
 <?php
 
 function seleziona_interventi($conn,$idVigneto){
-    $sql="SELECT i.tipo, i.data, p.nome, p.principioattivo FROM intervento i inner join prodottochimico p on i.idP=p.idP where idVigneto=$idVigneto";
+    $sql="SELECT i.tipo, i.data, p.nome, p.principioattivo FROM intervento i inner join prodottochimico p on i.idP=p.idP where idVigneto=$idVigneto order by i.data";
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
@@ -270,10 +271,29 @@ function fill_chart($conn,$idVigneto){
 }
 
 function select_vitigno($conn,$idVigneto){
-    $sql="SELECT v.uva from vitigno v where v.idVigneto=$idVigneto;";
+    $sql="SELECT v.uva, v.idVitigno from vitigno v where v.idVigneto=$idVigneto;";
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
 }
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    
+    
+    function elimina_checkbox(){
+        $(document).ready(function(){
+            $("#bottoneelimina").click(function(){
+                let maiale=$(":checked");
+                console.log(maiale);
+                $.each(maiale,function(index,value){
+                    $(value).parent().remove();
+                    console.log($(value).attr("data-idvitigno"));
+                    // rimuovi_vitigno($(value).attr("data-idvitigno"),$(value).attr("data-idvigneto"));
+                });
+            });
+        });
+    }
+    
+</script>
