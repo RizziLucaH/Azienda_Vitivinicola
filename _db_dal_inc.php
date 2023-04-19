@@ -89,7 +89,7 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     $numeropartecipanti=$conn->real_escape_string($numeropartecipanti);
 
     $aggiungipartecipa="INSERT INTO partecipa (idVisitatore, idVisita, numeropartecipanti) VALUES ('$idV', '$idVisita', '$numeropartecipanti')";
-    NULL,
+    
 }
 
 function aggiungi_carello($conn,$idUP,$idB,$idA,$tipopacco,$aziendacliente)
