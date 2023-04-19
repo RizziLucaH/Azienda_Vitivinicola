@@ -48,7 +48,6 @@ $indirizzo=$row['indirizzofatturazione'];
         <h2>IDENTITY</h2>
         <div class="card">
             <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
                 <table style="border-collapse: collapse;">
                     <tbody>
                         <tr>
@@ -84,7 +83,6 @@ $indirizzo=$row['indirizzofatturazione'];
         <h2>SOCIAL MEDIA</h2>
         <div class="card">
             <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
                 <div class="social-media">
                     <span class="fa-stack fa-sm">
                         <i class="fas fa-circle fa-stack-2x"></i>
