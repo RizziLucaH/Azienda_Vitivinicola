@@ -92,8 +92,26 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     
 }
 
-function aggiungi_carello($conn,$idUP,$idB,$idA,$tipopacco,$aziendacliente)
+function aggiungi_carello($conn,$idUP,$idB)
 {
+    //ricerca delle informazioni sulla azienda cliente 
+    $ricercaazienda="SELECT r.idA as idA, a.nome as nome 
+    FROM bottiglia b 
+    inner join richiesto r on b.idB=r.idB 
+    inner join aziendacliente a on r.idA=a.idA 
+    where b.idB=?";
+    $stmt = $conn->prepare($ricercaazienda); 
+    $stmt->bind_param("i", $idB);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc(); 
+
+    $aziendacliente=isset($data['nome']) ? $data['nome'] : 'NULL';
+    $idA= isset($data['idA']) ? $data['idA'] : 'NULL';
+
+
+
+
     $controlloingrosso="SELECT u.iva from utenteprivato u where u.idUP=$idUP";
     $resControllo=$conn->query($controlloingrosso);
     $rowControllo=$resControllo->fetch_assoc();
@@ -103,17 +121,21 @@ function aggiungi_carello($conn,$idUP,$idB,$idA,$tipopacco,$aziendacliente)
     $resPrezzo=$conn->query($trovaprezzo);
     $rowPrezzo=$resPrezzo->fetch_assoc();
     $prezzoBottiglia=$rowPrezzo['prezzo'];
-
+    echo $prezzoBottiglia;
+    $null=NULL;
     if($iva=="NULL"){
-        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `tipopacco`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
-    VALUES (NULL, 0, '$tipopacco', '$aziendacliente', NULL, $prezzoBottiglia,  '$idUP', '$idA', '$idB')";
+        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
+        VALUES(?,?,?,?,?,?,?,?)";
+        $query = $conn->prepare($ricercaazienda); 
+        $query->bind_param("iisddiii", 'NULL', 0, $aziendacliente, 'NULL', $prezzoBottiglia,  $idUP, $idA, $idB);
     }
     else
     {
-        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `tipopacco`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
-    VALUES (NULL, 0, '$tipopacco', '$aziendacliente',  $prezzoBottiglia, NULL,  '$idUP', '$idA', '$idB')";
+        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
+        VALUES(?,?,?,?,?,?,?,?)";
+        $query = $conn->prepare($ricercaazienda); 
+        $query->bind_param("iisddiii", 'NULL', 0, $aziendacliente, 'NULL', $prezzoBottiglia,  $idUP, $idA, $idB);
     }
-
-    $conn->query($sql);
+    $query->execute();
 }
 ?>
