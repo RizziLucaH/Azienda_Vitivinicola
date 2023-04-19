@@ -4,15 +4,16 @@ require('../_config_inc.php');
 
 $conn=db_connect();
 
-$vitigno=$_POST['vitigno'];
-$vigneto=$_POST['vigneto'];
+$idvitigno=$_POST['vitigno'];
+$idvigneto=$_GET['id'];
+$nomevigneto=$_GET['vigneto'];
 
 
-$NomeVigneto=select_nome_Vigneto($conn,$vigneto);
 
-rimuovi_vitigno($conn,$vitigno,$vigneto);
 
-header("location: dettagliovigneto.php?id=$vigneto&vigneto=$NomeVigneto");
+rimuovi_vitigno($conn,$idvitigno,$idvigneto);
+
+header("location: dettagliovigneto.php?id=$idvigneto&vigneto=$nomevigneto");
 
 
     

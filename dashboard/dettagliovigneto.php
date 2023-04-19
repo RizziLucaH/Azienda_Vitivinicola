@@ -107,10 +107,10 @@ $vitigni=select_vitigno($conn,$idVigneto)
                 </button>
                 <br>
                 <br>
-                <form  method="post" action="elimina_vitigno_act.php" >
+                <form  method="post" action="elimina_vitigno_act.php?&id=<?=$idVigneto?>&vigneto=<?=$NomeVigneto?>" >
                     <h3>Vitigni coltivati</h3>
                     <hr class="posth1" style="border-color: #ffd900; width:300px">
-                    <table class="table table-hover table-responsive" style="width:300px">
+                    <table class="table table-hover table-responsive" style="width:300px; margin-bottom:20px;">
                             <tr>
                                 
                                 <th>Vitigno</th>
@@ -118,14 +118,10 @@ $vitigni=select_vitigno($conn,$idVigneto)
                             <?php foreach($vitigni as $row){?>
                                 <tr data-id="<?=$row['idVitigno']?>">
                                     <td><input type="checkbox" name="" data-idvigneto="<?=$idVigneto?>" data-idvitigno="<?=$row['idVitigno']?>" class="checkbox"> <?=$row['uva']?></td>
-                                    
-                                    
                                 </tr>
                                 <input type='hidden' name="vitigno" value=" <?php echo $row['idVitigno'];?> " /> 
                             <?php }?>
                     </table>
-                    <input type='hidden' name="vigneto" value=" <?php echo $idVigneto; ?> " />  
-                    
                     <button class="btn" style="background-color: #ccac00" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuovovitigno">
                         Nuovo Vitigno
                     </button>
@@ -184,7 +180,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
         <div class="modal-body">
-            <form method="post" action="nuovo_vitigno_act.php?id=<?=$idVigneto?>">
+            <form method="post" action="nuovo_vitigno_act.php?&id=<?=$idVigneto?>&vigneto=<?=$NomeVigneto?>">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Uva</label>
                     <input type="text" class="form-control" name="uva" id="tipo" aria-describedby="emailHelp" placeholder="Inserisci il tipo di uva" >
@@ -285,9 +281,9 @@ function select_vitigno($conn,$idVigneto){
     function elimina_checkbox(){
         $(document).ready(function(){
             $("#bottoneelimina").click(function(){
-                let maiale=$(":checked");
-                console.log(maiale);
-                $.each(maiale,function(index,value){
+                let ck=$(":checked");
+                console.log(ck);
+                $.each(ck,function(index,value){
                     $(value).parent().remove();
                     console.log($(value).attr("data-idvitigno"));
                     // rimuovi_vitigno($(value).attr("data-idvitigno"),$(value).attr("data-idvigneto"));

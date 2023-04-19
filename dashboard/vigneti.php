@@ -75,7 +75,7 @@ $rows=seleziona_vigneti($conn);
                         <th>Estensione(km^2)</th>
                     </tr>
                     <?php foreach($rows as $row){?>
-
+                            
                             <tr>
                                 <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['nome']?></a></td>
                                 <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['comune']?></a></td>

@@ -47,7 +47,7 @@
         </ul>
     </div>
     <!---Sidebar di log out-->
-    <div class="LOsidebar position-absolute bottom-0 start-0">
+    <div class="LOsidebar bottom-0 start-0">
         <!-- <button class="btnLO">LOG OUT</button> -->
 
     </div>

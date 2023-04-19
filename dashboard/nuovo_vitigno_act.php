@@ -4,10 +4,13 @@ require('../_config_inc.php');
 
 $conn=db_connect();
 $idVigneto=$_GET['id'];
+
+$NomeVigneto=$_GET['vigneto'];
+
 //---Prima lettera sempre maiuscola---
 $Uva=ucfirst($_POST['uva']);
 
-$NomeVigneto=select_nome_Vigneto($conn,$idVigneto);
+
 
 insert_vitigno($conn,$Uva,$idVigneto);
 

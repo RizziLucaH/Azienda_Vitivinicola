@@ -9,17 +9,6 @@ $DataIntervento=$_POST['data'];
 $NomeProdotto=$_POST['prodotto'];
 $PrincipioAttivo=$_POST['principioattivo'];
 
-
-
-?>
-
-
-
-<?php
-function insert_intervento(){
-    $sql="";
-    $result=$conn->query($sql);
-}
-
+Nuovo_intervento($conn,$TipoIntervento,$DataIntervento,$NomeProdotto,$PrincipioAttivo);
 
 ?>
