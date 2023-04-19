@@ -89,7 +89,7 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     $numeropartecipanti=$conn->real_escape_string($numeropartecipanti);
 
     $aggiungipartecipa="INSERT INTO partecipa (idVisitatore, idVisita, numeropartecipanti) VALUES ('$idV', '$idVisita', '$numeropartecipanti')";
-    NULL,
+    
 }
 
 function aggiungi_carello($conn,$idUP,$idB,$idA,$tipopacco,$aziendacliente)
@@ -106,12 +106,12 @@ function aggiungi_carello($conn,$idUP,$idB,$idA,$tipopacco,$aziendacliente)
 
     if($iva=="NULL"){
         $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `tipopacco`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
-    VALUES (NULL, 0, '$tipopacco', '$aziendacliente', NULL, $prezzoBottiglia,  '$idUP', '$idA', '$idB')"
+    VALUES (NULL, 0, '$tipopacco', '$aziendacliente', NULL, $prezzoBottiglia,  '$idUP', '$idA', '$idB')";
     }
     else
     {
         $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `tipopacco`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
-    VALUES (NULL, 0, '$tipopacco', '$aziendacliente',  $prezzoBottiglia, NULL,  '$idUP', '$idA', '$idB')"
+    VALUES (NULL, 0, '$tipopacco', '$aziendacliente',  $prezzoBottiglia, NULL,  '$idUP', '$idA', '$idB')";
     }
 
     $conn->query($sql);
