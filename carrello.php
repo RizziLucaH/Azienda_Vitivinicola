@@ -4,7 +4,11 @@
 $pagina="carrello";
 ?>
 
-<?php include('header_inc.php');?>
+<?php include('header_inc.php');
+
+$conn=db_connect();
+
+?>
 
 <link rel="stylesheet" href=" style/styleCarrello.css">
 
@@ -23,25 +27,7 @@ $pagina="carrello";
 </div>
 
     <!--PRODOTTI DEL CARRELLO-->
-    <div class="product " name="prodotto">
-        <div class="product-image">
-        <img class="rounded" src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-        </div>
-        <div class="product-details">
-        <div class="product-title">Dingo Dog Bones</div>
-        <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
-        </div>
-        <div class="product-price">12.99</div>
-        <div class="product-quantity">
-        <input type="number" value="2" min="1">
-        </div>
-        <div class="product-removal">
-        <button class="btn btn-danger" onclick="verificaCarrello()">
-            Remove
-        </button>
-        </div>
-        <div class="product-line-price">25.98</div>
-    </div>
+
 
     <div class="product" name="prodotto">
         <div class="product-image">
@@ -53,7 +39,7 @@ $pagina="carrello";
         </div>
         <div class="product-price">45.99</div>
         <div class="product-quantity">
-        <input type="number" value="1" min="1">
+        <input id="qta" type="number" min="1" value="1">
         </div>
         <div class="product-removal">
         <button class="btn btn-danger" onclick="verificaCarrello()">

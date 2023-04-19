@@ -1,5 +1,25 @@
 <!--DA MODIFICARE GRAFICAMENTE (RITOCCHI O RIFARE)-->
 
+<?php
+$pagina="dettagli_utente";
+?>
+
+<?php include('header_inc.php');
+
+$conn=db_connect();
+
+$sql="SELECT * from utenteprivato where idUP=1";
+
+$result=$conn->query($sql);
+
+$row = $result->fetch_assoc();
+
+$nome=$row['nomecompleto'];
+$email= $row['mail'];
+$piva=$row['iva'];
+$indirizzo=$row['indirizzofatturazione'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,89 +43,6 @@
 </head>
 <body class="dark hero-anime" style="overflow: auto;">
 
-    <!-- TITOLO -->
-    
-    <!-- NAVBAR -->
-	<div class=" bg-light start-header start-style" style="position: sticky; z-index: 3;">
-		<!-- <span class="nav-item icon pl-4 pl-md-0 ml-0 ml-md-5">
-			<a class="nav-link"> <i class="fa-solid fa-bag-shopping fa-3x"></i></a>
-		</span> -->
-        <div >
-            <img src="img/LOGO_scritta_oro.png" class="title mx-auto d-block" style="width: 180px; " alt="">
-        </div>
-
-		<div class="container ">
-			<div class="row" >
-				<nav class="navbar navbar-expand-lg nav-fill w-100 navbar-light " >
-					
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					
-					
-					<div class="collapse navbar-collapse justify-content-md-center"  id="navbarSupportedContent">
-
-						
-						<ul class="navbar-nav col-10 " >
-
-							<!-- HOME -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 ">
-								<a class="nav-link" href="index.php">Home</a>
-							</li>
-
-							<!-- CANTINE -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link" href="cantine.php">Cantine</a>
-							</li>
-
-							<!-- DROPDOWN VINI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 active">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Vini</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="sezione_vini.php">Bianco</a>
-									<a class="dropdown-item" href="sezione_vini.php">Spumante</a>
-									<a class="dropdown-item" href="sezione_vini.php">Rosso</a>
-									<a class="dropdown-item" href="sezione_vini.php">Rosé</a>
-									<a class="dropdown-item" href="vini_limited_edition.php">Linea Frati Limited</a>
-									<a class="dropdown-item" href="bottiglia2.php">Linea Frati Limited 2</a>
-								</div>
-							</li>
-
-							<!-- VISITACI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link" href="visitaci.php">Visitaci</a>
-							</li>
-
-							<!-- DROPDOWN SERVIZI -->
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="servizi.php" role="button" aria-haspopup="true" aria-expanded="false">Servizi</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="dettaglio_servizio.php">Imbottigliamento</a>
-									<a class="dropdown-item" href="dettaglio_servizio.php">Corso ONAV</a>
-									<a class="dropdown-item" href="dettaglio_servizio.php">Feste Private</a>
-								</div>
-							</li>
-
-							<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5" >
-								<a class="nav-link" href="carrello.php"> <i class="fa-solid fa-bag-shopping fa-2x"></i></a>
-							</li>
-							<!-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5" >
-								<a class="nav-link" > <i class="fa-solid fa-user fa-2x"></i></a>
-							</li> -->
-						</ul>
-						
-		
-						
-					</div>
-					
-				</nav>		
-			</div>
-			<!-- DIV UTENTE -->
-		</div>
-		
-		<a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
-	</div>
-
     <!-- Main -->
     <div class="main">
         <h2>IDENTITY</h2>
@@ -117,27 +54,27 @@
                         <tr>
                             <td>Nome</td>
                             <td>:</td>
-                            <td><?php $row['nome']?></td>
+                            <td><?= $nome ?></td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td><?php $row['email'] ?></td>
+                            <td><?= $email ?></td>
                         </tr>
                         <tr>
                             <td>Indirizzo</td>
                             <td>:</td>
-                            <td><?php $row['indirizzo'] ?></td>
+                            <td><input type="text" value="<?= $indirizzo ?>"></td>
                         </tr>
                         <tr>
                             <td>P.Iva</td>
                             <td>:</td>
-                            <td><?php $row['piva'] ?></td>
+                            <td><input type="text" value="<?= $piva ?>"></td>
                         </tr>
                         <tr>
                             <td>Password</td>
                             <td>:</td>
-                            <td><input type="text" value="<?php $row['password'] ?>" > <button class="warning">Cambia</button></td>
+                            <td><input type="text" value="" > <button class="warning">Cambia</button></td>
                         </tr>
                     </tbody>
                 </table>
