@@ -1,7 +1,9 @@
 <!--DA MODIFICARE GRAFICAMENTE AD ESEMPIO IL BOTTONE E IL TESTO DI FIANCO ALLE IMMAGINI-->
 <?php
-require('_config_inc.php');
-require('_db_dal_inc.php');
+
+include('session_check.php');
+include('header_inc.php');
+
 
 $id= intval($_GET['idB']);
 
@@ -29,9 +31,7 @@ $tannino=$row['tannino'];
 $colore=$row['colore'];
 $temperatura=$row['temperatura'];
 
-$conn->close();
 
-include('_header_inc.php');
 
 ?>
 <link rel="stylesheet" href=" style/styleDettagli.css">
@@ -56,7 +56,7 @@ include('_header_inc.php');
 			<div class="description">
 			<p style="padding-bottom: 30px;"><?=$desc?></p>
 		</div>
-		<button class="add-to-cart" style="margin:auto; display:block;" onclick="AggiungiAlCarrello()">AGGIUNGI AL CARRELLO</button>
+		<button class="add-to-cart" style="margin:auto; display:block;" onclick="<?php aggiungi_carello($conn,$_SESSION['id'],$id) ?>">AGGIUNGI AL CARRELLO</button>
 		</div>
 		</div>
 	<div class="grid related-products">
