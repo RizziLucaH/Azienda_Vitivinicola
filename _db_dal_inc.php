@@ -109,9 +109,6 @@ function aggiungi_carello($conn,$idUP,$idB)
     $aziendacliente=isset($data['nome']) ? $data['nome'] : NULL;
     $idA= isset($data['idA']) ? $data['idA'] : NULL;
 
-
-
-
     $controlloingrosso="SELECT u.iva from utenteprivato u where u.idUP=$idUP";
     $resControllo=$conn->query($controlloingrosso);
     $rowControllo=$resControllo->fetch_assoc();
@@ -139,7 +136,17 @@ function aggiungi_carello($conn,$idUP,$idB)
     }
     $query->execute();
 }
+function visualizza_carrello($conn,$idUP)
+{
+    $sql="SELECT b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione
+    FROM vendita v
+    INNER join bottiglia b on v.idB=b.idB
+    where v.idUP=?";
+    $query = $conn->prepare($sql); 
+    $query->bind_param("i", $idUP);
+    $users = $query->get_result()->fetch_all(MYSQLI_ASSOC);
 
+}
 function nuovo_prod_chimico($conn,$nome,$principio)
 {
     $prodotti= "SELECT nome, principioattivo from prodottochimico";
@@ -162,4 +169,20 @@ function nuovo_intervento($conn,$tipo,$data,$idP,$idVigneto)
     $sql="INSERT INTO `intervento`(`tipo`, `data`, `idP`, `idVigneto`) VALUES ('$tipo','$data','$idP','$idVigneto')";
     $conn->query($sql);
 }
+
+function verifica_session($conn,$id){
+    $sql="SELECT * FROM utenteprivato where idUP like '$id' ";
+    $result=$conn->query($sql);
+    return mysqli_fetch_array($result);
+}
+function sel_dettagli_utente($conn,$id)
+    {
+
+        $sql="SELECT * from utenteprivato where idUP=$id";
+    
+        $result=$conn->query($sql);
+    
+        $row = $result->fetch_assoc();
+        return $row;
+    }
 ?>
