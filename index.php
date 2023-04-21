@@ -68,7 +68,7 @@ $pagina="home";
 						<div class="row d-flex align-items-center justify-content-center">
 						
 
-							<img src="img/Linea_Frati/4_bott_F_index.png"  alt="Chicago" class=" " style="border-radius: 30px;" width="90%" >
+							<img src="img/LineaFrati/4_bott_F_index.png"  alt="Chicago" class=" " style="border-radius: 30px;" width="90%" >
 							<a href="vini_limited_edition.php" style="position: absolute;" class="btn btn-outline-warning">Scopri</a>
 
 						</div>
@@ -132,28 +132,28 @@ $pagina="home";
 			<div class="d-flex justify-content-center align-items-center">
 
 				<figure class="card mx-4  ">
-					<img src="img/Linea_Frati/2_bott_F.png" alt="">
+					<img src="img/LineaFrati/2_bott_F.png" alt="">
 					<figcaption>
 						<p class="h5 text-dark">La Gatta Rossa</p>
 						<p class="text-dark"> 13.12€</p>
 					</figcaption>
 				</figure>
 				<figure class="card mx-4 ">
-					<img src="img/Linea_Frati/1_bott_F.png" alt="">
+					<img src="img/LineaFrati/1_bott_F.png" alt="">
 					<figcaption>
 						<p class="h5 text-dark">Ego di Luca</p>
 						<p class="text-dark"> 69.96€</p>
 					</figcaption>
 				</figure>
 				<figure class="card mx-4 ">
-					<img src="img/Linea_Frati/3_bott.png" alt="">
+					<img src="img/LineaFrati/3_bott.png" alt="">
 					<figcaption>
 						<p class="h5 text-dark">Cingolo di Tommaso</p>
 						<p class="text-dark"> 53.90€</p>
 					</figcaption>
 				</figure>
 				<figure class="card mx-4">
-					<img src="img/Linea_Frati/4_bot_F.png" alt="">
+					<img src="img/LineaFrati/4_bot_F.png" alt="">
 					<figcaption>
 						<p class="h5 text-dark ">Barolo Davide</p>
 						<p class="text-dark"> GRATIS</p>

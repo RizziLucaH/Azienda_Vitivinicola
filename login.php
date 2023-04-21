@@ -161,11 +161,11 @@
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="piva" name="signup_piva" class="form-style" placeholder="P.Iva" id="signup_piva" autocomplete="off" onkeydown="VerificaFatt()">
+                                                    <input type="text" name="signup_piva" class="form-style" placeholder="P.Iva" id="signup_piva" autocomplete="off" onkeydown="VerificaFatt()">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="address" name="signup_indirizzo" class="form-style" placeholder="Indirizzo di Fatturazione" id="signup_indirizzo" autocomplete="off" oninput="VerificaFatt()">
+                                                    <input type="text" name="signup_indirizzo" class="form-style" placeholder="Indirizzo di Fatturazione" id="signup_indirizzo" autocomplete="off" oninput="VerificaFatt()">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>		
                                                 <div class="form-group mt-2">
