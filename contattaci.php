@@ -1,7 +1,11 @@
 <?php
 $pagina="contattaci";
 ?>
-<?php include('header_inc.php');?>
+<?php
+include('session_check.php');
+include('header_inc.php');
+?>
+
 
 <link rel="stylesheet" href="./style/styleVisitaci.css">
 

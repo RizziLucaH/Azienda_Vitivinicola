@@ -2,7 +2,10 @@
 $pagina="home";
 ?>
 
-<?php include('header_inc.php');?>
+<?php
+include('session_check.php');
+include('header_inc.php');
+?>
 
 	<div >
 
