@@ -1,17 +1,4 @@
-<?php
-require('_config_inc.php');
-require('_db_dal_inc.php');
 
-session_start();
-
-
-// ----------------------------------------------------------------------------------
-// -----------------CONNESSIONE DB, ESTRAZIONE SENSORI ------------------------------
-// ------------------ED ESTRAZIONE CITTA (PER FILTRO)--------------------------------
-// $conn=db_connect();
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,7 +109,7 @@ session_start();
 				</nav>		
 			</div>
 			<!-- DIV UTENTE -->
-			<a href="login.php" class="link-to-portfolio hover-target"    > <i class="fa-solid fa-user fa-2x mt-2"></i></a>
+			<a href="dettagli_utente.php" class="link-to-portfolio hover-target"> <i class="fa-solid fa-user fa-2x mt-2"></i></a>
 		</div>
 		
 	</div>
