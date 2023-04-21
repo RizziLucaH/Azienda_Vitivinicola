@@ -33,7 +33,7 @@ $row=visualizza_carrello($conn,$_SESSION['id']);
     <?php foreach($row as $riga){?>
         <div class="product" name="prodotto">
             <div class="product-image">
-            <img class="rounded" src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
+            <img class="rounded" src="<?=$riga['path']?>">
             </div>
             <div class="product-details">
             <div class="product-title"><?=$riga['nomevino'] ?></div>
