@@ -3,8 +3,9 @@
 <?php
 $pagina="carrello";
 ?>
-
-<?php include('header_inc.php');
+<?php
+include('session_check.php');
+include('header_inc.php');
 
 $conn=db_connect();
 
