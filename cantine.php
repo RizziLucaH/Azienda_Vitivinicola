@@ -1,8 +1,13 @@
 <?php
 $pagina="cantine";
+
 ?>
 
-<?php include('header_inc.php');?>
+<?php
+include('session_check.php');
+include('header_inc.php');
+?>
+
 
 <!-- LINK AGGIUNTIVI -->
 <link rel="stylesheet" href=" style/styleBottiglia2.css">

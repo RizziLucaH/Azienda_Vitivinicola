@@ -2,7 +2,11 @@
 $pagina="cantine";
 ?>
 
-<?php include('header_inc.php');
+<?php
+include('session_check.php');
+include('header_inc.php');
+
+
 $conn= db_connect();
 $sql="SELECT c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione, i.path as path from cantina c join immaginecantina i on c.idCantina=i.idCantina";
 
