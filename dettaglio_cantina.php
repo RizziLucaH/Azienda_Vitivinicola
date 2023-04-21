@@ -2,7 +2,23 @@
 $pagina="cantine";
 ?>
 
-<?php include('header_inc.php');?>
+<?php include('header_inc.php');
+$conn= db_connect();
+$sql="SELECT c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione, i.path as path from cantina c join immaginecantina i on c.idCantina=i.idCantina";
+
+$result = $conn->query($sql);
+
+$row = $result->fetch_assoc();
+
+$nome=$row['nome'];
+$comune=$row['comune'];
+$coord=$row['coordinate'];
+$desc=$row['descrizione'];
+$path=$row['path'];
+/*DA FINIRE, NICO AGGIUNGI IMG AL DB PER FAVORE*/ 
+$conn-> close();
+?>
+
 
 
 
@@ -12,18 +28,18 @@ $pagina="cantine";
 
     <header>     
         <!-- Home begins-->       
-        <div id="home-page" class="container-fluid">
+        <div id="home-page" class="container-fluid" style="background-image: <?=$path?> ;">
         </div><!-- home-page ends -->                
     </header>
     <!-- about section starts -->
     <section id="about-page" class="container-fluid">       
         <div class="row">
             <div class="col-sm-12 text-center">
-            <h1 class="headings">Nome cantina</h1>
+            <h1 class="headings"><?=$nome?></h1>
             <hr class="section-hr">
             </div>
             <div class="col-sm-8 text-center">
-                <p>descrizione cantina</p>
+                <p><?=$desc?></p>
             </div>
             <div id="image-presentation-box" class="col-sm-4">
             <div class="col-md-12 col-sm-12">
