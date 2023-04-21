@@ -138,10 +138,11 @@ function aggiungi_carello($conn,$idUP,$idB)
 }
 function visualizza_carrello($conn,$idUP)
 {
-    $sql="SELECT b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione
+    $sql="SELECT b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione, i.path as path 
     FROM vendita v
     INNER join bottiglia b on v.idB=b.idB
-    where v.idUP=?";
+    inner join immaginebottiglia i on B.idB=i.idB
+    where i.principale <> 0 AND v.idUP=?";
     $query = $conn->prepare($sql); 
     $query->bind_param("i", $idUP);
     $query->execute();
@@ -208,7 +209,11 @@ function info_vino($conn,$id)
     return  $conn->query($sql);
 }
 function sel_bottiglie($conn){
-    $sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS FROM `bottiglia` B join vino V on V.idV=B.idV ";
+    $sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS, i.path as path 
+    FROM `bottiglia` B 
+    inner join vino V on V.idV=B.idV 
+    inner join immaginebottiglia i on B.idB=i.idB
+    where i.principale <> 0";
     $result = $conn->query($sql);
     return $result;
 }
