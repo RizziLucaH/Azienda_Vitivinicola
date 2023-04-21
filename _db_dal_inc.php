@@ -208,7 +208,11 @@ function info_vino($conn,$id)
     return  $conn->query($sql);
 }
 function sel_bottiglie($conn){
-    $sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS FROM `bottiglia` B join vino V on V.idV=B.idV ";
+    $sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS, i.path as path 
+    FROM `bottiglia` B 
+    inner join vino V on V.idV=B.idV 
+    inner join immaginebottiglia i on B.idB=i.idB
+    where i.principale <> 0";
     $result = $conn->query($sql);
     return $result;
 }

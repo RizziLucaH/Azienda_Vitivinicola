@@ -142,6 +142,7 @@ $result=sel_bottiglie($conn);
 								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
 									<figure class="card ">
 										<img src="img/LineaFrati/4_bot_F.png" alt="">
+										<!-- <img src="<$row["path"]?>" alt="">-->
 										<figcaption>
 											<p id="nomevino" class="h6 text-dark "><?=$row['nomevino'] ?></p>
 											<p id="prezzo" class="text-dark"><?=$row['prezzo'] ?> € </p>
@@ -215,7 +216,7 @@ $result=sel_bottiglie($conn);
 			let cerca=$("#cerca").val();
 
 			$.each(arrayN,function(index,value){
-				if($(value).html().indexOf(cerca)== -1){$(value).closest("div").hide();} else{$(value).closest("div").show();}
+				if($(value).html().toLowerCase().indexOf(cerca.toLowerCase())== -1){$(value).closest("div").hide();} else{$(value).closest("div").show();}
 			});
 		});
 	}
