@@ -8,6 +8,8 @@ include('session_check.php');
 include('header_inc.php');
 
 $conn=db_connect();
+
+$row=visualizza_carrello($conn,$_SESSION['id']);
 ?>
 
 <link rel="stylesheet" href=" style/styleCarrello.css">
@@ -28,26 +30,28 @@ $conn=db_connect();
 
     <!--PRODOTTI DEL CARRELLO-->
 
-
-    <div class="product" name="prodotto">
-        <div class="product-image">
-        <img class="rounded" src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
+    <?php foreach($row as $riga){?>
+        <div class="product" name="prodotto">
+            <div class="product-image">
+            <img class="rounded" src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
+            </div>
+            <div class="product-details">
+            <div class="product-title"><?=$riga['nomevino'] ?></div>
+            <p class="product-description"><?=$riga['descrizione'] ?></p>
+            </div>
+            <div class="product-price"><?=$riga['prezzo'] ?></div>
+            <div class="product-quantity">
+            <input id="qta" type="number" min="1" value="1">
+            </div>
+            <div class="product-removal">
+            <button class="btn btn-danger" onclick="verificaCarrello()">
+                Remove
+            </button>
+            </div>
+            <div class="product-line-price"><?=$riga['prezzo'] ?></div>
         </div>
-        <div class="product-details">
-        <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-        <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-        </div>
-        <div class="product-price">45.99</div>
-        <div class="product-quantity">
-        <input id="qta" type="number" min="1" value="1">
-        </div>
-        <div class="product-removal">
-        <button class="btn btn-danger" onclick="verificaCarrello()">
-            Remove
-        </button>
-        </div>
-        <div class="product-line-price">45.99</div>
-    </div>
+    <?php
+    }?>
 
         <!--RECAP SPESE-->
     <div class="totals" >

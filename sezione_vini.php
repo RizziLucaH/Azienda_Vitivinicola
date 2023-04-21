@@ -286,6 +286,7 @@ $result = $conn->query($sql);
 		
 	}
 </script>
+<?php include('_footer_inc.php');?>
 
 </body>
 </html>
