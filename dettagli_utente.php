@@ -63,6 +63,7 @@ if(verifica_session($conn,$_SESSION['id']??0)) {
         <!-- <h2>SOCIAL MEDIA</h2> -->
         <div class="card">
             <div class="card-body">
+
                 <h3>I tuoi ordini</h3>
                 <table class="table">
                     <thead>
@@ -93,10 +94,10 @@ if(verifica_session($conn,$_SESSION['id']??0)) {
                         </tr>
                     </tbody>
                     </table>
+
             </div>
         </div>
     </div>
-    <!-- End -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
     <script src="js/function.js"></script>
