@@ -125,18 +125,7 @@ include('_header_inc.php');
 
 	productImages.forEach(image => image.addEventListener("click", changeImage));
 	navItem.addEventListener('click', toggleNavigation);
-
-	function AggiungiAlCarrello(){
-		<?php 
-		
-		$sql="INSERT INSERT INTO `vendita`(`idVendita`, `ingrosso`, `tipopacco`, `numerobottiglie`,`prezzodettaglio`, `idUP`, `idA`, `idB`)
-		VALUES (1,0, 'standard', 2, '$prezzo', 1, 2 ,'$id'  )";
-
-		$conn->query($sql);
-		
-		?>
-	}
-</script>
+	</script>
 
 </body>
 </html>

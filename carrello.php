@@ -54,7 +54,7 @@ $conn=db_connect();
         <div class="totals-item">
             <label>Subtotal</label>
             <div class="totals-value" id="cart-subtotal">0</div>
-            <label>Tax (22%)</label>
+            <label>Tax (10%)</label>
             <div class="totals-value" id="cart-tax">0</div>
             <label >Shipping</label>
             <div class="totals-value" id="cart-shipping">0</div>
