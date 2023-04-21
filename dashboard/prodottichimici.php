@@ -1,3 +1,21 @@
+<?php
+require('../_db_dal_inc.php');
+require('../_config_inc.php');
+
+$conn=db_connect();
+
+$prodotti=seleziona_prodottichimici($conn);
+
+$data = array();
+while ($row = $prodotti->fetch_assoc()) {
+    $data[] = $row;
+}
+$perPage = 10;
+$groups = array_chunk($data, $perPage);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +37,6 @@
             <li style="list-style-type: none;">
                 <div class="logo"><img src="../img/LOGO_scritta_oro.png" alt="error"></div>
             </li>
-            <!-- <hr style="border:1px solid #ccac00"> -->
             <hr class="separatore">
             <li style="list-style-type: none;">
                 <a href="dashboard.php">
@@ -44,79 +61,108 @@
                     <span class="text">Vigneti</span>
                 </a>
             </li>
+            <hr class="separatore">
+            <li style="list-style-type: none;">
+                <a href="prodottichimici.php">
+                    <span class="text">Prodotti chimici</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!---Sidebar di log out-->
-    <div class="bottom-0 start-0 LOsidebar">
+    <div class="LOsidebar bottom-0 start-0">
         <!-- <button class="btnLO">LOG OUT</button> -->
 
     </div>
 
-<?php  
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
-$conn=db_connect();
-$vigneti=seleziona_vigneti($conn);
-
-$data = array();
-while ($row = $vigneti->fetch_assoc()) {
-    $data[] = $row;
-}
-$perPage = 10;
-$groups = array_chunk($data, $perPage);
-?>
-
     <!--Content-->
     <div class="content" style="padding-right: 5%;">
 
-        <h1>Vigneti</h1>
-        
+
+        <h1>Prodotti chimici</h1>
         <hr class="posth1" style="border-color: #ffd900;">
         <div class="row">
-            <table id="tablevigneti" class="table table-hover table-responsive" style="width:600px">
+            <div class="col">
+                <table id="tableprodotti" class="table table-responsive" style="width:600px">
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Comune</th>
-                            <th>Estensione(km^2)</th>
+                            <th>Principio attivo</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($vigneti as $row){?>
-                        <tr>
-                            <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['nome']?></a></td>
-                            <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['comune']?></a></td>
-                            <td><a style="text-decoration:none; color:black; display:block;" href="dettagliovigneto.php?id=<?=$row['idVigneto']?>&vigneto=<?=$row['nome']?>"><?=$row['estensione']?></a></td>
-                        </tr>
-                    <?php }?>
+                        <?php foreach($prodotti as $row){?>
+                            <tr>
+                                <td><?=$row['nome']?></td>
+                                <td><?=$row['principioattivo']?></td>
+                            </tr>
+                        <?php }?>
                     </tbody>
                 </table>
                     <button id="prevBtn" class="btn" style="background-color:#ccac00">Precedente</button>
                     <button id="nextBtn" class="btn" style="background-color:#ccac00">Successivo</button>
             </div>
+            <div class="col">
+                <h3 style="margin-bottom :20px;">Nuovo prodotto chimico</h3>
+                <div class="card" style="background-color: #F7F7F7F7">
+                    <div class="card-body">
+                        <form action="nuovo_prodottochimico.php" method="post" class="form">
+                            <div class="mb-3">
+                                <label for="nome">Nome del prodotto</label>
+                                <input type="text" class="form-control" required style="background-color: #F0F0F0">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nome">Principio attivo</label>
+                                <input type="text" class="form-control" required style="background-color: #F0F0F0">
+                            </div>
+                            <button type="submit" class="btn" style="background-color: #ccac00">Aggiungi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        
     </div>
 
-    
+
 </body>
 
 </html>
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var privati=50;
+    var aziende=50;
+
+    const ctx=document.getElementById("graficovendite");
+    new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Privati', 'Aziende'],
+        datasets: [{
+        data: [privati,aziende],
+        borderWidth: 1,
+        backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)'
+    ],
+    hoverOffset: 4
+
+        }]
+    },
+    });
+</script>
+
 
 <?php
-function seleziona_vigneti($conn){
-    $sql="SELECT * FROM vigneto";
+function seleziona_prodottichimici($conn){
+    $sql="SELECT p.nome, p.principioattivo FROM prodottochimico p;";
     $result=$conn->query($sql);
     return $result;
 }
 
 
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
 <script>
 var currentPage = 0;
 var groups = <?php echo json_encode($groups); ?>;
@@ -148,10 +194,3 @@ document.querySelector('#nextBtn').addEventListener('click', function() {
     }
 });
 </script>
-
-
-
-
-
-
-
