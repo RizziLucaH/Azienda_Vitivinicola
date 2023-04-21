@@ -8,8 +8,7 @@ $conn= db_connect();
 
 
 /*DISPLAY DEI VINI*/
-$sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS FROM `bottiglia` B join vino V on V.idV=B.idV ";
-$result = $conn->query($sql);
+$result=sel_bottiglie($conn);
 ?>
 
 
