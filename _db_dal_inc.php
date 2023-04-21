@@ -144,8 +144,8 @@ function visualizza_carrello($conn,$idUP)
     where v.idUP=?";
     $query = $conn->prepare($sql); 
     $query->bind_param("i", $idUP);
-    $users = $query->get_result()->fetch_all(MYSQLI_ASSOC);
-
+    $carrello = $query->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $carrello;
 }
 function nuovo_prod_chimico($conn,$nome,$principio)
 {
