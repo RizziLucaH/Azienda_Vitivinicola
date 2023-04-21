@@ -1,5 +1,5 @@
 <?php
-$pagina="cantine";
+$pagina="cantine";  
 ?>
 
 <?php
@@ -8,9 +8,7 @@ include('header_inc.php');
 
 
 $conn= db_connect();
-$sql="SELECT c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione, i.path as path from cantina c join immaginecantina i on c.idCantina=i.idCantina";
-
-$result = $conn->query($sql);
+$result = info_cantine($conn);
 
 $row = $result->fetch_assoc();
 
@@ -27,8 +25,6 @@ $conn-> close();
 
 
 <link rel="stylesheet" href="style/styleDettaglioCantina.css">
-
-<body>
 
     <header>     
         <!-- Home begins-->       
@@ -52,14 +48,9 @@ $conn-> close();
             </div><!-- picture presentation ends -->
         </div><!-- row ends -->      
     </section>
-</body>
-
+    <?php include('_footer_inc.php');?>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 <script src=" js/function.js"></script>
 <script src=" js/functionDettaglioCantina.js"></script>
-
-</body>
-
-<?php include('_footer_inc.php');?>

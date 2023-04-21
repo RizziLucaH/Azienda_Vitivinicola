@@ -144,8 +144,9 @@ function visualizza_carrello($conn,$idUP)
     where v.idUP=?";
     $query = $conn->prepare($sql); 
     $query->bind_param("i", $idUP);
-    $carrello = $query->get_result()->fetch_all(MYSQLI_ASSOC);
-    return $carrello;
+    $carrello = $query->get_result();
+    $carrello_bello=$carrello->fetch_all(MYSQLI_ASSOC);
+    return $carrello_bello;
 }
 function nuovo_prod_chimico($conn,$nome,$principio)
 {
@@ -185,4 +186,24 @@ function sel_dettagli_utente($conn,$id)
         $row = $result->fetch_assoc();
         return $row;
     }
+
+function info_cantine($conn) /*bisogna aggiungerci la parte con le immagini*/
+{
+    $sql="SELECT c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c";
+
+    $result = $conn->query($sql);
+
+    return $result;
+}
+
+function info_vino($conn,$id)
+{
+    $sql= "SELECT B.nomevino as nomevino, B.prezzo as prezzo, B.descrizione as descrizione, 
+    B.gradoalcolico as gradoalcolico, B.annoproduzione as annoproduzione, V.profumo as profumo, V.gusto as gusto, V.retrogusto as retrogusto,
+    V.tannino as tannino, V.colore as colore, V.temperatura as temperatura FROM bottiglia B 
+    join vino V on V.idV=B.idV 
+    WHERE idB='$id'";
+
+    return  $conn->query($sql);
+}
 ?>
