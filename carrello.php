@@ -7,6 +7,7 @@ $pagina="carrello";
 <?php include('header_inc.php');
 
 $conn=db_connect();
+$carrellao= 
 
 ?>
 
