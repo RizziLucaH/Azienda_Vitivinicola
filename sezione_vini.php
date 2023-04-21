@@ -244,7 +244,7 @@ $result=sel_bottiglie($conn);
 			$.each(bianchi,function(index,value){
 				if(checkR==true || checkG==true  || checkS==true  || checkRosé==true || checkP==true ){
 					if(checkB==false){$(value).hide();} else {$(value).show();}
-				}
+				}else{$(value).show()}
 			})
 			
 			/*EACH ROSSI*/
