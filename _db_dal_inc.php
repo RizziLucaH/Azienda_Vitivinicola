@@ -144,6 +144,7 @@ function visualizza_carrello($conn,$idUP)
     where v.idUP=?";
     $query = $conn->prepare($sql); 
     $query->bind_param("i", $idUP);
+    $query->execute();
     $carrello = $query->get_result();
     $carrello_bello=$carrello->fetch_all(MYSQLI_ASSOC);
     return $carrello_bello;
