@@ -106,8 +106,8 @@ function aggiungi_carello($conn,$idUP,$idB)
     $result = $stmt->get_result();
     $data = $result->fetch_assoc(); 
 
-    $aziendacliente=isset($data['nome']) ? $data['nome'] : 'NULL';
-    $idA= isset($data['idA']) ? $data['idA'] : 'NULL';
+    $aziendacliente=isset($data['nome']) ? $data['nome'] : NULL;
+    $idA= isset($data['idA']) ? $data['idA'] : NULL;
 
 
 
@@ -121,21 +121,45 @@ function aggiungi_carello($conn,$idUP,$idB)
     $resPrezzo=$conn->query($trovaprezzo);
     $rowPrezzo=$resPrezzo->fetch_assoc();
     $prezzoBottiglia=$rowPrezzo['prezzo'];
-    echo $prezzoBottiglia;
     $null=NULL;
     if($iva=="NULL"){
-        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
-        VALUES(?,?,?,?,?,?,?,?)";
-        $query = $conn->prepare($ricercaazienda); 
-        $query->bind_param("iisddiii", 'NULL', 0, $aziendacliente, 'NULL', $prezzoBottiglia,  $idUP, $idA, $idB);
+        $sql="INSERT INTO `vendita` (`ingrosso`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
+        VALUES(?,?,?,?,?,?,?)";
+        $query = $conn->prepare($sql); 
+        $zero=0;
+        $query->bind_param("isddiii", $zero, $aziendacliente, $null, $prezzoBottiglia, $idUP, $idA, $idB);
     }
     else
     {
-        $sql="INSERT INTO `vendita` (`idVendita`, `ingrosso`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
-        VALUES(?,?,?,?,?,?,?,?)";
-        $query = $conn->prepare($ricercaazienda); 
-        $query->bind_param("iisddiii", 'NULL', 0, $aziendacliente, 'NULL', $prezzoBottiglia,  $idUP, $idA, $idB);
+        $sql="INSERT INTO `vendita` (`ingrosso`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
+        VALUES (?,?,?,?,?,?,?)";
+        $query = $conn->prepare($sql); 
+        $uno=1;
+        $query->bind_param("isddiii", $uno, $aziendacliente, $prezzoBottiglia, $null,  $idUP, $idA, $idB);
     }
     $query->execute();
+}
+
+function nuovo_prod_chimico($conn,$nome,$principio)
+{
+    $prodotti= "SELECT nome, principioattivo from prodottochimico";
+    $prod=$conn->query($prodotti);
+    $rowprodotti=$prod->fetch_assoc();
+    if($rowprodotti['nome']==$nome && $rowprodotti['principioattivo']==$principio){
+        return 0;
+    } else{
+        $sql="INSERT INTO `prodottochimico`(`nome`, `principioattivo`) VALUES ('$nome','$principio')";
+        $conn->query($sql);
+        return 1;
+    }
+}
+function nuovo_intervento($conn,$tipo,$data,$idP,$idVigneto)
+{
+    $tipo=$conn->real_escape_string($tipo);
+    $data=$conn->real_escape_string($data);
+    $idP=$conn->real_escape_string($idP);
+    $idVigneto=$conn->real_escape_string($idVigneto);
+    $sql="INSERT INTO `intervento`(`tipo`, `data`, `idP`, `idVigneto`) VALUES ('$tipo','$data','$idP','$idVigneto')";
+    $conn->query($sql);
 }
 ?>
