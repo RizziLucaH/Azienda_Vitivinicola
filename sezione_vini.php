@@ -141,8 +141,8 @@ $result=sel_bottiglie($conn);
 							<div data-tipoN="<?=$row['tipoN'] ?>" data-tipoS="<?=$row['tipoS'] ?>" class="col bottiglia">
 								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
 									<figure class="card ">
-										<img src="img/LineaFrati/4_bot_F.png" alt="">
-										<!-- <img src="<$row["path"]?>" alt="">-->
+										<!--<img src="img/LineaFrati/4_bot_F.png" alt="">-->
+										<img src="<?=$row["path"]?>" alt="">
 										<figcaption>
 											<p id="nomevino" class="h6 text-dark "><?=$row['nomevino'] ?></p>
 											<p id="prezzo" class="text-dark"><?=$row['prezzo'] ?> € </p>
