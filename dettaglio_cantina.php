@@ -6,9 +6,11 @@ $pagina="cantine";
 include('session_check.php');
 include('header_inc.php');
 
+$id= intval($_GET['idCantina']);
+
 
 $conn= db_connect();
-$result = info_cantine($conn);
+$result = info_cantina($conn,$id);
 
 $row = $result->fetch_assoc();
 

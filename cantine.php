@@ -26,7 +26,7 @@ $result=info_cantine($conn);
 					<div class="slider__item">
 					<img class="slider__image" src=" img/Cantine/BG1.jpg" alt="Image">
 					<div class="slider__info">
-						<a href="dettaglio_cantina.php" class="h4"><?=$row['nome'] ?></a>
+						<a href="dettaglio_cantina.php?idCantina=<?=$row['id']?>" class="h4"><?=$row['nome'] ?></a>
 					</div>
 					</div>
 				<?php
@@ -39,10 +39,10 @@ $result=info_cantine($conn);
     </div>
 	</div>
 
+	
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+	<script src=" js/function.js"></script>
+	<script src=" js/functionBottiglia.js"></script>
+	
 	<?php include('_footer_inc.php');?>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
-<script src=" js/function.js"></script>
-<script src=" js/functionBottiglia.js"></script>
-
