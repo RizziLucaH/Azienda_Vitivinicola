@@ -41,7 +41,7 @@ $result=sel_bottiglie($conn);
 					<div class="separator">-</div>
 					<div class="field">
 					<span>Max</span>
-					<input type="number" class="input-max" value="269">
+					<input id="sorpresa" type="number" class="input-max" value="269" onkeyup="EasterEgg()">
 					</div>
 				</div>
 				<div class="slider">
@@ -49,7 +49,7 @@ $result=sel_bottiglie($conn);
 				</div>
 				<div class="range-input">
 					<input id="minimo" type="range" class="" min="0" max="500" value="0" step="1" oninput="FiltraPrezzo()">
-					<input id="massimo" type="range" class="" min="0" max="500" value="269" step="1" oninput="FiltraPrezzo()">
+					<input id="massimo" type="range" class="" min="0" max="500" value="269" step="1" oninput="FiltraPrezzo()" >
 				</div>
 
 				<hr style="border: 1px solid black;">
@@ -286,7 +286,15 @@ $result=sel_bottiglie($conn);
 		
 	}
 </script>
-<?php include('_footer_inc.php');?>
 
-</body>
-</html>
+<script>
+	function EasterEgg(){
+		$(document).ready(function(){
+			let max=$("#sorpresa").val();
+			if(max==710){
+				window.open("easter_egg.php");
+			}
+		});
+	}
+</script>
+<?php include('_footer_inc.php');?>

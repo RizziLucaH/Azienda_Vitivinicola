@@ -163,12 +163,16 @@ function nuovo_prod_chimico($conn,$nome,$principio)
         return 1;
     }
 }
-function nuovo_intervento($conn,$tipo,$data,$idP,$idVigneto)
+function nuovo_intervento($conn,$tipo,$data,$nomeprodotto,$idVigneto)
 {
     $tipo=$conn->real_escape_string($tipo);
     $data=$conn->real_escape_string($data);
-    $idP=$conn->real_escape_string($idP);
+    $nomeprodotto=$conn->real_escape_string($nomeprodotto);
     $idVigneto=$conn->real_escape_string($idVigneto);
+    $qry="SELECT IdP from prodottochimico where nome=$nomeprodotto";
+    $result=$conn->query($qry);
+    $row=$result->fetch_assoc();
+    $idP=$row['idP'];
     $sql="INSERT INTO `intervento`(`tipo`, `data`, `idP`, `idVigneto`) VALUES ('$tipo','$data','$idP','$idVigneto')";
     $conn->query($sql);
 }
@@ -191,7 +195,16 @@ function sel_dettagli_utente($conn,$id)
 
 function info_cantine($conn) /*bisogna aggiungerci la parte con le immagini*/
 {
-    $sql="SELECT c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c";
+    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c";
+
+    $result = $conn->query($sql);
+
+    return $result;
+}
+
+function info_cantina($conn,$id) /*bisogna aggiungerci la parte con le immagini*/
+{
+    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c where idCantina=$id";
 
     $result = $conn->query($sql);
 

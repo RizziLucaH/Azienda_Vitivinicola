@@ -19,7 +19,7 @@
 
 
 </head>
-<body class="dark hero-anime" style="overflow: auto; height: 2000px;">
+<body class="dark hero-anime" style="overflow:auto ;">
 
     <!-- TITOLO -->
     
@@ -88,7 +88,7 @@
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="dettaglio_servizio.php">Imbottigliamento</a>
 									<a class="dropdown-item" href="dettaglio_servizio.php">Corso ONAV</a>
-									<a class="dropdown-item" href="dettaglio_servizio.php">Feste Private</a>
+									<a class="dropdown-item" href="feste.php">Feste Private</a>
 								</div>
 							    </li>
 
