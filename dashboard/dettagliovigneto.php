@@ -73,7 +73,10 @@ $sistemico=$output[0];
 $contatto=$output[1];
 $citotropico=$output[2];
 
-$vitigni=select_vitigno($conn,$idVigneto)
+$vitigni=select_vitigno($conn,$idVigneto);
+
+
+$prodotti=select_prodottichimici($conn);
 
 ?>
     <!--Content-->
@@ -145,7 +148,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
         <div class="modal-body">
-            <form  method="post" action="nuovo_intervento_act.php">
+            <form  method="post" action="nuovo_intervento_act.php?idvigneto=<?=$idVigneto?>">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Tipo di intervento</label>
                     <input type="text" class="form-control" name="tipo" id="tipo" aria-describedby="emailHelp" placeholder="Inserisci il tipo di intervento">
@@ -156,13 +159,15 @@ $vitigni=select_vitigno($conn,$idVigneto)
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Nome del prodotto utilizzato</label>
-                    <input type="text" class="form-control" id="prodotto" placeholder="Inserisci il prodotto utilizzato" name="prodotto">
+                    <select id="" class="form-control" id="prodotto" placeholder="Inserisci il prodotto utilizzato" name="prodotto">
+                        <option value=""></option>
+                    <?php foreach($prodotti as $row){?>
+                                <option value="<?=$row['nome']?>" name="prodotto"><?=$row['nome']?></option>
+                        <?php }?>
+                    </select>
+
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Principio attivo del prodotto</label>
-                    <input type="text" class="form-control" id="principioattivo" name="principioattivo" placeholder="Inserisci il principio attivo del prodotto" >
-                </div>
-                </div>
+                
                 <div class="modal-footer">
                     <button type="submit" class="btn" style="background-color: #ccac00">Salva</button>
                 </div>
@@ -274,22 +279,14 @@ function select_vitigno($conn,$idVigneto){
 }
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script>
-    
-    
-    function elimina_checkbox(){
-        $(document).ready(function(){
-            $("#bottoneelimina").click(function(){
-                let ck=$(":checked");
-                console.log(ck);
-                $.each(ck,function(index,value){
-                    $(value).parent().remove();
-                    console.log($(value).attr("data-idvitigno"));
-                    // rimuovi_vitigno($(value).attr("data-idvitigno"),$(value).attr("data-idvigneto"));
-                });
-            });
-        });
-    }
-    
-</script>
+
+
+<?php
+function select_prodottichimici($conn){
+    $sql="SELECT p.nome FROM prodottochimico p";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+
+?>

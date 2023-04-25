@@ -74,7 +74,7 @@ $groups = array_chunk($data, $perPage);
         
         <hr class="posth1" style="border-color: #ffd900;">
         <div class="row">
-            <table id="tablevigneti" class="table table-hover table-responsive" style="width:600px">
+        <table id="tablevigneti" class="table table-hover table-responsive table-list" data-currentpage="1" >
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -92,9 +92,6 @@ $groups = array_chunk($data, $perPage);
                     <?php }?>
                     </tbody>
                 </table>
-                    <button id="prevBtn" class="btn" style="background-color:#ccac00">Precedente</button>
-                    <button id="nextBtn" class="btn" style="background-color:#ccac00">Successivo</button>
-            </div>
         </div>
         
     </div>
@@ -117,37 +114,7 @@ function seleziona_vigneti($conn){
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
-<script>
-var currentPage = 0;
-var groups = <?php echo json_encode($groups); ?>;
 
-function displayData() {
-    var tableBody = document.querySelector('#tableprodotti tbody');
-    tableBody.innerHTML = '';
-    var currentPageData = groups[currentPage];
-    for (var i=0; i<currentPageData.length; i++) {
-        var row = tableBody.insertRow();
-        row.insertCell().textContent = currentPageData[i].nome;
-        row.insertCell().textContent = currentPageData[i].principioattivo;
-    }
-}
-
-displayData();
-
-document.querySelector('#prevBtn').addEventListener('click', function() {
-    if (currentPage > 0) {
-    currentPage--;
-    displayData();
-    }
-});
-
-document.querySelector('#nextBtn').addEventListener('click', function() {
-    if (currentPage < groups.length - 1) {
-    currentPage++;
-    displayData();
-    }
-});
-</script>
 
 
 
