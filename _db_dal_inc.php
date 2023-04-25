@@ -169,10 +169,11 @@ function nuovo_intervento($conn,$tipo,$data,$nomeprodotto,$idVigneto)
     $data=$conn->real_escape_string($data);
     $nomeprodotto=$conn->real_escape_string($nomeprodotto);
     $idVigneto=$conn->real_escape_string($idVigneto);
-    $qry="SELECT IdP from prodottochimico where nome=$nomeprodotto";
-    $result=$conn->query($qry);
-    $row=$result->fetch_assoc();
+    $qry="SELECT idP from prodottochimico WHERE nome='$nomeprodotto' ";
+    $res=$conn->query($qry);
+    $row=$res->fetch_assoc();
     $idP=$row['idP'];
+
     $sql="INSERT INTO `intervento`(`tipo`, `data`, `idP`, `idVigneto`) VALUES ('$tipo','$data','$idP','$idVigneto')";
     $conn->query($sql);
 }
