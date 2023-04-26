@@ -216,9 +216,12 @@ function info_vino($conn,$id)
 {
     $sql= "SELECT B.nomevino as nomevino, B.prezzo as prezzo, B.descrizione as descrizione, 
     B.gradoalcolico as gradoalcolico, B.annoproduzione as annoproduzione, V.profumo as profumo, V.gusto as gusto, V.retrogusto as retrogusto,
-    V.tannino as tannino, V.colore as colore, V.temperatura as temperatura FROM bottiglia B 
+    V.tannino as tannino, V.colore as colore, V.temperatura as temperatura, i.path as path 
+    FROM bottiglia B 
     join vino V on V.idV=B.idV 
-    WHERE idB='$id'";
+    inner join immaginebottiglia i on B.idB=i.idB
+    WHERE B.idB='$id'
+    ORDER by i.principale DESC";
 
     return  $conn->query($sql);
 }
