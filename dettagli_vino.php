@@ -5,26 +5,26 @@ include('session_check.php');
 include('header_inc.php');
 
 
-$id= intval($_GET['idB']);
+$id=intval($_GET['idB']);
 
 $conn=db_connect();
 
 
 $result = info_vino($conn,$id);
 
-$row = $result->fetch_assoc();
-$nome=$row['nomevino'];
-$prezzo=$row['prezzo'];
-$desc=$row['descrizione'];
-$grado=$row['gradoalcolico'];
-$anno=$row['annoproduzione'];
-$profumo=$row['profumo'];
-$gusto=$row['gusto'];
-$retrogusto=$row['retrogusto'];
-$tannino=$row['tannino'];
-$colore=$row['colore'];
-$temperatura=$row['temperatura'];
-
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+$nome=$rows[0]['nomevino'];
+$prezzo=$rows[0]['prezzo'];
+$desc=$rows[0]['descrizione'];
+$grado=$rows[0]['gradoalcolico'];
+$anno=$rows[0]['annoproduzione'];
+$profumo=$rows[0]['profumo'];
+$gusto=$rows[0]['gusto'];
+$retrogusto=$rows[0]['retrogusto'];
+$tannino=$rows[0]['tannino'];
+$colore=$rows[0]['colore'];
+$temperatura=$rows[0]['temperatura'];
+$principale=$rows[0]['path'];
 
 
 ?>
@@ -35,12 +35,12 @@ $temperatura=$row['temperatura'];
 		<div class="column-xs-12 column-md-7">
 			<div class="product-gallery">
 			<div class="product-image">
-				<img class="active" src="https://source.unsplash.com/W1yjvf5idqA">
+				<img class="active" src="<?=$principale?>">
 			</div>
 			<ul class="image-list">
-				<li class="image-item"><img src="https://source.unsplash.com/W1yjvf5idqA"></li>
-				<li class="image-item"><img src="https://source.unsplash.com/VgbUxvW3gS4"></li>
-				<li class="image-item"><img src="https://source.unsplash.com/5WbYFH0kf_8"></li>
+				<?php foreach($rows as $image){?>
+				<li class="image-item"><img src="<?=$image["path"]?>"></li>
+				<?php }?>
 			</ul>
 			</div>
 		</div>
@@ -50,7 +50,9 @@ $temperatura=$row['temperatura'];
 			<div class="description">
 			<p style="padding-bottom: 30px;"><?=$desc?></p>
 		</div>
-		<button class="add-to-cart" style="margin:auto; display:block;" onclick="<?php aggiungi_carello($conn,$_SESSION['id'],$id) ?>">AGGIUNGI AL CARRELLO</button>
+		<a href="dettagli_vino_act.php?idB=<?=$id?> ">
+		<button class="add-to-cart" style="margin:auto; display:block;">AGGIUNGI AL CARRELLO</button>
+		</a>
 		</div>
 		</div>
 	<div class="grid related-products">

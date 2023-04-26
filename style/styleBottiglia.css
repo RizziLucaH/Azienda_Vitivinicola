@@ -260,19 +260,19 @@ body{
 }
 
 .case-study-images li:nth-child(1) .img-hero-background{
-	background-image: url("../img/Linea_Frati/4_bott_F.png");
+	background-image: url("../img/Vini/LineaFrati/4_bott_F.png");
 }
 .case-study-images li:nth-child(2) .img-hero-background{
-	background-image: url("../img/Linea_Frati/1_bott_F.png");
+	background-image: url("../img/Vini/LineaFrati/1_bott_F.png");
 }
 .case-study-images li:nth-child(3) .img-hero-background{
-	background-image: url("../img/Linea_Frati/2_bott_F.png");
+	background-image: url("../img/Vini/LineaFrati/2_bott_F.png");
 }
 .case-study-images li:nth-child(4) .img-hero-background{
-	background-image: url("../img/Linea_Frati/3_bott.png");
+	background-image: url("../img/Vini/LineaFrati/3_bott.png");
 }
 .case-study-images li:nth-child(5) .img-hero-background{
-	background-image: url("../img/Linea_Frati/4_bot_F.png");
+	background-image: url("../img/Vini/LineaFrati/4_bot_F.png");
 }
 
 /* #Media
