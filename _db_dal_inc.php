@@ -237,4 +237,19 @@ function ordini_utente($conn,$idUP){
     $result=$conn->query($sql);
     return $result;
 }
+
+function prenotazione_festa($conn,$nome,$cognome,$data,$mail,$nomecantina,$tel){
+    $cercaidcant="SELECT idCantina FROM cantina where nome='$nomecantina'";
+    $res=$conn->query($cercaidcant);
+    $row=$res->fetch_assoc();
+    $idCantina=$row['idCantina'];
+    
+    $nome=$conn->real_escape_string($nome);
+    $cognome=$conn->real_escape_string($cognome);
+    $data=$conn->real_escape_string($data);
+    $mail=$conn->real_escape_string($mail);
+
+    $sql="INSERT INTO `festa` (nome,cognome,mail,telefono,data,idCantina) VALUES ('$nome','$cognome','$mail','$tel','$data',$idCantina)";
+    $conn->query($sql);
+}
 ?>
