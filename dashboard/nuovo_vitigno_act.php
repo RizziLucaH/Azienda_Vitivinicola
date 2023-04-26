@@ -20,13 +20,7 @@ header("location: dettagliovigneto.php?id=$idVigneto&vigneto=$NomeVigneto");
 ?>
 
 <?php
-function select_nome_Vigneto($conn,$idv){
-    $cercanome="SELECT v.nome from vigneto v WHERE idVigneto=$idv;";
-    $res=$conn->query($cercanome);
-    $row=$res->fetch_all(MYSQLI_ASSOC);
-    $Nome=$row['nome'];
-    return $Nome;
-}
+
 function insert_vitigno($conn,$uva,$idv){
     $sql="INSERT INTO `vitigno`(`uva`, `idVigneto`) VALUES ('$uva','$idv')";
     $result=$conn->query($sql);

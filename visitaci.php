@@ -46,7 +46,7 @@ $conn=db_connect();
 							</div>
 							<div class="form-group">
 								<span class="form-label">Email</span>
-								<input class="form-control" name="mailvisitatore" type="email" placeholder="Enter your email">
+								<input class="form-control" name="mailvisitatore" type="email" placeholder="Inserisci la tua email">
 							</div>
 	
 							<div class="row">
