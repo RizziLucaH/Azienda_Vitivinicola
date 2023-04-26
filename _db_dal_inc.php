@@ -231,4 +231,10 @@ function sel_bottiglie($conn){
     $result = $conn->query($sql);
     return $result;
 }
+
+function ordini_utente($conn,$idUP){
+    $sql="SELECT * from vendita WHERE idUP='$idUP'";
+    $result=$conn->query($sql);
+    return $result;
+}
 ?>
