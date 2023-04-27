@@ -86,8 +86,8 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-5 <?php $pagina=="visitaci" ? "active" :"" ?>">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="servizi.php" role="button" aria-haspopup="true" aria-expanded="false">Servizi</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="dettaglio_servizio.php">Imbottigliamento</a>
-									<a class="dropdown-item" href="dettaglio_servizio.php">Corso ONAV</a>
+									<a class="dropdown-item" href="imbottigliamento.php">Imbottigliamento</a>
+									<a class="dropdown-item" href="corso_onav.php">Corso ONAV</a>
 									<a class="dropdown-item" href="feste.php">Feste Private</a>
 								</div>
 							    </li>
