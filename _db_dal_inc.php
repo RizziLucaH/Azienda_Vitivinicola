@@ -272,4 +272,10 @@ function update_carrello($conn,$idUP,$idB){
     $query->bind_param("ii", $idUP,$idB);
     $query->execute();
 }
+function remove_carrello($conn,$idB){
+    $sql="DELETE FROM vendita v WHERE v.idB=?";
+    $query = $conn->prepare($sql); 
+    $query->bind_param("i",$idB);
+    $query->execute();
+}
 ?>
