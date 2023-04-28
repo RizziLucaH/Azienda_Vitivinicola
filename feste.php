@@ -45,7 +45,7 @@ include('header_inc.php');
 							</div>
 							<div class="form-group">
 								<span class="form-label">Email</span>
-								<input class="form-control" name="mail" type="email" required placeholder="Enter your email">
+								<input class="form-control" name="mail" type="email" required placeholder="Inserisci la tua email">
 							</div>
 	
 							<div class="row">
