@@ -17,7 +17,7 @@ $conn=db_connect();
 				<div class="row">
 					<div class="booking-form" style="border-radius: 20px;">
 	
-						<form method="post" action="visitaci_act.php" >
+						<form method="post" action="imbottigliamento_act.php" >
 							<div class="form-header">
 								<h2>Imbottiglia il tuo vino presso le nostre cantine!</h2>
 							</div>
@@ -31,7 +31,7 @@ $conn=db_connect();
 							</div>
 							<div class="form-group">
 								<span class="form-label">Indirizzo Azienda</span>
-								<input class="form-control" name="indirizzo" type="email" required placeholder="Inserisci l'indirizzo">
+								<input class="form-control" name="indirizzo" type="text" required placeholder="Inserisci l'indirizzo">
 							</div>
 	
 							<div class="row">

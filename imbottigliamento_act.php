@@ -15,7 +15,7 @@ $numero=$_POST['numero'];
 $bottiglie=$_POST['bottiglie'];
 
 //---Richiamo la funzione---
-//nuova_richiesta($conn,$Nome,$bottiglie,$numero,$data);
+nuova_richiesta($conn,$Nome,$bottiglie,$numero);
 
 header("location: confermaprenotazione.php");
 

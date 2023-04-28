@@ -26,7 +26,7 @@ $result=info_cantine($conn);
 					<div class="slider__item">
 					<img class="slider__image" src=" img/Cantine/BG1.jpg" alt="Image">
 					<div class="slider__info">
-						<a href="dettaglio_cantina.php?idCantina=<?=$row['id']?>" class="h4"><?=$row['nome'] ?></a>
+						<a style="text-decoration: none;" href="dettaglio_cantina.php?idCantina=<?=$row['id']?>" class="h4"><?=$row['nome'] ?></a>
 					</div>
 					</div>
 				<?php
