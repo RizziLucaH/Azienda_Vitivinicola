@@ -138,7 +138,7 @@ function aggiungi_carello($conn,$idUP,$idB)
 }
 function visualizza_carrello($conn,$idUP)
 {
-    $sql="SELECT b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione, i.path as path 
+    $sql="SELECT v.idB,b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione, i.path as path 
     FROM vendita v
     INNER join bottiglia b on v.idB=b.idB
     inner join immaginebottiglia i on B.idB=i.idB
@@ -255,5 +255,21 @@ function prenotazione_festa($conn,$nome,$cognome,$data,$mail,$nomecantina,$tel){
     $sql="INSERT INTO `festa` (nome,cognome,mail,telefono,data,idCantina) VALUES ('$nome','$cognome','$mail','$tel','$data',$idCantina)";
     $conn->query($sql);
 }
-
+function sel_bottiglie_carrello($conn,$idUP){
+    $sql="SELECT v.idB
+    FROM vendita v
+    where v.idUP=?";
+    $query = $conn->prepare($sql); 
+    $query->bind_param("i", $idUP);
+    $query->execute();
+    $bottiglie = $query->get_result();
+    $bottiglie_belle=$bottiglie->fetch_all(MYSQLI_ASSOC);
+    return $bottiglie_belle;
+}
+function update_carrello($conn,$idUP,$idB){
+    $sql="UPDATE vendita v SET v.numerobottiglie=v.numerobottiglie+1 WHERE v.idUP=? and v.idB=?";
+    $query = $conn->prepare($sql); 
+    $query->bind_param("ii", $idUP,$idB);
+    $query->execute();
+}
 ?>
