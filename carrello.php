@@ -44,9 +44,11 @@ $rows=visualizza_carrello($conn,$_SESSION['id']);
             <input id="qta" type="number" min="1" value=<?=$riga['numerobottiglie']?>>
             </div>
             <div class="product-removal">
-            <button class="btn btn-danger" onclick="verificaCarrello()">
-                Remove
-            </button>
+            <a href="elimina_da_carrello.php?idB=<?=$riga['idB']?>">
+                <button class="btn btn-danger" onclick="verificaCarrello()">
+                    Remove
+                </button>
+            </a>
             </div>
             <div class="product-line-price"><?=$riga['prezzo'] ?></div>
         </div>
