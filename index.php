@@ -71,8 +71,8 @@ include('header_inc.php');
 						<div class="row d-flex align-items-center justify-content-center">
 						
 
-							<img src="img/LineaFrati/4_bott_F_index.png"  alt="Chicago" class=" " style="border-radius: 30px;" width="90%" >
-							<a href="vini_limited_edition.php" style="position: absolute;" class="btn btn-outline-warning">Scopri</a>
+							<img src="img/Vini/LineaFrati/4_bott_F_index.png"  alt="Chicago" class=" " style="border-radius: 30px;" width="90%" >
+							<a href="vini_limited_edition.php" style="position: absolute; width: 10%;" class="btn btn-outline-warning">Scopri</a>
 
 						</div>
 					</div>
