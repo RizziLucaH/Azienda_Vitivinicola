@@ -278,4 +278,22 @@ function remove_carrello($conn,$idB){
     $query->bind_param("i",$idB);
     $query->execute();
 }
+function nuova_richiesta($conn,$nome,$bottiglia,$numero){
+    $nome=$conn->real_escape_string($nome);
+    $bottiglia=$conn->real_escape_string($bottiglia);
+
+    $qry="SELECT idB from bottiglia where nomevino='$bottiglia'";
+    $res=$conn->query($qry);
+    $row=$res->fetch_assoc();
+    $idB=$row['idB'];
+
+    $qry2="SELECT idA from aziendacliente where nome='$nome'";
+    $res=$conn->query($qry2);
+    $row=$res->fetch_assoc();
+    $idA=$row['idA'];
+
+    $sql="INSERT INTO richiesto (idB,idA,quantita) VALUES ('$idB','$idA','$numero') ";
+    $conn->query($sql);
+
+}
 ?>
