@@ -46,7 +46,7 @@ $conn=db_connect();
                                         <span class="form-label">Numero bottiglie</span>
                                         <br>
                                             <span class="input-number-decrement">-</span>
-                                            <input class="input-number" type="number" name="partecipanti" min="1" max="10" value="1">
+                                            <input class="input-number" type="number" name="numero" min="1" max="10" value="1">
                                             <span class="input-number-increment">+</span>
     
                                         <span class="select-arrow"></span>
