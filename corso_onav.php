@@ -25,13 +25,13 @@ $conn=db_connect();
 								<div class="col-md-6">
 								<div class="form-group">
 									<span class="form-label">Nome</span>
-									<input class="form-control" name="nomevisitatore" type="text" required placeholder="Inserisci il nome">
+									<input class="form-control" name="nome" type="text" required placeholder="Inserisci il nome">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<span class="form-label">Cognome</span>
-									<input class="form-control" name="cognomevisitatore" type="text" required placeholder="Inserisci il cognome">
+									<input class="form-control" name="cognome" type="text" required placeholder="Inserisci il cognome">
 								</div>
 								</div>
 							</div>
@@ -46,7 +46,7 @@ $conn=db_connect();
 							</div>
 							<div class="form-group">
 								<span class="form-label">Email</span>
-								<input class="form-control" name="mailvisitatore" type="email" required placeholder="Enter your email">
+								<input class="form-control" name="mail" type="email" required placeholder="Inserisci la tua email">
 							</div>
 							
 							<div class="row">

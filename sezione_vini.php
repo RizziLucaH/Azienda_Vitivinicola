@@ -6,6 +6,7 @@ include('header_inc.php');
 
 $conn= db_connect();
 
+$tipo=$_GET['tipo'];
 
 /*DISPLAY DEI VINI*/
 $result=sel_bottiglie($conn);
@@ -60,25 +61,11 @@ $result=sel_bottiglie($conn);
 				<!-- ----------------------------------------------------------------- -->
 
 				<header>
-					<h6>Quantità Disponibile</h6>
+					<h6>Anno Produzione</h6>
 				</header>
 
 				<div class="form-check mb-3">
-
-					<!-- +20 -->
-					<input id="CK_20" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">+20</label>
-					<br>
-
-					<!-- +50 -->
-					<input id="CK_50" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">+50</label>
-					<br>
-
-					<!-- +100 -->
-					<input id="CK_100" class="form-check-input mt-0" type="checkbox" value="" >
-					<label for="CK_stato_compra_ora">+100</label>
-				
+					<input class="form-check-input mt-1" type="text" value="" id="anno" maxlength="4" onkeyup="FiltraAnno()" placeholder="Inserire l'anno desiderato" style="width: 100%; height: 22px;">
 				</div>
 
 				<hr style="border: 1px solid black;">
@@ -95,22 +82,22 @@ $result=sel_bottiglie($conn);
 					<div class="form-check mb-3">
 	
 						<!-- Bianco -->
-						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="bianco" ? "checked" :"") ?> onclick="FiltraTipo()" >
 						<label for="CK_bianco">Bianco</label>
 						<br>
 	
 						<!-- Spumante -->
-						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="spumante" ? "checked" :"") ?> onclick="FiltraTipo()" >
 						<label for="CK_spumante">Spumante</label>
 						<br>
 
 						<!-- Rosso -->
-						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosso" ? "checked" :"") ?> onclick="FiltraTipo()" >
 						<label for="CK_rosso">Rosso</label>
 						<br>
 
 						<!-- Rosé -->
-						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosé" ? "checked" :"") ?> onclick="FiltraTipo()" >
 						<label for="CK_rosé">Rosé</label>
 						<br>
 
@@ -138,7 +125,7 @@ $result=sel_bottiglie($conn);
 				<div class="row row-cols-1 row-cols-md-3 g-4">
 				<?php if($result->num_rows>0){
 					while($row=$result->fetch_assoc()){  ?>
-							<div data-tipoN="<?=$row['tipoN'] ?>" data-tipoS="<?=$row['tipoS'] ?>" class="col bottiglia">
+							<div data-tipoN="<?=$row['tipoN'] ?>" data-tipoS="<?=$row['tipoS'] ?>" data-anno="<?=$row['anno']?>" class="col bottiglia">
 								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
 									<figure class="card ">
 										<!--<img src="img/LineaFrati/4_bot_F.png" alt="">-->
@@ -229,7 +216,7 @@ $result=sel_bottiglie($conn);
 			let Rosé=$("div[data-tipoN='Rosè']");
 			let grappe=$("div[data-tipoS='Grappa']");
 			let spumanti=$("div[data-tipoS='Spumante']");
-			let passiti=$("div[data-tipoS='Vino dolce']")
+			let passiti=$("div[data-tipoS='Vino dolce']");
 
 			/*checkbox*/
 			let checkB= $("#CK_bianco").is(":checked");
@@ -285,6 +272,19 @@ $result=sel_bottiglie($conn);
 		});
 		
 	}
+	function FiltraAnno(){
+		$(document).ready(function(){
+			let anno=$("#anno").val();
+			let vini=$("div.bottiglia");
+
+			$.each(vini,function(index,value){
+				if($(value).attr("data-anno")<anno){
+					$(value).hide();
+				} else {$(value).show()}
+			});
+		});
+		
+	}
 </script>
 
 <script>
@@ -296,5 +296,10 @@ $result=sel_bottiglie($conn);
 			}
 		});
 	}
+</script>
+
+<script>
+	FiltraTipo();
+	FiltraAnno();
 </script>
 <?php include('_footer_inc.php');?>
