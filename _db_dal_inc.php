@@ -255,4 +255,5 @@ function prenotazione_festa($conn,$nome,$cognome,$data,$mail,$nomecantina,$tel){
     $sql="INSERT INTO `festa` (nome,cognome,mail,telefono,data,idCantina) VALUES ('$nome','$cognome','$mail','$tel','$data',$idCantina)";
     $conn->query($sql);
 }
+
 ?>
