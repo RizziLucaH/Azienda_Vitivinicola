@@ -2,11 +2,26 @@
 include('session_check.php');
 
 $conn=db_connect();
-$id=intval($_GET['idB']);
+$idB=intval($_GET['idB']);
+$idUP= $_SESSION['id'];
 
-aggiungi_carello($conn,$_SESSION['id'],$id);
+$result=sel_bottiglie_carrello($conn,$idUP);
+if($result==null){
+    if(in_array($idB, $result[0])){
+        echo "eccomi";
+        update_carrello($conn,$idUP,$idB);
+    }
+    else{
+        aggiungi_carello($conn,$idUP,$idB);
+    }
+    
+}
+else{
+    aggiungi_carello($conn,$idUP,$idB);
+}
 
-header("Location: dettagli_vino.php?idB=$id")
+
+//header("Location: dettagli_vino.php?idB=$idB")
 
 
 ?>
