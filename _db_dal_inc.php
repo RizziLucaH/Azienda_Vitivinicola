@@ -267,7 +267,7 @@ function sel_bottiglie_carrello($conn,$idUP){
     return $bottiglie_belle;
 }
 function update_carrello($conn,$idUP,$idB){
-    $sql="UPDATE vendita v SET numerobottiglie=v.numerobottiglie WHERE v.idUP=? and v.idB=?";
+    $sql="UPDATE vendita v SET v.numerobottiglie=v.numerobottiglie+1 WHERE v.idUP=? and v.idB=?";
     $query = $conn->prepare($sql); 
     $query->bind_param("ii", $idUP,$idB);
     $query->execute();

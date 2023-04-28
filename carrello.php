@@ -41,7 +41,7 @@ $rows=visualizza_carrello($conn,$_SESSION['id']);
             </div>
             <div class="product-price"><?=$riga['prezzo'] ?></div>
             <div class="product-quantity">
-            <input id="qta" type="number" min="1" value="1">
+            <input id="qta" type="number" min="1" value=<?=$riga['numerobottiglie']?>>
             </div>
             <div class="product-removal">
             <button class="btn btn-danger" onclick="verificaCarrello()">
