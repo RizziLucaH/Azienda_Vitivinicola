@@ -58,7 +58,7 @@
             </li>
             <hr class="separatore">
             <li style="list-style-type: none;">
-                <a href="ordiniclienti.php">
+                <a href="clienti.php">
                     <span class="text">Clienti</span>
                 </a>
             </li>
@@ -67,10 +67,8 @@
     </div>
     <!---Sidebar di log out-->
     <div class="LOsidebar bottom-0 start-0">
-        <!-- <button class="btnLO">LOG OUT</button> -->
-        <div class="center">
-            <img style="max-width:100%; max-height:100%;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE">
-        </div>
+    <a href="dashboard.php"><img style="object-fit:contain;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE"></a>
+
     </div>
 
     <!--Content-->

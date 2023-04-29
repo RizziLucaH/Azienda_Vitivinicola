@@ -7,17 +7,15 @@ require('../_config_inc.php');
 
 $conn=db_connect();
 $interventi=seleziona_interventi($conn,$idVigneto);
+$vitigni=select_vitigno($conn,$idVigneto);
+$prodotti=select_prodottichimici($conn);
+
+//chart
 $output=array();
 $output=fill_chart($conn,$idVigneto);
 $sistemico=$output[0];
 $contatto=$output[1];
 $citotropico=$output[2];
-
-$vitigni=select_vitigno($conn,$idVigneto);
-
-
-$prodotti=select_prodottichimici($conn);
-
 ?>
 <?php include('header_dashboard.php');?>
         <h1><?=$NomeVigneto?></h1>

@@ -3,22 +3,30 @@ require('../_db_dal_inc.php');
 require('../_config_inc.php');
 
 $conn=db_connect();
-
 $prodotti=seleziona_prodottichimici($conn);
 
+#region Alert
+// $alert=$_GET['alert'];
+// if($alert==0)
+// {
+//     echo "<script type='text/javascript'>alert('Prodotto già esistente!');</script>";
+// }
+// else{
+//     echo "<script type='text/javascript'>alert('Prodotto inserito!');</script>";
+// }
+#endregion
+
+#region Pagination
 $data = array();
 while ($row = $prodotti->fetch_assoc()) {
     $data[] = $row;
 }
 $perPage = 10;
 $groups = array_chunk($data, $perPage);
-
+#endregion
 ?>
 
 <?php include('header_dashboard.php');?>
-
-
-
         <h1>Prodotti chimici</h1>
         <hr class="posth1" style="border-color: #ffd900;">
         <div class="row">
@@ -46,14 +54,14 @@ $groups = array_chunk($data, $perPage);
                 <h3 style="margin-bottom :20px;">Nuovo prodotto chimico</h3>
                 <div class="card" style="background-color: #F7F7F7F7">
                     <div class="card-body">
-                        <form action="nuovo_prodottochimico.php" method="post" class="form">
+                        <form action="nuovo_prodottochimico_act.php" method="post" class="form">
                             <div class="mb-3">
                                 <label for="nome">Nome del prodotto</label>
-                                <input type="text" class="form-control" required style="background-color: #F0F0F0">
+                                <input type="text" class="form-control" required style="background-color: #F0F0F0" name="prodotto">
                             </div>
                             <div class="mb-3">
                                 <label for="nome">Principio attivo</label>
-                                <input type="text" class="form-control" required style="background-color: #F0F0F0">
+                                <input type="text" class="form-control" required style="background-color: #F0F0F0" name="principio">
                             </div>
                             <button type="submit" class="btn" style="background-color: #ccac00">Aggiungi</button>
                         </form>
@@ -62,14 +70,8 @@ $groups = array_chunk($data, $perPage);
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>
-
-
-
 
 
 <?php
@@ -78,9 +80,8 @@ function seleziona_prodottichimici($conn){
     $result=$conn->query($sql);
     return $result;
 }
-
-
 ?>
+
 <script>
 var currentPage = 0;
 var groups = <?php echo json_encode($groups); ?>;

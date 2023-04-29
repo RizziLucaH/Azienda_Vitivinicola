@@ -6,13 +6,19 @@ require('../_config_inc.php');
 $conn=db_connect();
 $clienti=select_clienti($conn);
 
+#region Pagination
 $data = array();
 while ($row = $clienti->fetch_assoc()) {
     $data[] = $row;
 }
 $perPage = 10;
 $groups = array_chunk($data, $perPage);
+#endregion
 
+$output=array();
+$output=fill_chart_clienti($conn);
+$privati=$output[0];
+$aziende=$output[1];
 ?>
 
 <h1>Clienti</h1>
@@ -44,7 +50,7 @@ $groups = array_chunk($data, $perPage);
         <button id="nextBtn" class="btn" style="background-color:#ccac00">Successivo</button>
     </div>
     <div class="col-4">
-
+        <canvas id="myChart"></canvas>
     </div>
 </div>
 
@@ -84,10 +90,53 @@ document.querySelector('#nextBtn').addEventListener('click', function() {
 </script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var privati="<?php echo $privati; ?>";
+    var aziende="<?php echo $aziende; ?>";
+    const ctx=document.getElementById("myChart");
+    new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Privati', 'aziende'],
+        datasets: [{
+        data: [privati,aziende],
+        borderWidth: 1,
+        backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)'
+    ],
+    hoverOffset: 4
+
+        }]
+    },
+    });
+</script>
+
 <?php
 function select_clienti($conn){
     $sql="SELECT c.nomecompleto,c.mail,c.iva,c.indirizzofatturazione FROM utenteprivato c;";
     $result=$conn->query($sql);
     return $result;
 }
+
+
+function fill_chart_clienti($conn)
+{
+    $output=array();
+    $sqlPrivati="SELECT count(*) as count from utenteprivato where iva is null;";
+    $resultPrivati=$conn->query($sqlPrivati);
+    $rowsPrivati=$resultPrivati->fetch_assoc();
+    $countPrivati=$rowsPrivati['count'];
+    $output[0]=$countPrivati;
+
+    $sqlAziende="SELECT count(*) as count from utenteprivato where iva is not null;";
+    $resultAziende=$conn->query($sqlAziende);
+    $rowsAziende=$resultAziende->fetch_assoc();
+    $countAziende=$rowsAziende['count'];
+    $output[1]=$countAziende;
+
+    return $output;
+}
+
 ?>
