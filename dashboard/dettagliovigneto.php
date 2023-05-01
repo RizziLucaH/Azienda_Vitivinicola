@@ -1,86 +1,24 @@
 <?php
 $idVigneto=$_GET['id'];
-$NomeVigneto=$_GET['vigneto']
+$NomeVigneto=$_GET['vigneto'];
 
-
-//aggiungere un insert per nuovi interventi o un nuovo vigneto
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../style/styledashboard.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-
-<body style="background-color: #ebebeb;">
-
-    <!--Side Navbar-->
-    <div class="sidebar">
-        <ul style="padding-left: 20px;">
-            <li style="list-style-type: none;">
-                <div class="logo"><img src="../img/LOGO_scritta_oro.png" alt="error"></div>
-            </li>
-            <!-- <hr style="border:1px solid #ccac00"> -->
-            <hr class="separatore">
-            <li style="list-style-type: none;">
-                <a href="dashboard.php">
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <hr class="separatore">
-            <li style="list-style-type: none;">
-                <a href="vendite.php">
-                    <span class="text">Vendite</span>
-                </a>
-            </li>
-            <hr class="separatore">
-            <li style="list-style-type: none;">
-                <a href="visite.php">
-                    <span class="text">Visite</span>
-                </a>
-            </li>
-            <hr class="separatore">
-            <li style="list-style-type: none;">
-                <a href="vigneti.php">
-                    <span class="text">Vigneti</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!---Sidebar di log out-->
-    <div class="LOsidebar  bottom-0 start-0">
-        <!-- <button class="btnLO">LOG OUT</button> -->
-
-    </div>
-
-<?php  
 require('../_db_dal_inc.php');
 require('../_config_inc.php');
 
 $conn=db_connect();
 $interventi=seleziona_interventi($conn,$idVigneto);
+$vitigni=select_vitigno($conn,$idVigneto);
+$prodotti=select_prodottichimici($conn);
+
+//chart
 $output=array();
 $output=fill_chart($conn,$idVigneto);
 $sistemico=$output[0];
 $contatto=$output[1];
 $citotropico=$output[2];
-
-$vitigni=select_vitigno($conn,$idVigneto)
-
 ?>
-    <!--Content-->
-    <div class="content" style="padding-right: 5%;">
-
+<?php include('header_dashboard.php');?>
         <h1><?=$NomeVigneto?></h1>
-
         <hr class="posth1" style="border-color: #ffd900;">
         <h3>Interventi effettuati</h3>
         <br>
@@ -133,7 +71,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
                 <canvas id="myChart"></canvas>
             </div>
         </div>
-            
+
 
 
 <!-- Modal nuovo intervento -->
@@ -144,32 +82,37 @@ $vitigni=select_vitigno($conn,$idVigneto)
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Nuovo intervento</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-        <div class="modal-body">
-            <form  method="post" action="nuovo_intervento_act.php">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Tipo di intervento</label>
-                    <input type="text" class="form-control" name="tipo" id="tipo" aria-describedby="emailHelp" placeholder="Inserisci il tipo di intervento">
+                <div class="modal-body">
+                    <form  method="post" action="nuovo_intervento_act.php?idvigneto=<?=$idVigneto?>&vigneto=<?=$NomeVigneto?>">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Tipo di intervento</label>
+                            <select id="" class="form-control" id="tipo" placeholder="Tipo di intervento" name="tipo">
+                                <option value="Sistemico">Sistemico</option>
+                                <option value="Contatto">Contatto</option>
+                                <option value="Citotropico">Citotropico</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Data </label>
+                            <input type="date" class="form-control" id="data" name="data">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Nome del prodotto utilizzato</label>
+                            <select id="" class="form-control" id="prodotto" placeholder="Inserisci il prodotto utilizzato" name="prodotto">
+                                <option value=""></option>
+                            <?php foreach($prodotti as $row){?>
+                                        <option value="<?=$row['nome']?>" name="prodotto"><?=$row['nome']?></option>
+                                <?php }?>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn" style="background-color: #ccac00">Salva</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Data </label>
-                    <input type="date" class="form-control" id="data" name="data">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nome del prodotto utilizzato</label>
-                    <input type="text" class="form-control" id="prodotto" placeholder="Inserisci il prodotto utilizzato" name="prodotto">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Principio attivo del prodotto</label>
-                    <input type="text" class="form-control" id="principioattivo" name="principioattivo" placeholder="Inserisci il principio attivo del prodotto" >
-                </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn" style="background-color: #ccac00">Salva</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
 
 <!---Modal nuovo vitigno -->
 <div class="modal fade" id="nuovovitigno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -191,11 +134,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
             </form>
         </div>
     </div>
-
-
-
-
-    </div>
+</div>
 
     
 </body>
@@ -203,7 +142,7 @@ $vitigni=select_vitigno($conn,$idVigneto)
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     var sistemico="<?php echo $sistemico; ?>";
     var contatto="<?php echo $contatto; ?>";
@@ -274,22 +213,14 @@ function select_vitigno($conn,$idVigneto){
 }
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script>
-    
-    
-    function elimina_checkbox(){
-        $(document).ready(function(){
-            $("#bottoneelimina").click(function(){
-                let ck=$(":checked");
-                console.log(ck);
-                $.each(ck,function(index,value){
-                    $(value).parent().remove();
-                    console.log($(value).attr("data-idvitigno"));
-                    // rimuovi_vitigno($(value).attr("data-idvitigno"),$(value).attr("data-idvigneto"));
-                });
-            });
-        });
-    }
-    
-</script>
+
+
+<?php
+function select_prodottichimici($conn){
+    $sql="SELECT p.nome FROM prodottochimico p";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+
+?>
