@@ -28,7 +28,7 @@
             </li>
             <hr class="separatore">
             <li style="list-style-type: none;">
-                <a href="vendite.php">
+                <a href="venditeclienti.php">
                     <span class="text">Vendite</span>
                 </a>
             </li>

@@ -1,3 +1,9 @@
+<?php  
+$conn=db_connect();
+$vendite=sel_bottiglie();
+?>
+
+
 <?php include('header_dashboard.php');?>
 
         <h1>Vendite</h1>
@@ -8,16 +14,18 @@
                 <div class="col-7">
                     <table class="table  table-hover table-responsive">
                         <tr>
-                            <th>Nome e cognome</th>
-                            <th>Mail</th>
-                            <th>Indirizzo di fatturazione</th>
-                            <th>IVA</th>
+                            <th>Cliente</th>
+                            <th>Prodotto</th>
+                            <th>Numero bottiglie</th>
+                            <th>Data</th>
                         </tr>
                         <tr>
-                            <td>Mario Rossi</td>
-                            <td>mario@gmail.com</td>   
-                            <td>via pippo</td>
-                            <td>4829482482</td>             
+                        <?php foreach($vendite as $row){?>
+                            <tr>
+                                <td><?=$row['nome']?></td>
+                                <td><?=$row['principioattivo']?></td>
+                            </tr>
+                        <?php }?>
                         </tr>
                     </table>
                 </div>
