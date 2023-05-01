@@ -8,13 +8,9 @@ $PrincipioAttivo=$_POST['principio'];
 $conn=db_connect();
 $result=nuovo_prod_chimico($conn,$ProdottoChimico,$PrincipioAttivo);
 
-if($result==0)
+if($result==1)
 {
     header("location: prodottichimici.php");
     //mettere alert
 }
-elseif($result==1)
-{
-    header("location: prodottichimici.php");
-    
-}
+

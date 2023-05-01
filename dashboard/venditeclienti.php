@@ -1,6 +1,10 @@
 <?php  
+
+require('../_db_dal_inc.php');
+require('../_config_inc.php');
+
 $conn=db_connect();
-$vendite=sel_bottiglie();
+$vendite=vendite_cliente($conn,3);
 ?>
 
 
@@ -15,15 +19,17 @@ $vendite=sel_bottiglie();
                     <table class="table  table-hover table-responsive">
                         <tr>
                             <th>Cliente</th>
-                            <th>Prodotto</th>
                             <th>Numero bottiglie</th>
                             <th>Data</th>
+                            <th>Prodotto</th>
                         </tr>
                         <tr>
                         <?php foreach($vendite as $row){?>
                             <tr>
                                 <td><?=$row['nome']?></td>
-                                <td><?=$row['principioattivo']?></td>
+                                <td><?=$row['numero']?></td>
+                                <td><?=$row['data']?></td>
+                                <td><?=$row['nomevino']?></td>
                             </tr>
                         <?php }?>
                         </tr>
