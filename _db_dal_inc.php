@@ -138,7 +138,7 @@ function aggiungi_carello($conn,$idUP,$idB)
 }
 function visualizza_carrello($conn,$idUP)
 {
-    $sql="SELECT b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione, i.path as path 
+    $sql="SELECT v.idB,b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione, i.path as path 
     FROM vendita v
     INNER join bottiglia b on v.idB=b.idB
     inner join immaginebottiglia i on B.idB=i.idB
@@ -155,12 +155,15 @@ function nuovo_prod_chimico($conn,$nome,$principio)
     $prodotti= "SELECT nome, principioattivo from prodottochimico";
     $prod=$conn->query($prodotti);
     $rowprodotti=$prod->fetch_assoc();
-    if($rowprodotti['nome']==$nome && $rowprodotti['principioattivo']==$principio){
-        return 0;
-    } else{
-        $sql="INSERT INTO `prodottochimico`(`nome`, `principioattivo`) VALUES ('$nome','$principio')";
-        $conn->query($sql);
-        return 1;
+    while($rowprodotti)
+    {
+        if($rowprodotti['nome']==$nome && $rowprodotti['principioattivo']==$principio){
+            return 0;
+        } else{
+            $sql="INSERT INTO `prodottochimico`(`nome`, `principioattivo`) VALUES ('$nome','$principio')";
+            $conn->query($sql);
+            return 1;
+        }
     }
 }
 function nuovo_intervento($conn,$tipo,$data,$nomeprodotto,$idVigneto)
@@ -216,19 +219,95 @@ function info_vino($conn,$id)
 {
     $sql= "SELECT B.nomevino as nomevino, B.prezzo as prezzo, B.descrizione as descrizione, 
     B.gradoalcolico as gradoalcolico, B.annoproduzione as annoproduzione, V.profumo as profumo, V.gusto as gusto, V.retrogusto as retrogusto,
-    V.tannino as tannino, V.colore as colore, V.temperatura as temperatura FROM bottiglia B 
+    V.tannino as tannino, V.colore as colore, V.temperatura as temperatura, i.path as path 
+    FROM bottiglia B 
     join vino V on V.idV=B.idV 
-    WHERE idB='$id'";
+    inner join immaginebottiglia i on B.idB=i.idB
+    WHERE B.idB='$id'
+    ORDER by i.principale DESC";
 
     return  $conn->query($sql);
 }
 function sel_bottiglie($conn){
-    $sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS, i.path as path 
+    $sql= "SELECT B.idB as idB ,B.nomevino as nomevino, B.annoproduzione as anno, B.prezzo as prezzo, V.tiponormale as tipoN, V.tipospeciale as tipoS, i.path as path 
     FROM `bottiglia` B 
     inner join vino V on V.idV=B.idV 
     inner join immaginebottiglia i on B.idB=i.idB
     where i.principale <> 0";
     $result = $conn->query($sql);
+    return $result;
+}
+
+function ordini_utente($conn,$idUP){
+    $sql="SELECT * from vendita WHERE idUP='$idUP'";
+    $result=$conn->query($sql);
+    return $result;
+}
+
+function prenotazione_festa($conn,$nome,$cognome,$data,$mail,$nomecantina,$tel){
+    $cercaidcant="SELECT idCantina FROM cantina where nome='$nomecantina'";
+    $res=$conn->query($cercaidcant);
+    $row=$res->fetch_assoc();
+    $idCantina=$row['idCantina'];
+    
+    $nome=$conn->real_escape_string($nome);
+    $cognome=$conn->real_escape_string($cognome);
+    $data=$conn->real_escape_string($data);
+    $mail=$conn->real_escape_string($mail);
+
+    $sql="INSERT INTO `festa` (nome,cognome,mail,telefono,data,idCantina) VALUES ('$nome','$cognome','$mail','$tel','$data',$idCantina)";
+    $conn->query($sql);
+}
+function sel_bottiglie_carrello($conn,$idUP){
+    $sql="SELECT v.idB
+    FROM vendita v
+    where v.idUP=?";
+    $query = $conn->prepare($sql); 
+    $query->bind_param("i", $idUP);
+    $query->execute();
+    $bottiglie = $query->get_result();
+    $bottiglie_belle=$bottiglie->fetch_all(MYSQLI_ASSOC);
+    return $bottiglie_belle;
+}
+function update_carrello($conn,$idUP,$idB){
+    $sql="UPDATE vendita v SET v.numerobottiglie=v.numerobottiglie+1 WHERE v.idUP=? and v.idB=?";
+    $query = $conn->prepare($sql); 
+    $query->bind_param("ii", $idUP,$idB);
+    $query->execute();
+}
+function remove_carrello($conn,$idB){
+    $sql="DELETE FROM vendita v WHERE v.idB=?";
+    $query = $conn->prepare($sql); 
+    $query->bind_param("i",$idB);
+    $query->execute();
+}
+function nuova_richiesta($conn,$nome,$bottiglia,$numero){
+    $nome=$conn->real_escape_string($nome);
+    $bottiglia=$conn->real_escape_string($bottiglia);
+
+    $qry="SELECT idB from bottiglia where nomevino='$bottiglia'";
+    $res=$conn->query($qry);
+    $row=$res->fetch_assoc();
+    $idB=$row['idB'];
+
+    $qry2="SELECT idA from aziendacliente where nome='$nome'";
+    $res=$conn->query($qry2);
+    $row=$res->fetch_assoc();
+    $idA=$row['idA'];
+
+    $sql="INSERT INTO richiesto (idB,idA,quantita) VALUES ('$idB','$idA','$numero') ";
+    $conn->query($sql);
+
+}
+function vendite($conn){
+    $sql="SELECT * from vendita";
+    $result=$conn->query($sql);
+    return $result;
+}
+
+function vendite_cliente($conn,$idCliente){
+    $sql="SELECT u.nomecompleto as nome,v.numerobottiglie as numero, v.data as data, b.nomevino as nomevino  from vendita v join utenteprivato u on v.idUP=u.idUP join bottiglia b v.idB=b.idB where v.idUP='$idCliente' or v.idA='$idCliente' and v.acquistato <> 0";
+    $result=$conn->query($sql);
     return $result;
 }
 ?>

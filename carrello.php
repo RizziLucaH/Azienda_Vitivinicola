@@ -9,7 +9,7 @@ include('header_inc.php');
 
 $conn=db_connect();
 
-$row=visualizza_carrello($conn,$_SESSION['id']);
+$rows=visualizza_carrello($conn,$_SESSION['id']);
 ?>
 
 <link rel="stylesheet" href=" style/styleCarrello.css">
@@ -30,7 +30,7 @@ $row=visualizza_carrello($conn,$_SESSION['id']);
 
     <!--PRODOTTI DEL CARRELLO-->
 
-    <?php foreach($row as $riga){?>
+    <?php foreach($rows as $riga){?>
         <div class="product" name="prodotto">
             <div class="product-image">
             <img class="rounded" src="<?=$riga['path']?>">
@@ -41,12 +41,14 @@ $row=visualizza_carrello($conn,$_SESSION['id']);
             </div>
             <div class="product-price"><?=$riga['prezzo'] ?></div>
             <div class="product-quantity">
-            <input id="qta" type="number" min="1" value="1">
+            <input id="qta" type="number" min="1" value=<?=$riga['numerobottiglie']?>>
             </div>
             <div class="product-removal">
-            <button class="btn btn-danger" onclick="verificaCarrello()">
-                Remove
-            </button>
+            <a href="elimina_da_carrello.php?idB=<?=$riga['idB']?>">
+                <button class="btn btn-danger" onclick="verificaCarrello()">
+                    Remove
+                </button>
+            </a>
             </div>
             <div class="product-line-price"><?=$riga['prezzo'] ?></div>
         </div>
@@ -95,5 +97,77 @@ $row=visualizza_carrello($conn,$_SESSION['id']);
             carrello.innerHTML="CARRELLO VUOTO";
         }
     }
+</script>
+
+<script>
+    /* Set rates + misc */
+var taxRate = 0.1;
+var shippingRate = 15.00; 
+var fadeTime = 300;
+
+
+/* Assign actions */
+$('.product-quantity input').change( function() {
+updateQuantity(this);
+});
+
+$('.product-removal button').click( function() {
+removeItem(this);
+});
+
+var subtotal = 0;
+
+/* Sum up row totals */
+$('.product').each(function () {
+    subtotal += parseFloat($(this).children('.product-line-price').text());
+});
+
+/* Calculate totals */
+var tax = subtotal * taxRate;
+
+if(subtotal+tax>=60)
+{
+    var total = subtotal + tax;
+    var shipping=(total>60 ? 0:shippingRate);
+}
+else
+{
+    var shipping = (total>60 ? 0:shippingRate);
+    var total = subtotal + tax + shipping;
+} 
+
+/* Update totals display */
+$('.totals-value').fadeOut(fadeTime, function() {
+    $('#cart-subtotal').html(subtotal.toFixed(2));
+    $('#cart-tax').html(tax.toFixed(2));
+    $('#cart-shipping').html(shipping.toFixed(2));
+    $('#cart-total').html(total.toFixed(2));
+    if(total == 0){
+    $('.checkout').fadeOut(fadeTime);
+    }else{
+    $('.checkout').fadeIn(fadeTime);
+    }
+    $('.totals-value').fadeIn(fadeTime);
+});
+
+/* Update quantity */
+function updateQuantity(quantityInput)
+{
+/* Calculate line price */
+var productRow = $(quantityInput).parent().parent();
+var price = parseFloat(productRow.children('.product-price').text());
+var quantity = $(quantityInput).val();
+var linePrice = price * quantity;
+
+/* Update line price display and recalc cart totals */
+productRow.children('.product-line-price').each(function () {
+    $(this).fadeOut(fadeTime, function() {
+    $(this).text(linePrice.toFixed(2));
+    recalculateCart();
+    $(this).fadeIn(fadeTime);
+    });
+});  
+}
+
 </script>
 <?php include('_footer_inc.php');?>
