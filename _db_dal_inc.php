@@ -314,7 +314,7 @@ function vendite($conn){
 }
 
 function vendite_cliente($conn,$idCliente){
-    $sql="SELECT u.nomecompleto as nome,v.numerobottiglie as numero, v.data as 'data', b.nomevino as nomevino  from vendita v join utenteprivato u on v.idUP=u.idUP inner join bottiglia b on v.idB=b.idB where (v.idUP='$idCliente' or v.idA='$idCliente') and v.acquistato=1";
+    $sql="SELECT u.nomecompleto as nome,v.numerobottiglie as numero, v.data as 'data', b.nomevino as nomevino  from vendita v join utenteprivato u on v.idUP=u.idUP inner join bottiglia b on v.idB=b.idB where v.acquistato=1";
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;

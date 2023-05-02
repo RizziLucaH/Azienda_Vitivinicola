@@ -16,23 +16,29 @@ $vendite=vendite_cliente($conn,3);
 
             <div class="row">
                 <div class="col-7">
-                    <table class="table  table-hover table-responsive">
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Numero bottiglie</th>
-                            <th>Data</th>
-                            <th>Prodotto</th>
-                        </tr>
-                        <tr>
+                <div class="input-group mb-3" >
+					<span class="input-group-text" style="border-radius: 10px 0 0 10px ;" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+					<input id="cerca" type="text" class="form-control" style="border-radius: 0 10px 10px 0;" placeholder="Cerca" aria-label="Cerca" aria-describedby="basic-addon1">
+				</div>
+                    <table class="table  table-hover table-responsive" id="vendite">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Numero bottiglie</th>
+                                <th>Data</th>
+                                <th>Prodotto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <?php foreach($vendite as $row){?>
                             <tr>
-                                <td><?=$row['nome']?></td>
+                                <td id="nome"><?=$row['nome']?></td>
                                 <td><?=$row['numero']?></td>
                                 <td><?=$row['data']?></td>
                                 <td><?=$row['nomevino']?></td>
                             </tr>
                         <?php }?>
-                        </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div class="col-4"><canvas id="graficovendite" style="width: 400px; height: 400px; margin-left:100px;"></canvas></div>
@@ -69,4 +75,19 @@ $vendite=vendite_cliente($conn,3);
     },
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('#cerca').on('keyup', function() {
+        var value = $(this).val().toLowerCase();
+        $('#vendite tbody tr').filter(function() {
+            return $(this).find('td:first-child').text().toLowerCase().indexOf(value) > -1;
+        }).show();
+        $('#vendite tbody tr').not(function() {
+            return $(this).find('td:first-child').text().toLowerCase().indexOf(value) > -1;
+        }).hide();
+    });
+});
+</script>
+
 

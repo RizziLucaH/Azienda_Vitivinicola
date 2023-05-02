@@ -4,7 +4,7 @@
         
         <hr class="posth1" style="border-color: #ffd900;">
 
-        <form method="post" action="accettazionbe_act.php">
+        <form>
             <table class="table  table-hover table-responsive">
                 <tr>
                     
