@@ -5,23 +5,23 @@ require('../_config_inc.php');
 
 $conn=db_connect();
 $success=Certificazioni_si($conn);
-$nosuccess=Certificazioni_no($conn);+
+$nosuccess=Certificazioni_no($conn);
 #region Pagination cert_si
 $datasi = array();
 while ($row = $success->fetch_assoc()) {
     $datasi[] = $row;
 }
-$perPage = 10;
-$groupsi = array_chunk($data, $perPage);
+$perPage = 15;
+$groupsi = array_chunk($datasi, $perPage);
 #endregion
 #region Pagination no
 $datano = array();
 while ($row = $nosuccess->fetch_assoc()) {
     $datano[] = $row;
 }
-$perPage = 10;
-$groupsno = array_chunk($data, $perPage);
+$groupno = array_chunk($datano, $perPage);
 #endregion
+
 
     ?>
         <h1>Certificazioni</h1>
@@ -71,6 +71,8 @@ $groupsno = array_chunk($data, $perPage);
                         <?php }?>
                     </tbody>
                 </table>
+                <button id="prevBtno" class="btn" style="background-color:#ccac00">Precedente</button>
+                <button id="nextBtno" class="btn" style="background-color:#ccac00">Successivo</button>
             </div>
         </div>
 
@@ -100,7 +102,7 @@ var groupsi = <?php echo json_encode($groupsi); ?>;
 function displayData() {
     var tableBody = document.querySelector('#tablecertsi tbody');
     tableBody.innerHTML = '';
-    var currentPageData = groups[currentPage];
+    var currentPageData = groupsi[currentPage];
     for (var i=0; i<currentPageData.length; i++) {
         var row = tableBody.insertRow();
         row.insertCell().textContent = currentPageData[i].nome;
@@ -120,9 +122,42 @@ document.querySelector('#prevBtnsi').addEventListener('click', function() {
 });
 
 document.querySelector('#nextBtnsi').addEventListener('click', function() {
-    if (currentPage < groups.length - 1) {
+    if (currentPage < groupsi.length - 1) {
     currentPage++;
     displayData();
+    }
+});
+
+
+var currentPageno = 0;
+var groupno = <?php echo json_encode($groupno); ?>;
+
+function displayDatano() {
+    var tableBody = document.querySelector('#tablecertno tbody');
+    tableBody.innerHTML = '';
+    var currentPageData = groupno[currentPageno];
+    for (var i=0; i<currentPageData.length; i++) {
+        var row = tableBody.insertRow();
+        row.insertCell().textContent = currentPageData[i].nome;
+        row.insertCell().textContent = currentPageData[i].tipo;
+        row.insertCell().textContent = currentPageData[i].data;
+
+    }
+}
+
+displayDatano();
+
+document.querySelector('#prevBtno').addEventListener('click', function() {
+    if (currentPageno > 0) {
+    currentPageno--;
+    displayDatano();
+    }
+});
+
+document.querySelector('#nextBtno').addEventListener('click', function() {
+    if (currentPageno < groupno.length - 1) {
+    currentPageno++;
+    displayDatano();
     }
 });
 </script>
