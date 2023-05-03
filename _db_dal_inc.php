@@ -89,7 +89,7 @@ function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisit
     $numeropartecipanti=$conn->real_escape_string($numeropartecipanti);
 
     $aggiungipartecipa="INSERT INTO partecipa (idVisitatore, idVisita, numeropartecipanti) VALUES ('$idV', '$idVisita', '$numeropartecipanti')";
-    
+    $conn->query($aggiungipartecipa);
 }
 
 function aggiungi_carello($conn,$idUP,$idB)
@@ -155,25 +155,21 @@ function nuovo_prod_chimico($conn,$nome,$principio)
     $prodotti= "SELECT nome, principioattivo from prodottochimico";
     $prod=$conn->query($prodotti);
     $rowprodotti=$prod->fetch_all(MYSQLI_ASSOC);
-    $nicononfauncazzo=false;
+    $nico=false;
     foreach($rowprodotti as $row){
-        while($nicononfauncazzo==false){
-            if($row['nome']==$nome && $row['principioattivo']==$principio){
-                $nicononfauncazzo=true;
-                
-            }else{
-                $nicononfauncazzo=false;
-            }
+        if($row['nome']==$nome && $row['principioattivo']==$principio){
+            $nico=true;
+            return 0;
+        }else{
+            $nico=false;
         }
-
     }
-    if($nicononfauncazzo==false){
+    if($nico==false){
         $sql="INSERT INTO `prodottochimico`(`nome`, `principioattivo`) VALUES ('$nome','$principio')";
         $conn->query($sql);
         return 1;
     }
-
-    }
+}
 function nuovo_intervento($conn,$tipo,$data,$nomeprodotto,$idVigneto)
 {
     $tipo=$conn->real_escape_string($tipo);
@@ -315,7 +311,7 @@ function vendite($conn){
     return $result;
 }
 
-function vendite_cliente($conn,$idCliente){
+function vendite_clienti($conn){
     $sql="SELECT u.nomecompleto as nome,v.numerobottiglie as numero, v.data as 'data', b.nomevino as nomevino  from vendita v join utenteprivato u on v.idUP=u.idUP inner join bottiglia b on v.idB=b.idB where v.acquistato=1";
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
