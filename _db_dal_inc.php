@@ -312,4 +312,31 @@ function vendite_cliente($conn,$idCliente){
     $result=$conn->query($sql);
     return $result;
 }
+
+function new_admin($conn,$email,$psw){
+
+    $email=$conn->real_escape_string($email);
+    $psw=$conn->real_escape_string($psw);
+    $hash=password_hash($psw, PASSWORD_BCRYPT);
+    $sql="INSERT INTO utenteadmin (mail, password) VALUES ('$email', '$hash')";
+    return $conn->query($sql);
+}
+function verifica_admin($conn,$mail,$password){
+    $mail=$conn->real_escape_string($mail);
+    $password=$conn->real_escape_string($password);
+
+    $sql="SELECT * FROM utenteprivato where mail like '$mail' ";
+    $result=$conn->query($sql);
+
+    if(mysqli_num_rows($result)>0)
+    {
+        while($row=mysqli_fetch_array($result))
+        {
+            if(password_verify($password,$row['password']))
+            {
+                return $row;
+            }
+        }
+    }
+}
 ?>
