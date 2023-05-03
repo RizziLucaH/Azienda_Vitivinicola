@@ -13,14 +13,14 @@ $result=verifica_admin($conn,$email,$psw);
 if(empty($result))
 {
     
-    new_admin($conn,,$email,,$psw);
+    new_admin($conn,$email,$psw);
     header("location: login_admin.php");
 }
 else
 {
     // SE è GIUSTO AVVIA LA SESSION, CONSENTENDO COSI DI ACCEDERE ALLE PAGINE PRIVATE
     session_start();
-    $_SESSION['id'] = $result['idA'];
+    $_SESSION['id'] = $result['idUA'];
     
     header("location: dashboard/dashboard.php");
 }
