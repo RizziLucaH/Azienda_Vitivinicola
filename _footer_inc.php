@@ -23,7 +23,7 @@
             
             <div class="border-start pl-3">
             <a href="" style="color:white">FAQ</a><br>
-            <a href="" style="color:white">CHI SIAMO</a><br>
+            <a href="chi_siamo.php" style="color:white">CHI SIAMO</a><br>
             
             <button class="btn btn-warning">
                 <a href="contattaci.php" style="color:black">CONTATTACI</a>    
