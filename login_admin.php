@@ -1,5 +1,5 @@
 <?php
-$pagina="login";
+$pagina="login_admin";
 ?>
 
 <?php
@@ -14,6 +14,7 @@ include('header_inc.php');
         <div class="container">
             <div class="row full-height justify-content-center">
                 <div class="col-12 text-center align-self-center py-5">
+                    <img src="img/miner.png" width="10%" alt="">
                     <div class="section_Login pb-5 pt-5 pt-sm-2 text-center">
                         <h6 class="mb-0 pb-3"><span>Accedi </span><span>Registrati</span></h6>
                             <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
@@ -30,7 +31,7 @@ include('header_inc.php');
                                         ?>
                                         <div class="section_Login text-center">
                                             <h4 class="mb-4 pb-3">Accedi</h4>
-                                            <form method="post" action="login_act.php">
+                                            <form method="post" action="login_admin_act.php">
 
                                                 <div class="form-group">
                                                     <input type="email" name="email" class="form-style" placeholder="Email" id="email" autocomplete="off">
@@ -56,24 +57,15 @@ include('header_inc.php');
                                         ?>
                                         <div class="section_Login text-center">
                                             <h4 class="mb-4 pb-3">Registrati</h4>
-                                            <form method="post" action="login_act.php">
+                                            <form method="post" action="login_admin_act.php">
 
-                                                <div class="form-group">
-                                                    <input type="text" name="signup_nome" class="form-style" placeholder="Nome completo o Ragione Sociale *" id="signup_nome" autocomplete="off">
-                                                    <i class="input-icon uil uil-user"></i>
-                                                </div>	
+                                                
                                                 <div class="form-group mt-2">
                                                     <input type="email" name="email" class="form-style" placeholder="Email *" id="signup_email" autocomplete="off">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
-                                                <div class="form-group mt-2">
-                                                    <input type="text" name="signup_piva" class="form-style" placeholder="P.Iva" id="signup_piva" autocomplete="off" onkeydown="VerificaFatt()">
-                                                    <i class="input-icon uil uil-at"></i>
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <input type="text" name="signup_indirizzo" class="form-style" placeholder="Indirizzo di Fatturazione" id="signup_indirizzo" autocomplete="off" oninput="VerificaFatt()">
-                                                    <i class="input-icon uil uil-at"></i>
-                                                </div>		
+                                                
+
                                                 <div class="form-group mt-2">
                                                     <input type="password" name="psw" class="form-style" placeholder="Password *" id="psw" autocomplete="off">
                                                     <i class="input-icon uil uil-lock-alt"></i>
@@ -87,11 +79,9 @@ include('header_inc.php');
                                     </div>
                                 </div>
                             </div>
-                            <a href="login_admin.php">
-
-                                <button type="submit" class="btn mt-4" id="submit">Sei un admin?</button>
-                            </a>
-
+                            W&M
+                            <br>
+                            Winers & miners united
                         </div>
                     </div>
                 </div>
