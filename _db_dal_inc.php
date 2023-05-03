@@ -207,7 +207,8 @@ function sel_dettagli_utente($conn,$id)
 
 function info_cantine($conn) /*bisogna aggiungerci la parte con le immagini*/
 {
-    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c";
+    $sql="SELECT c.idCantina as id, c.nome as nome, i.path as path
+    from cantina c inner join immaginecantina i on c.idCantina=i.idCantina where i.principale <> 0";
 
     $result = $conn->query($sql);
 
@@ -216,7 +217,8 @@ function info_cantine($conn) /*bisogna aggiungerci la parte con le immagini*/
 
 function info_cantina($conn,$id) /*bisogna aggiungerci la parte con le immagini*/
 {
-    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c where idCantina=$id";
+    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione, i.path as path from cantina c 
+    inner join immaginecantina i on c.idCantina=i.idCantina where c.idCantina=$id ORDER by i.principale DESC";
 
     $result = $conn->query($sql);
 
@@ -318,5 +320,32 @@ function vendite_cliente($conn,$idCliente){
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
+}
+
+function new_admin($conn,$email,$psw){
+
+    $email=$conn->real_escape_string($email);
+    $psw=$conn->real_escape_string($psw);
+    $hash=password_hash($psw, PASSWORD_BCRYPT);
+    $sql="INSERT INTO utenteadmin (mail, password) VALUES ('$email', '$hash')";
+    return $conn->query($sql);
+}
+function verifica_admin($conn,$mail,$password){
+    $mail=$conn->real_escape_string($mail);
+    $password=$conn->real_escape_string($password);
+
+    $sql="SELECT * FROM utenteadmin where mail like '$mail' ";
+    $result=$conn->query($sql);
+
+    if(mysqli_num_rows($result)>0)
+    {
+        while($row=mysqli_fetch_array($result))
+        {
+            if(password_verify($password,$row['password']))
+            {
+                return $row;
+            }
+        }
+    }
 }
 ?>

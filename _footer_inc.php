@@ -21,14 +21,19 @@
                 EMAIL: fratipaoloni@gmail.com
             </pre>
             
-            <div class="border-start pl-3">
-            <a href="" style="color:white">FAQ</a><br>
-            <a href="" style="color:white">CHI SIAMO</a><br>
-            
-            <button class="btn btn-warning">
-                <a href="contattaci.php" style="color:black">CONTATTACI</a>    
-            </button>
-            
+            <div class="border-start pl-5">
+                
+                <button class="btn btn-warning mr-4 mt-5" style="width: 100%;">
+                    <a href="" style="color:black;">FAQ</a><br>
+                </button>
+                <br>
+                <button class="btn btn-warning mr-4 mt-3" style="width: 100%;">
+                    <a href="chi_siamo.php" style="color:black;">CHI SIAMO</a><br>
+                </button>
+                <br>
+                <button class="btn btn-warning mr-4 mt-3" style="width: 100%;">
+                    <a href="contattaci.php" style="color:black">CONTATTACI</a>    
+                </button>
             </div>
         </div>
     </footer>
