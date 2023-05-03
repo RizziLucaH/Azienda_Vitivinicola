@@ -4,7 +4,14 @@ require('../_db_dal_inc.php');
 require('../_config_inc.php');
 
 $conn=db_connect();
-$vendite=vendite_cliente($conn,3);
+$vendite=vendite_clienti($conn);
+
+$dati_chart=count_vini($conn);
+$valore_rossi=$dati_chart[0];
+$valore_bianchi=$dati_chart[1];
+$valore_spumanti=$dati_chart[2];
+$valore_vinidolci=$dati_chart[3];
+$valore_grappe=$dati_chart[4];
 ?>
 
 
@@ -54,20 +61,26 @@ $vendite=vendite_cliente($conn,3);
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var privati=50;
-    var aziende=50;
+    var rossi="<?php echo $valore_rossi; ?>";
+    var bianchi="<?php echo $valore_bianchi; ?>";
+    var spumanti="<?php echo $valore_spumanti; ?>";
+    var vinidolci="<?php echo $valore_vinidolci; ?>";
+    var grappe="<?php echo $valore_grappe; ?>";
 
     const ctx=document.getElementById("graficovendite");
     new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Privati', 'Aziende'],
+        labels: ['Rossi', 'Bianchi','Spumanti','Vini dolci','Grappe'],
         datasets: [{
-        data: [privati,aziende],
+        data: [rossi,bianchi,spumanti,vinidolci,grappe],
         borderWidth: 1,
         backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)'
+            'rgb(189, 47, 73)',
+            'rgb(230, 222, 124)',
+            'rgb(245, 217, 39)',
+            'rgb(204, 149, 53)',
+            'rgb(212, 205, 195)'
     ],
     hoverOffset: 4
 
@@ -89,5 +102,56 @@ $vendite=vendite_cliente($conn,3);
     });
 });
 </script>
+
+
+<?php
+function count_vini($conn){
+    $output=array();
+    //count rossi
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tiponormale like 'Rosso' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[0]=$rows['count'];
+    //count bianchi
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tiponormale like 'Bianco' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[1]=$rows['count'];
+    //count spumanti
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Spumante' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[2]=$rows['count'];
+    //count vini dolci
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Vino dolce' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[3]=$rows['count'];
+    //count grappe
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Grappa' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[4]=$rows['count'];
+
+    return $output;
+}
+
+
+
+
+?>
+
+
+
 
 

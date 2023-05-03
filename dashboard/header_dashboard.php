@@ -20,7 +20,7 @@
     <div class="sidebar">
         <ul style="padding-left: 20px;">
             <li style="list-style-type: none;">
-                <div class="logo"><img src="../img/LOGO_scritta_oro.png" alt="error"></div>
+                <div class="logo"><img src="../img/LOGO_scritta_oro.png" alt="error" class="logo_img"></div>
             </li>
             <hr class="separatore">
             <li style="list-style-type: none;">
@@ -48,7 +48,7 @@
             </li>
             <hr class="separatore">
             <li style="list-style-type: none;">
-                <a href="prodottichimici.php">
+                <a href="prodottichimici.php?a=3">
                     <span class="text">Prodotti chimici</span>
                 </a>
             </li>
@@ -69,7 +69,7 @@
     </div>
     <!---Sidebar di log out-->
     <div class="LOsidebar bottom-0 start-0">
-    <a href="dashboard.php"><img style="object-fit:contain;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE"></a>
+    <a href="dashboard.php"><img style="object-fit:contain;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE" class="full"></a>
 
     </div>
 
