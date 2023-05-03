@@ -8,13 +8,11 @@ $PrincipioAttivo=$_POST['principio'];
 $conn=db_connect();
 $result=nuovo_prod_chimico($conn,$ProdottoChimico,$PrincipioAttivo);
 
-if($result==0)
+if($result==0)//se è 0 il prodotto è gia presente
 {
-    header("location: prodottichimici.php");
-    //mettere alert
-}
-elseif($result==1)
+    header("location: prodottichimici.php?a=0");
+}else if($result==1)
 {
-    header("location: prodottichimici.php");
-    
+    header("location: prodottichimici.php?a=1");
 }
+

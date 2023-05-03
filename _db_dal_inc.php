@@ -154,18 +154,26 @@ function nuovo_prod_chimico($conn,$nome,$principio)
 {
     $prodotti= "SELECT nome, principioattivo from prodottochimico";
     $prod=$conn->query($prodotti);
-    $rowprodotti=$prod->fetch_assoc();
-    while($rowprodotti)
-    {
-        if($rowprodotti['nome']==$nome && $rowprodotti['principioattivo']==$principio){
-            return 0;
-        } else{
-            $sql="INSERT INTO `prodottochimico`(`nome`, `principioattivo`) VALUES ('$nome','$principio')";
-            $conn->query($sql);
-            return 1;
+    $rowprodotti=$prod->fetch_all(MYSQLI_ASSOC);
+    $nicononfauncazzo=false;
+    foreach($rowprodotti as $row){
+        while($nicononfauncazzo==false){
+            if($row['nome']==$nome && $row['principioattivo']==$principio){
+                $nicononfauncazzo=true;
+                
+            }else{
+                $nicononfauncazzo=false;
+            }
         }
+
     }
-}
+    if($nicononfauncazzo==false){
+        $sql="INSERT INTO `prodottochimico`(`nome`, `principioattivo`) VALUES ('$nome','$principio')";
+        $conn->query($sql);
+        return 1;
+    }
+
+    }
 function nuovo_intervento($conn,$tipo,$data,$nomeprodotto,$idVigneto)
 {
     $tipo=$conn->real_escape_string($tipo);
@@ -308,9 +316,10 @@ function vendite($conn){
 }
 
 function vendite_cliente($conn,$idCliente){
-    $sql="SELECT u.nomecompleto as nome,v.numerobottiglie as numero, v.data as data, b.nomevino as nomevino  from vendita v join utenteprivato u on v.idUP=u.idUP join bottiglia b v.idB=b.idB where v.idUP='$idCliente' or v.idA='$idCliente' and v.acquistato <> 0";
+    $sql="SELECT u.nomecompleto as nome,v.numerobottiglie as numero, v.data as 'data', b.nomevino as nomevino  from vendita v join utenteprivato u on v.idUP=u.idUP inner join bottiglia b on v.idB=b.idB where v.acquistato=1";
     $result=$conn->query($sql);
-    return $result;
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
 }
 
 function new_admin($conn,$email,$psw){

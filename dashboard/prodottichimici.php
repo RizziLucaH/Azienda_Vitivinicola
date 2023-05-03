@@ -6,15 +6,17 @@ $conn=db_connect();
 $prodotti=seleziona_prodottichimici($conn);
 
 #region Alert
-// $alert=$_GET['alert'];
-// if($alert==0)
-// {
-//     echo "<script type='text/javascript'>alert('Prodotto già esistente!');</script>";
-// }
-// else{
-//     echo "<script type='text/javascript'>alert('Prodotto inserito!');</script>";
-// }
+$alert=$_GET['a'];
+if($alert==0)
+{
+    echo "<script type='text/javascript'>alert('Prodotto già esistente!');</script>";
+}
+else if($alert==1){
+    echo "<script type='text/javascript'>alert('Prodotto inserito!');</script>";
+
+}
 #endregion
+
 
 #region Pagination
 $data = array();

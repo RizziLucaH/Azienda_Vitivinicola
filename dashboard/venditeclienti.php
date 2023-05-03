@@ -1,6 +1,17 @@
 <?php  
+
+require('../_db_dal_inc.php');
+require('../_config_inc.php');
+
 $conn=db_connect();
-$vendite=sel_bottiglie();
+$vendite=vendite_clienti($conn);
+
+$dati_chart=count_vini($conn);
+$valore_rossi=$dati_chart[0];
+$valore_bianchi=$dati_chart[1];
+$valore_spumanti=$dati_chart[2];
+$valore_vinidolci=$dati_chart[3];
+$valore_grappe=$dati_chart[4];
 ?>
 
 
@@ -12,21 +23,29 @@ $vendite=sel_bottiglie();
 
             <div class="row">
                 <div class="col-7">
-                    <table class="table  table-hover table-responsive">
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Prodotto</th>
-                            <th>Numero bottiglie</th>
-                            <th>Data</th>
-                        </tr>
-                        <tr>
+                <div class="input-group mb-3" >
+					<span class="input-group-text" style="border-radius: 10px 0 0 10px ;" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+					<input id="cerca" type="text" class="form-control" style="border-radius: 0 10px 10px 0;" placeholder="Cerca" aria-label="Cerca" aria-describedby="basic-addon1">
+				</div>
+                    <table class="table  table-hover table-responsive" id="vendite">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Numero bottiglie</th>
+                                <th>Data</th>
+                                <th>Prodotto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <?php foreach($vendite as $row){?>
                             <tr>
-                                <td><?=$row['nome']?></td>
-                                <td><?=$row['principioattivo']?></td>
+                                <td id="nome"><?=$row['nome']?></td>
+                                <td><?=$row['numero']?></td>
+                                <td><?=$row['data']?></td>
+                                <td><?=$row['nomevino']?></td>
                             </tr>
                         <?php }?>
-                        </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div class="col-4"><canvas id="graficovendite" style="width: 400px; height: 400px; margin-left:100px;"></canvas></div>
@@ -42,20 +61,26 @@ $vendite=sel_bottiglie();
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var privati=50;
-    var aziende=50;
+    var rossi="<?php echo $valore_rossi; ?>";
+    var bianchi="<?php echo $valore_bianchi; ?>";
+    var spumanti="<?php echo $valore_spumanti; ?>";
+    var vinidolci="<?php echo $valore_vinidolci; ?>";
+    var grappe="<?php echo $valore_grappe; ?>";
 
     const ctx=document.getElementById("graficovendite");
     new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Privati', 'Aziende'],
+        labels: ['Rossi', 'Bianchi','Spumanti','Vini dolci','Grappe'],
         datasets: [{
-        data: [privati,aziende],
+        data: [rossi,bianchi,spumanti,vinidolci,grappe],
         borderWidth: 1,
         backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)'
+            'rgb(189, 47, 73)',
+            'rgb(230, 222, 124)',
+            'rgb(245, 217, 39)',
+            'rgb(204, 149, 53)',
+            'rgb(212, 205, 195)'
     ],
     hoverOffset: 4
 
@@ -63,4 +88,70 @@ $vendite=sel_bottiglie();
     },
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('#cerca').on('keyup', function() {
+        var value = $(this).val().toLowerCase();
+        $('#vendite tbody tr').filter(function() {
+            return $(this).find('td:first-child').text().toLowerCase().indexOf(value) > -1;
+        }).show();
+        $('#vendite tbody tr').not(function() {
+            return $(this).find('td:first-child').text().toLowerCase().indexOf(value) > -1;
+        }).hide();
+    });
+});
+</script>
+
+
+<?php
+function count_vini($conn){
+    $output=array();
+    //count rossi
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tiponormale like 'Rosso' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[0]=$rows['count'];
+    //count bianchi
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tiponormale like 'Bianco' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[1]=$rows['count'];
+    //count spumanti
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Spumante' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[2]=$rows['count'];
+    //count vini dolci
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Vino dolce' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[3]=$rows['count'];
+    //count grappe
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Grappa' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[4]=$rows['count'];
+
+    return $output;
+}
+
+
+
+
+?>
+
+
+
+
 
