@@ -199,7 +199,8 @@ function sel_dettagli_utente($conn,$id)
 
 function info_cantine($conn) /*bisogna aggiungerci la parte con le immagini*/
 {
-    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c";
+    $sql="SELECT c.idCantina as id, c.nome as nome, i.path as path
+    from cantina c inner join immaginecantina i on c.idCantina=i.idCantina where i.principale <> 0";
 
     $result = $conn->query($sql);
 
@@ -208,7 +209,8 @@ function info_cantine($conn) /*bisogna aggiungerci la parte con le immagini*/
 
 function info_cantina($conn,$id) /*bisogna aggiungerci la parte con le immagini*/
 {
-    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione from cantina c where idCantina=$id";
+    $sql="SELECT c.idCantina as id, c.nome as nome, c.comune as comune, c.coordinate as coordinate, c.descrizione as descrizione, i.path as path from cantina c 
+    inner join immaginecantina i on c.idCantina=i.idCantina where c.idCantina=$id ORDER by i.principale DESC";
 
     $result = $conn->query($sql);
 

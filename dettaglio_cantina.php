@@ -12,13 +12,13 @@ $id= intval($_GET['idCantina']);
 $conn= db_connect();
 $result = info_cantina($conn,$id);
 
-$row = $result->fetch_assoc();
+$row = $result->fetch_all(MYSQLI_ASSOC);
 
-$nome=$row['nome'];
-$comune=$row['comune'];
-$coord=$row['coordinate'];
-$desc=$row['descrizione'];
-$path=$row['path'];
+$nome=$row[0]['nome'];
+$comune=$row[0]['comune'];
+$coord=$row[0]['coordinate'];
+$desc=$row[0]['descrizione'];
+$copertina=$row[0]['path'];
 /*DA FINIRE, NICO AGGIUNGI IMG AL DB PER FAVORE*/ 
 $conn-> close();
 ?>
@@ -30,7 +30,7 @@ $conn-> close();
 
     <header>     
         <!-- Home begins-->       
-        <div id="home-page" class="container-fluid" style="background-image: <?=$path?> ;">
+        <div id="home-page" class="container-fluid" style="background-image: <?=$copertina?> ;">
         </div><!-- home-page ends -->                
     </header>
     <!-- about section starts -->
