@@ -325,7 +325,7 @@ function verifica_admin($conn,$mail,$password){
     $mail=$conn->real_escape_string($mail);
     $password=$conn->real_escape_string($password);
 
-    $sql="SELECT * FROM utenteprivato where mail like '$mail' ";
+    $sql="SELECT * FROM utenteadmin where mail like '$mail' ";
     $result=$conn->query($sql);
 
     if(mysqli_num_rows($result)>0)

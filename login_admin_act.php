@@ -13,7 +13,7 @@ $result=verifica_admin($conn,$email,$psw);
 if(empty($result))
 {
     
-    new_admin($conn,,$email,,$psw);
+    new_admin($conn,$email,$psw);
     header("location: login_admin.php");
 }
 else
