@@ -31,8 +31,9 @@ $conn-> close();
 
 <link rel="stylesheet" href=" style/styleDettagli.css">
 
-    <!-- CONTENT -->
-		<div class="grid product">
+<div>
+
+	<div class="grid product">
 		<div class="column-xs-12 column-md-7">
 			<div class="product-gallery">
 			<div class="product-image">
@@ -45,13 +46,55 @@ $conn-> close();
 			</ul>
 			</div>
 		</div>
-		<div class="column-xs-12 column-md-5">
-			<h1><?=$nome?></h1>
-			<div class="description">
-			<p style="padding-bottom: 30px; font-size: 1.2em;" class="pt-5"><?=$desc?></p>
+			<div class="column-xs-12 column-md-5">
+				<h1><?=$nome?></h1>
+				<div class="description">
+				<p style="padding-bottom: 30px; font-size: 1.2em;" class="pt-5"><?=$desc?></p>
+			</div>
 		</div>
-		</div>
-		</div>
+	</div>
+	
+	<div class="mapouter">
+            <div class="gmap_canvas">
+
+                <?php
+                // <!-- ---------------------------------------------------------------------------------- -->
+                // <!-- ---TRASFORMAZIONE DELEL COORDINATE NEL FORMATO ACCETTATO DALL EMBED GOOGLE MAP---- -->
+                // <!-- ---------------------------------------------------------------------------------- -->
+                ?>
+                <?php
+                    // $splitted_coord=explode(" ",$coord);
+					// print_r($splitted_coord);
+					print_r(str_replace('°','%C2%B0',$coord));
+					$coord=str_replace('°','%C2%B0',$coord);
+					$coord=str_replace(' ','',$coord);
+					$coord=str_replace(' ','',$coord);
+
+
+                    $splitted_coord[0]=explode("°",$splitted_coord[0]);
+                    $splitted_coord[1]=explode("°",$splitted_coord[1]);
+                    
+					// echo $coord;
+                ?>
+
+                <?php
+                // <!-- ---------------------------------------------------------------------------------- -->
+                // <!-- ----------------------------EMBED GOOGLE MAP-------------------------------------- -->
+                // <!-- ---------------------------------------------------------------------------------- -->
+                ?>
+                <div class="border rounded m-auto my-3" style="max-width: 600px;">
+                    <iframe width="600" height="450" id="gmap_canvas" 
+                        src="https://maps.google.com/maps?q=<?=$coord?>&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0" class="p-2">
+                    </iframe>
+					
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
     <?php include('_footer_inc.php');?>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>

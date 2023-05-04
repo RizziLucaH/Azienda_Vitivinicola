@@ -20,7 +20,7 @@ else
 {
     // SE è GIUSTO AVVIA LA SESSION, CONSENTENDO COSI DI ACCEDERE ALLE PAGINE PRIVATE
     session_start();
-    $_SESSION['id'] = $result['idA'];
+    $_SESSION['id'] = $result['idUA'];
     
     header("location: dashboard/dashboard.php");
 }
