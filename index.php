@@ -133,36 +133,45 @@ include('header_inc.php');
 		<div class="">
 			<h1 class="m-5" style="color: #e9da03;">I nostri bestseller</h1>
 			<div class="d-flex justify-content-center align-items-center">
+				<a href="vini_limited_edition.php">
+					<figure class="card mx-4  ">
+						<img src="img/Vini/LineaFrati/2_bott_F.png" alt="">
+						<figcaption>
+							<p class="h5 text-dark">La Gatta Rossa</p>
+							<p class="text-dark"> 13.12€</p>
+						</figcaption>
+					</figure>
+				</a>
 
-				<figure class="card mx-4  ">
-					<img src="img/Vini/LineaFrati/2_bott_F.png" alt="">
-					<figcaption>
-						<p class="h5 text-dark">La Gatta Rossa</p>
-						<p class="text-dark"> 13.12€</p>
-					</figcaption>
-				</figure>
-				<figure class="card mx-4 ">
-					<img src="./img/Vini/LineaFrati/1_bott_F.png" alt="">
-					<figcaption>
-						<p class="h5 text-dark">Ego di Luca</p>
-						<p class="text-dark"> 69.96€</p>
-					</figcaption>
-				</figure>
-				<figure class="card mx-4 ">
-					<img src="img/Vini/LineaFrati/3_bott.png" alt="">
-					<figcaption>
-						<p class="h5 text-dark">Cingolo di Tommaso</p>
-						<p class="text-dark"> 53.90€</p>
-					</figcaption>
-				</figure>
-				<figure class="card mx-4">
-					<img src="img/Vini/LineaFrati/4_bot_F.png" alt="">
-					<figcaption>
-						<p class="h5 text-dark ">Barolo Davide</p>
-						<p class="text-dark"> GRATIS</p>
-					</figcaption>
+				<a href="vini_limited_edition.php">
+					<figure class="card mx-4 ">
+						<img src="./img/Vini/LineaFrati/1_bott_F.png" alt="">
+						<figcaption>
+							<p class="h5 text-dark">Ego di Luca</p>
+							<p class="text-dark"> 69.96€</p>
+						</figcaption>
+					</figure>
+				</a>
 
-				</figure>
+				<a href="vini_limited_edition.php">
+					<figure class="card mx-4 ">
+						<img src="img/Vini/LineaFrati/3_bott.png" alt="">
+						<figcaption>
+							<p class="h5 text-dark">Cingolo di Tommaso</p>
+							<p class="text-dark"> 53.90€</p>
+						</figcaption>
+					</figure>
+				</a>
+
+				<a href="vini_limited_edition.php">
+					<figure class="card mx-4">
+						<img src="img/Vini/LineaFrati/4_bot_F.png" alt="">
+						<figcaption>
+							<p class="h5 text-dark ">Barolo Davide</p>
+							<p class="text-dark"> GRATIS</p>
+						</figcaption>
+					</figure>
+				</a>
 			</div>
 		</div>
 

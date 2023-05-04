@@ -14,11 +14,17 @@ if(verifica_session($conn,$_SESSION['id']??0)) {
     $id=$_SESSION['id'];
     
     $row=sel_dettagli_utente($conn,$id);
-
     $nome=$row['nomecompleto'];
     $email= $row['mail'];
     $piva=$row['iva'];
     $indirizzo=$row['indirizzofatturazione'];
+
+    $ordini=ordini_utente($conn,$id);
+    // $idOrdine=$ordini['idVendita'];
+    // $tipoPacco=$ordini['tipopacco'];
+    // $numeroBottiglie=$ordini['numerobottiglie'];
+    // $data=$ordini['data'];
+
 ?>
     <link rel="stylesheet" href="style/styleUtente.css">
 
@@ -68,30 +74,24 @@ if(verifica_session($conn,$_SESSION['id']??0)) {
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Numero Ordine</th>
+                        <th scope="col">Tipo Pacco</th>
+                        <th scope="col">Numero Bottiglia</th>
+                        <th scope="col">Prezzo</th>
+                        <th scope="col">Data</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
+                        <?php while($rowO=$ordini->fetch_assoc()){?> 
+                            <tr>
+                            <th><?=$rowO['idVendita'] ?></th>
+                            <td><?=$rowO['tipopacco'] ?></td>
+                            <td><?=$rowO['numerobottiglie'] ?></td>
+                            <td><?=$rowO['prezzoingrosso'] ?>€</td>
+                            <td><?=$rowO['data'] ?></td>
+                            </tr>
+                        <?php } ?>
+                        
                     </tbody>
                     </table>
 

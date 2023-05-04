@@ -63,18 +63,49 @@ $conn-> close();
                 // <!-- ---------------------------------------------------------------------------------- -->
                 ?>
                 <?php
-                    // $splitted_coord=explode(" ",$coord);
-					// print_r($splitted_coord);
-					print_r(str_replace('°','%C2%B0',$coord));
-					$coord=str_replace('°','%C2%B0',$coord);
-					$coord=str_replace(' ','',$coord);
-					$coord=str_replace(' ','',$coord);
+					// TRASFORMAZIONE IN VERSIONE DECIMALE DELLE COORDINATE
+                    $splitted_coord=explode(" ",$coord);
+					// print_r($splitted_coord[0]);
+					// echo "<br />";
+                    $tmp=explode("°",$splitted_coord[0]);
+					$deg1=$tmp[0];
+					// print_r($deg1);
+					// echo "<br />";
 
+                    $tmp=explode("'",$tmp[1]);
+					$min1=$tmp[0];
+					// print_r($min1);
+					// echo "<br />";
 
-                    $splitted_coord[0]=explode("°",$splitted_coord[0]);
-                    $splitted_coord[1]=explode("°",$splitted_coord[1]);
-                    
-					// echo $coord;
+                    $tmp=explode("\"",$tmp[1]);
+					$sec1=$tmp[0];
+					// print_r($sec1);
+					// echo "<br />";
+				
+                    $coordinate1=$deg1+((($min1*60)+($sec1))/3600);
+					// print_r($coordinate1);
+
+					// TRASFORMAZIONE IN VERSIONE DECIMALE DELLE COORDINATE
+					
+					// print_r($splitted_coord[1]);
+					// echo "<br />";
+					$tmp=explode("°",$splitted_coord[1]);
+					$deg2=$tmp[0];
+					// print_r($deg2);
+					// echo "<br />";
+
+					$tmp=explode("'",$tmp[1]);
+					$min2=$tmp[0];
+					// print_r($min2);
+					// echo "<br />";
+
+					$tmp=explode("\"",$tmp[1]);
+					$sec2=$tmp[0];
+					// print_r($sec2);
+					// echo "<br />";
+				
+					$coordinate2=$deg2+((($min2*60)+($sec2))/3600);
+					// print_r($coordinate2);
                 ?>
 
                 <?php
@@ -82,14 +113,8 @@ $conn-> close();
                 // <!-- ----------------------------EMBED GOOGLE MAP-------------------------------------- -->
                 // <!-- ---------------------------------------------------------------------------------- -->
                 ?>
-                <div class="border rounded m-auto my-3" style="max-width: 600px;">
-                    <iframe width="600" height="450" id="gmap_canvas" 
-                        src="https://maps.google.com/maps?q=<?=$coord?>&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0" class="p-2">
-                    </iframe>
-					
-                </div>
-            </div>
+                <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<?= $coordinate1?>,<?= $coordinate2?>+(<?=$nome?>)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">distance maps</a></iframe></div>
+			</div>
         </div>
 </div>
 

@@ -57,24 +57,8 @@ include('header_inc.php');
                                         ?>
                                         <div class="section_Login text-center">
                                             <h4 class="mb-4 pb-3">Registrati</h4>
-                                            <form method="post" action="login_admin_act.php">
-
-                                                
-                                                <div class="form-group mt-2">
-                                                    <input type="email" name="email" class="form-style" placeholder="Email *" id="signup_email" autocomplete="off">
-                                                    <i class="input-icon uil uil-at"></i>
-                                                </div>
-                                                
-
-                                                <div class="form-group mt-2">
-                                                    <input type="password" name="psw" class="form-style" placeholder="Password *" id="psw" autocomplete="off">
-                                                    <i class="input-icon uil uil-lock-alt"></i>
-                                                </div>
-                                                <!-- <p class="form-style">* Campi obbligatori</p> -->
-                                                <button type="submit" class="btn mt-4" id="submit">Registrati</button>
-                                                </div>
-
-                                            </form>
+                                            NO BRO NON PUOI REGISTRARTI COME ADMIN
+                                            <img src="img/py.png" width="50px" alt="">
                                         </div>
                                     </div>
                                 </div>
