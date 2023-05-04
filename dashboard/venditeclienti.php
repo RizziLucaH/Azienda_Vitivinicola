@@ -104,53 +104,6 @@ $valore_grappe=$dati_chart[4];
 </script>
 
 
-<?php
-function count_vini($conn){
-    $output=array();
-    //count rossi
-    $sql="SELECT COUNT(*) as count
-    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
-    where v.tiponormale like 'Rosso' and ve.acquistato=1;";
-    $result=$conn->query($sql);
-    $rows=$result->fetch_assoc();
-    $output[0]=$rows['count'];
-    //count bianchi
-    $sql="SELECT COUNT(*) as count
-    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
-    where v.tiponormale like 'Bianco' and ve.acquistato=1;";
-    $result=$conn->query($sql);
-    $rows=$result->fetch_assoc();
-    $output[1]=$rows['count'];
-    //count spumanti
-    $sql="SELECT COUNT(*) as count
-    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
-    where v.tipospeciale like 'Spumante' and ve.acquistato=1;";
-    $result=$conn->query($sql);
-    $rows=$result->fetch_assoc();
-    $output[2]=$rows['count'];
-    //count vini dolci
-    $sql="SELECT COUNT(*) as count
-    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
-    where v.tipospeciale like 'Vino dolce' and ve.acquistato=1;";
-    $result=$conn->query($sql);
-    $rows=$result->fetch_assoc();
-    $output[3]=$rows['count'];
-    //count grappe
-    $sql="SELECT COUNT(*) as count
-    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
-    where v.tipospeciale like 'Grappa' and ve.acquistato=1;";
-    $result=$conn->query($sql);
-    $rows=$result->fetch_assoc();
-    $output[4]=$rows['count'];
-
-    return $output;
-}
-
-
-
-
-?>
-
 
 
 

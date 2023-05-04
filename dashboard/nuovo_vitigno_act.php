@@ -10,19 +10,7 @@ $NomeVigneto=$_GET['vigneto'];
 //---Prima lettera sempre maiuscola---
 $Uva=ucfirst($_POST['uva']);
 
-
-
 insert_vitigno($conn,$Uva,$idVigneto);
 
 header("location: dettagliovigneto.php?id=$idVigneto&vigneto=$NomeVigneto");
-
-
-?>
-
-<?php
-
-function insert_vitigno($conn,$uva,$idv){
-    $sql="INSERT INTO `vitigno`(`uva`, `idVigneto`) VALUES ('$uva','$idv')";
-    $result=$conn->query($sql);
-}
 ?>
