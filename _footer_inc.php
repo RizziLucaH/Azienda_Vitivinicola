@@ -24,7 +24,7 @@
             <div class="border-start pl-5">
                 
                 <button class="btn btn-warning mr-4 mt-5" style="width: 100%;">
-                    <a href="" style="color:black;">FAQ</a><br>
+                    <a href="faq.php" style="color:black;">FAQ</a><br>
                 </button>
                 <br>
                 <button class="btn btn-warning mr-4 mt-3" style="width: 100%;">
