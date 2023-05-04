@@ -10,10 +10,9 @@ $conn=db_connect();
 
 
 $result=verifica_admin($conn,$email,$psw);
+// print_r($result);
 if(empty($result))
 {
-    
-    new_admin($conn,$email,$psw);
     header("location: login_admin.php");
 }
 else
