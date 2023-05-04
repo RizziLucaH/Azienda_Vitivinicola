@@ -3,8 +3,8 @@ user: paolo@paolo
 pass: paolo
 
 UTENTE PRIVATO:
-user: pippo_fanto@pippo_fanto
-pass: pippo_fanto
+user: pippofanto@pippofanto
+pass: pippofanto
 
 user: raffa@raffa
 pass: raffa
