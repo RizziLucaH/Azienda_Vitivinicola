@@ -113,13 +113,13 @@ function aggiungi_carello($conn,$idUP,$idB)
     $resControllo=$conn->query($controlloingrosso);
     $rowControllo=$resControllo->fetch_assoc();
     $iva=$rowControllo['iva'];
-
+    
     $trovaprezzo="SELECT b.prezzo from bottiglia b where b.idB=$idB";
     $resPrezzo=$conn->query($trovaprezzo);
     $rowPrezzo=$resPrezzo->fetch_assoc();
     $prezzoBottiglia=$rowPrezzo['prezzo'];
     $null=NULL;
-    if($iva=="NULL"){
+    if(is_null($iva)){
         $sql="INSERT INTO `vendita` (`ingrosso`, `aziendacliente`, `prezzoingrosso`, `prezzodettaglio`, `idUP`, `idA`, `idB`) 
         VALUES(?,?,?,?,?,?,?)";
         $query = $conn->prepare($sql); 
