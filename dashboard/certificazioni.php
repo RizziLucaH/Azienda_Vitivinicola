@@ -83,18 +83,6 @@ $groupno = array_chunk($datano, $perPage);
 
 </html>
 
-<?php
-function Certificazioni_si($conn){
-    $sql="SELECT c.tipo, c.data, v.nome from certificazione c INNER join vino v on c.idV=v.idV where idoneo=1;";
-    $result=$conn->query($sql);
-    return $result;
-}
-function Certificazioni_no($conn){
-    $sql="SELECT c.tipo, c.data, v.nome from certificazione c INNER join vino v on c.idV=v.idV where idoneo=0;";
-    $result=$conn->query($sql);
-    return $result;
-}
-?>
 <script>
 var currentPage = 0;
 var groupsi = <?php echo json_encode($groupsi); ?>;

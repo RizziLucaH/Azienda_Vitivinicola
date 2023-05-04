@@ -40,26 +40,8 @@ $groups = array_chunk($data, $perPage);
         </div>
         
     </div>
-
-    
 </body>
-
 </html>
-
-
-
-<?php
-function seleziona_vigneti($conn){
-    $sql="SELECT * FROM vigneto";
-    $result=$conn->query($sql);
-    return $result;
-}
-
-
-?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
-
 
 
 

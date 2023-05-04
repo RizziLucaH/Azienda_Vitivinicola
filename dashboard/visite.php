@@ -50,16 +50,6 @@ $groups = array_chunk($data, $perPage);
 </body>
 </html>
 
-<?php
-function seleziona_visite($conn)
-{
-    $sql="SELECT v.nome,v.cognome,p.numeropartecipanti,c.nome as nomecantina,vi.data from visitatore v INNER JOIN partecipa p on v.idVisitatore=p.idVisitatore INNER JOIN visita_onav vi on p.idVisita=vi.idVisita INNER join cantina c on vi.idCantina=c.idCantina;";
-    $result=$conn->query($sql);
-    return $result;
-}
-?>
-
-
 <script>
 var currentPage = 0;
 var groups = <?php echo json_encode($groups); ?>;

@@ -58,13 +58,13 @@ $rows=visualizza_carrello($conn,$_SESSION['id']);
         <!--RECAP SPESE-->
     <div class="totals" >
         <div class="totals-item">
-            <label>Subtotal</label>
+            <label>Subtotale</label>
             <div class="totals-value" id="cart-subtotal">0</div>
-            <label>Tax (10%)</label>
+            <label>Tasse (10%)</label>
             <div class="totals-value" id="cart-tax">0</div>
-            <label >Shipping</label>
+            <label>Spese di spedizione</label>
             <div class="totals-value" id="cart-shipping">0</div>
-            <label>Grand Total</label>
+            <label>Totale</label>
             <div class="totals-value" id="cart-total">0</div>
             <label>L'ordine è un regalo? </label>
             <div class="gift" id="regalo"> <input type="checkbox" name="regalo"></div>
@@ -72,7 +72,7 @@ $rows=visualizza_carrello($conn,$_SESSION['id']);
     </div>
 
     <div style="width: 50%; margin: auto; height:min-content;">
-        <button class="btn btn-warning">Checkout</button>
+        <button class="btn btn-warning"  onclick="window.location.href='pagamento.php?cliente=<?=$_SESSION['id']?>'">Checkout</button>
     </div>
 </div>
 

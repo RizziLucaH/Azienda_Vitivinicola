@@ -142,9 +142,10 @@ function visualizza_carrello($conn,$idUP)
     FROM vendita v
     INNER join bottiglia b on v.idB=b.idB
     inner join immaginebottiglia i on B.idB=i.idB
-    where i.principale <> 0 AND v.idUP=?";
+    where i.principale <> 0 AND v.idUP=? AND v.acquistato=?";
+    $zero=0;
     $query = $conn->prepare($sql); 
-    $query->bind_param("i", $idUP);
+    $query->bind_param("ii", $idUP,$zero);
     $query->execute();
     $carrello = $query->get_result();
     $carrello_bello=$carrello->fetch_all(MYSQLI_ASSOC);
@@ -318,14 +319,7 @@ function vendite_clienti($conn){
     return $rows;
 }
 
-function new_admin($conn,$email,$psw){
 
-    $email=$conn->real_escape_string($email);
-    $psw=$conn->real_escape_string($psw);
-    $hash=password_hash($psw, PASSWORD_BCRYPT);
-    $sql="INSERT INTO utenteadmin (mail, password) VALUES ('$email', '$hash')";
-    return $conn->query($sql);
-}
 function verifica_admin($conn,$mail,$password){
     $mail=$conn->real_escape_string($mail);
     $password=$conn->real_escape_string($password);
@@ -343,5 +337,136 @@ function verifica_admin($conn,$mail,$password){
             }
         }
     }
+}
+
+function effettua_pagamento($conn,$cliente){
+    $conn->query("UPDATE vendita SET acquistato=1 WHERE idUP=$cliente and acquistato=0");
+}
+
+function Certificazioni_si($conn){
+    $sql="SELECT c.tipo, c.data, v.nome from certificazione c INNER join vino v on c.idV=v.idV where idoneo=1;";
+    $result=$conn->query($sql);
+    return $result;
+}
+function Certificazioni_no($conn){
+    $sql="SELECT c.tipo, c.data, v.nome from certificazione c INNER join vino v on c.idV=v.idV where idoneo=0;";
+    $result=$conn->query($sql);
+    return $result;
+}
+
+
+function seleziona_interventi($conn,$idVigneto){
+    $sql="SELECT i.tipo, i.data, p.nome, p.principioattivo FROM intervento i inner join prodottochimico p on i.idP=p.idP where idVigneto=$idVigneto order by i.data";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+
+
+function fill_chart($conn,$idVigneto){
+    $output=array();
+    $sql="SELECT COUNT(*) as count from intervento where idVigneto=$idVigneto and tipo like 'sistemico'";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $countsistemico=$rows['count'];
+    $output[0]=$countsistemico;
+
+
+    $sql="SELECT COUNT(*) as count from intervento where idVigneto=$idVigneto and tipo like 'contatto'";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $countcontatto=$rows['count'];
+    $output[1]=$countcontatto;
+
+    $sql="SELECT COUNT(*) as count from intervento where idVigneto=$idVigneto and tipo like 'citotropico'";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $countcitotropico=$rows['count'];
+    $output[2]=$countcitotropico;
+
+    return $output;
+    
+
+}
+
+function select_vitigno($conn,$idVigneto){
+    $sql="SELECT v.uva, v.idVitigno from vitigno v where v.idVigneto=$idVigneto;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+
+function select_prodottichimici($conn){
+    $sql="SELECT p.nome FROM prodottochimico p";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+
+function rimuovi_vitigno($conn,$idVitigno,$idVigneto){
+    $sql="DELETE from vitigno where idVitigno=$idVitigno and idVigneto=$idVigneto";
+    $result=$conn->query($sql);
+}
+
+function insert_vitigno($conn,$uva,$idv){
+    $sql="INSERT INTO `vitigno`(`uva`, `idVigneto`) VALUES ('$uva','$idv')";
+    $result=$conn->query($sql);
+}
+function seleziona_prodottichimici($conn){
+    $sql="SELECT p.nome, p.principioattivo FROM prodottochimico p;";
+    $result=$conn->query($sql);
+    return $result;
+}
+
+function count_vini($conn){
+    $output=array();
+    //count rossi
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tiponormale like 'Rosso' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[0]=$rows['count'];
+    //count bianchi
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tiponormale like 'Bianco' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[1]=$rows['count'];
+    //count spumanti
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Spumante' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[2]=$rows['count'];
+    //count vini dolci
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Vino dolce' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[3]=$rows['count'];
+    //count grappe
+    $sql="SELECT COUNT(*) as count
+    from vendita ve  inner join bottiglia b on ve.idB=b.idB inner join vino v on b.idV=v.idV
+    where v.tipospeciale like 'Grappa' and ve.acquistato=1;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_assoc();
+    $output[4]=$rows['count'];
+
+    return $output;
+}
+function seleziona_vigneti($conn){
+    $sql="SELECT * FROM vigneto";
+    $result=$conn->query($sql);
+    return $result;
+}
+function seleziona_visite($conn)
+{
+    $sql="SELECT v.nome,v.cognome,p.numeropartecipanti,c.nome as nomecantina,vi.data from visitatore v INNER JOIN partecipa p on v.idVisitatore=p.idVisitatore INNER JOIN visita_onav vi on p.idVisita=vi.idVisita INNER join cantina c on vi.idCantina=c.idCantina;";
+    $result=$conn->query($sql);
+    return $result;
 }
 ?>

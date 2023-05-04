@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="style/stylePagamento.css">
 <img src="img/LOGO_scritta_oro.png" alt="MINERS" style="width:300px; height: 150px;">
-<div class="payment-title">
-        <h2 style="color:#ccac00">Inserisci i dati della tua carta!</h2>
+<div id ="payment" class="payment-title">
+        <h2  id="scritta" style="color:#ccac00">Inserisci i dati della tua carta!</h2>
     </div>
-    <div class="container preload">
+    <div id="credit-card" class="container preload">
         <div class="creditcard">
             <div class="front">
                 <div id="ccsingle"></div>
@@ -21,13 +21,13 @@
                         </g>
                         <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">0123 4567 8910 1112</text>
                         <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">MINATORE</text>
-                        <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">cardholder name</text>
-                        <text transform="matrix(1 0 0 1 479.7754 388.8793)" class="st7 st5 st8">expiration</text>
-                        <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">card number</text>
+                        <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">Nome</text>
+                        <text transform="matrix(1 0 0 1 479.7754 388.8793)" class="st7 st5 st8">Data di scadenza</text>
+                        <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">Numero della carta</text>
                         <g>
                             <text transform="matrix(1 0 0 1 574.4219 433.8095)" id="svgexpire" class="st2 st5 st9">01/24</text>
-                            <text transform="matrix(1 0 0 1 479.3848 417.0097)" class="st2 st10 st11">VALID</text>
-                            <text transform="matrix(1 0 0 1 479.3848 435.6762)" class="st2 st10 st11">THRU</text>
+                            <text transform="matrix(1 0 0 1 479.3848 417.0097)" class="st2 st10 st11">FINO</text>
+                            <text transform="matrix(1 0 0 1 479.3848 435.6762)" class="st2 st10 st11">A</text>
                             <polygon class="st2" points="554.5,421 540.4,414.2 540.4,427.9 		" />
                         </g>
                         <g id="cchip">
@@ -91,7 +91,7 @@
                         </g>
                         <text transform="matrix(1 0 0 1 621.999 227.2734)" id="svgsecurity" class="st6 st7">985</text>
                         <g class="st8">
-                            <text transform="matrix(1 0 0 1 518.083 280.0879)" class="st9 st6 st10">security code</text>
+                            <text transform="matrix(1 0 0 1 518.083 280.0879)" class="st9 st6 st10">CVV</text>
                         </g>
                         <rect x="58.1" y="378.6" class="st11" width="375.5" height="13.5" />
                         <rect x="58.1" y="405.6" class="st11" width="421.7" height="13.5" />
@@ -101,13 +101,13 @@
             </div>
         </div>
     </div>
-    <div class="form-container">
+    <div id="dati" class="form-container">
         <div class="field-container">
-            <label for="name">Name</label>
+            <label for="name">Nome e cognome</label>
             <input id="name" maxlength="20" type="text">
         </div>
         <div class="field-container">
-            <label for="cardnumber">Card Number</label><span hidden id="generatecard">generate random</span>
+            <label for="cardnumber">Numero della carta</label><span hidden id="generatecard">generate random</span>
             <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
             <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -115,18 +115,31 @@
             </svg>
         </div>
         <div class="field-container">
-            <label for="expirationdate">Expiration (mm/yy)</label>
+            <label for="expirationdate">Scadenza (mm/yy)</label>
             <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric">
         </div>
         <div class="field-container">
-            <label for="securitycode">Security Code</label>
+            <label for="securitycode">Codice di sicurezza</label>
             <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
         </div>
         <div class="field-container">
-        <button class="btnpay">Paga</button>
+        <button class="btnpay" onclick="pagamento_effettuato()">Paga</button>
         </div>
     </div>
 </div>   
+
+
+<div  hidden id="confermapagamento" style="background-color: #1f2029; text-align:center">
+  <h1 style="color:white">Pagamento effettuato!</h1>
+  <h2 style="color:white">I prodotti saranno inviati preso l'indirizzo scelto</h2>
+  <?php
+  require('_db_dal_inc.php');
+  require('_config_inc.php');
+  $cliente=$_GET['cliente'];
+  $conn=db_connect();
+  effettua_pagamento($conn,$cliente);
+  ?>
+</div>
 
 
 
@@ -408,4 +421,16 @@
   });
 };
 
+
+
+
+function pagamento_effettuato(){
+  $(document).ready(function(){
+    $("#dati").remove();
+    $("#credit-card").remove();
+    $("#scritta").remove();
+    $("#confermapagamento").show();
+});
+}
 </script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>

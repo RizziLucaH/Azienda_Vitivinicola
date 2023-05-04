@@ -76,14 +76,6 @@ $groups = array_chunk($data, $perPage);
 </html>
 
 
-<?php
-function seleziona_prodottichimici($conn){
-    $sql="SELECT p.nome, p.principioattivo FROM prodottochimico p;";
-    $result=$conn->query($sql);
-    return $result;
-}
-?>
-
 <script>
 var currentPage = 0;
 var groups = <?php echo json_encode($groups); ?>;
