@@ -469,4 +469,82 @@ function seleziona_visite($conn)
     $result=$conn->query($sql);
     return $result;
 }
+// function Prima_query($conn){
+//     $sql="SELECT `nome` FROM `cantina` 
+//         inner join bottiglia b on b.idCantina=cantina.idCantina
+//         INNER JOIN richiesto on b.idB=richiesto.idB
+//         WHERE b.nomevino="dato" and richiesto.idA=(SELECT idA from aziendacliente  where aziendacliente.nome="dato")";
+//     $conn->query($sql);
+//     $rows=$result->fetch_all(MYSQLI_ASSOC);
+//     return $rows;
+// }
+function Seconda_query($conn){
+    $sql="SELECT v1.idVigneto,v1.nome
+    FROM vigneto v1
+    inner join intervento i1 on v1.idVigneto=i1.idVigneto
+    inner join prodottochimico p1 on i1.idP=p1.idP
+    where i1.tipo like 'Sistemico' and v1.idVigneto in(
+        SELECT v2.idVigneto
+        FROM vigneto v2
+        inner join intervento i2 on v2.idVigneto=i2.idVigneto
+        inner join prodottochimico p2 on i2.idP=p2.idP
+        where i2.tipo like 'Sistemico'
+        AND p2.nome<>p1.nome
+        AND YEAR(i1.data)=YEAR(i2.data))
+    GROUP by v1.idVigneto,v1.nome";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+function Terza_query($conn){
+    $sql="SELECT DISTINCT vin.nome
+    FROM vino vin
+    INNER JOIN compone c on vin.idV=c.idV
+    INNER JOIN vitigno vit on c.idVitigno=vit.idVitigno
+    INNER JOIN vigneto vv on vit.idVigneto=vv.idVigneto
+    where vv.idVigneto in (
+        SELECT v.idVigneto
+        FROM vigneto v
+        inner join intervento i on v.idVigneto=i.idVigneto
+        GROUP by v.idVigneto
+        HAVING COUNT(*)=(
+            SELECT count(*) as MAXINT
+            FROM vigneto v2 
+            inner join intervento i2 on v2.idVigneto=i2.idVigneto
+            GROUP by v2.idVigneto
+            order by MAXINT DESC
+            LIMIT 1))";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+function Quarta_query($conn){
+    $sql="SELECT v.nome as nomevino,c.nome as nomecantina,p.anno,p.quantità
+    FROM possiede p
+    INNER JOIN vino v on p.idV=v.idV
+    INNER JOIN cantina c on p.idCantina=c.idCantina
+    order by p.quantità desc;";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
+function Quinta_query($conn){
+    $sql="SELECT DISTINCT vigv.nome
+    FROM vino vv
+    INNER JOIN compone cv on vv.idV=cv.idV
+    INNER JOIN vitigno vitv on cv.idVitigno=vitv.idVitigno
+    INNER JOIN vigneto vigv on vitv.idVigneto=vigv.idVigneto
+    where vv.idV in (SELECT tabella.codVino
+    FROM (SELECT v.idV as codVino
+    FROM vino v
+    INNER JOIN compone c on v.idV=c.idV
+    INNER JOIN vitigno vit on c.idVitigno=vit.idVitigno
+    INNER JOIN vigneto vig on vit.idVigneto=vig.idVigneto  
+    GROUP BY v.nome,vig.nome) as tabella  
+    GROUP BY tabella.codVino
+    HAVING COUNT(*)=1);";
+    $result=$conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
 ?>
