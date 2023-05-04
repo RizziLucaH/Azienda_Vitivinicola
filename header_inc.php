@@ -67,7 +67,7 @@
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Vini</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="sezione_vini.php?tipo=bianco">Bianco</a>
-                                    <a class="dropdown-item" href="sezione_vini.php?tipo=supumante">Spumante</a>
+                                    <a class="dropdown-item" href="sezione_vini.php?tipo=spumante">Spumante</a>
                                     <a class="dropdown-item" href="sezione_vini.php?tipo=rosso">Rosso</a>
                                     <a class="dropdown-item" href="sezione_vini.php?tipo=rosé">Rosé</a>
                                     <a class="dropdown-item" href="vini_limited_edition.php">Linea Frati Limited</a>
