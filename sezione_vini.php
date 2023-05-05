@@ -82,32 +82,32 @@ $result=sel_bottiglie($conn);
 					<div class="form-check mb-3">
 	
 						<!-- Bianco -->
-						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="bianco" ? "checked" :"") ?> onclick="FiltraTipo()" >
+						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="bianco" ? "checked" :"") ?> data-tipo="bianco" onclick="FiltraTipo()" >
 						<label for="CK_bianco">Bianco</label>
 						<br>
 	
 						<!-- Spumante -->
-						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="spumante" ? "checked" :"") ?> onclick="FiltraTipo()" >
+						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="spumante" ? "checked" :"") ?> data-tipo="spumante" onclick="FiltraTipo()" >
 						<label for="CK_spumante">Spumante</label>
 						<br>
 
 						<!-- Rosso -->
-						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosso" ? "checked" :"") ?> onclick="FiltraTipo()" >
+						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosso" ? "checked" :"") ?> data-tipo="rosso" onclick="FiltraTipo()" >
 						<label for="CK_rosso">Rosso</label>
 						<br>
 
 						<!-- Rosé -->
-						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosé" ? "checked" :"") ?> onclick="FiltraTipo()" >
+						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosé" ? "checked" :"") ?> data-tipo="rosè" onclick="FiltraTipo()" >
 						<label for="CK_rosé">Rosé</label>
 						<br>
 
 						<!-- Grappa -->
-						<input id="CK_grappa" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<input id="CK_grappa" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" data-tipo="grappa" >
 						<label for="CK_grappa">Grappa</label>
 						<br>
 
 						<!-- Vino dolce -->
-						<input id="CK_passito" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" >
+						<input id="CK_passito" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" data-tipo="vino dolce" >
 						<label for="CK_passito">Passito</label>
 						<br>
 						<br>
@@ -125,7 +125,7 @@ $result=sel_bottiglie($conn);
 				<div class="row row-cols-1 row-cols-md-3 g-4">
 				<?php if($result->num_rows>0){
 					while($row=$result->fetch_assoc()){  ?>
-							<div data-tipoN="<?=$row['tipoN'] ?>" data-tipoS="<?=$row['tipoS'] ?>" data-anno="<?=$row['anno']?>" class="col bottiglia">
+							<div class="vini" data-tipoN="<?=$row['tipoN'] ?>" data-tipoS="<?=$row['tipoS'] ?>" data-anno="<?=$row['anno']?>" class="col bottiglia">
 								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
 									<figure class="card ">
 										<!--<img src="img/LineaFrati/4_bot_F.png" alt="">-->
@@ -209,69 +209,20 @@ $result=sel_bottiglie($conn);
 	}
 
 	function FiltraTipo(){
-		$(document).ready(function(){
 			/*vini*/
-			let bianchi=$("div[data-tipoN='Bianco']");
-			let rossi=$("div[data-tipoN='Rosso']");
-			let Rosé=$("div[data-tipoN='Rosè']");
-			let grappe=$("div[data-tipoS='Grappa']");
-			let spumanti=$("div[data-tipoS='Spumante']");
-			let passiti=$("div[data-tipoS='Vino dolce']");
-
+			let vini=$(".vini");
 			/*checkbox*/
-			let checkB= $("#CK_bianco").is(":checked");
-			let checkR=$("#CK_rosso").is(":checked");
-			let checkRosé=$("#CK_rosé").is(":checked");
-			let checkG=$("#CK_grappa").is(":checked");
-			let checkS=$("#CK_spumante").is(":checked");
-			let checkP=$("#CK_passito").is(":checked");
-			console.log(checkR);
-
-			/*EACH BIANCHI*/
-			$.each(bianchi,function(index,value){
-				if(checkR==true || checkG==true  || checkS==true  || checkRosé==true || checkP==true ){
-					if(checkB==false){$(value).hide();} else {$(value).show();}
-				}else{$(value).show()}
-			})
-			
-			/*EACH ROSSI*/
-			$.each(rossi,function(index,value){
-				if(checkB==true || checkG==true  || checkS==true  || checkRosé==true || checkP==true ){
-					if(checkR==false){$(value).hide();} else {$(value).show();}
-				} else{$(value).show()}
-			})
-
-			/*EACH ROSé*/
-			$.each(Rosé,function(index,value){
-				if(checkB==true || checkG==true  || checkS==true  || checkR==true || checkP==true ){
-					if(checkRosé==false){$(value).hide();} else {$(value).show();}
-				}else{$(value).show()}
-			})
-
-			/*EACH GRAPPE*/
-			$.each(grappe,function(index,value){
-				if(checkB==true || checkRosé==true  || checkS==true  || checkR==true || checkP==true ){
-					if(checkG==false){$(value).hide();} else {$(value).show();}
-				}else{$(value).show()}
-			})
-
-			/*EACH SPUMANTI*/
-			$.each(spumanti,function(index,value){
-				if(checkB==true || checkRosé==true  || checkG==true  || checkR==true || checkP==true ){
-					if(checkS==false){$(value).hide();} else {$(value).show();}
-				}else{$(value).show()}
-			})
-
-			/*EACH PASSITO*/
-			$.each(passiti,function(index,value){
-				if(checkB==true || checkRosé==true  || checkG==true  || checkR==true || checkS==true ){
-					if(checkP==false){$(value).hide();} else {$(value).show();}
-				}else{$(value).show()}
-			})
-
-		});
-		
+			let checked=$("input:checked");
+			console.log($(checked));
+			$.each(vini,function(index,vino){
+				if($(vino).attr("data-tipoN").toLowerCase()==$(checked).attr("data-tipo")|| $(vino).attr("data-tipoS").toLowerCase()==$(checked).attr("data-tipo"))
+				{
+					$(vino).show();
+				} else {$(vino).hide();}
+				if(checked.length==0){$(vino).show();}
+			});
 	}
+
 	function FiltraAnno(){
 		$(document).ready(function(){
 			let anno=$("#anno").val();

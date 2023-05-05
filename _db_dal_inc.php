@@ -547,4 +547,10 @@ function Quinta_query($conn){
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
 }
+
+function apri_ticket($conn,$Mailticket,$TipoRichiesta,$Oggetto,$Descrizione){
+    $aggiungiticket="INSERT INTO `ticket`(`mail`, `tipo`, `oggetto`, `descrizione`) VALUES ('$Mailticket','$TipoRichiesta','$Oggetto','$Descrizione')";
+    $conn->query($aggiungiticket);
+
+}
 ?>

@@ -171,9 +171,4 @@ productRow.children('.product-line-price').each(function () {
 }
 
 </script>
-<?php 
-    include('_footer_inc.php');
-    }else{
-        header("location: login.php");
-    }
-    ?>
+<?php include('_footer_inc.php');?>
