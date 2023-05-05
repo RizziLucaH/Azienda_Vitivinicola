@@ -1,11 +1,9 @@
 <?php include('header_dashboard.php');?>
 <?php
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
 $conn=db_connect();
 $success=Certificazioni_si($conn);
 $nosuccess=Certificazioni_no($conn);
+
 #region Pagination cert_si
 $datasi = array();
 while ($row = $success->fetch_assoc()) {
