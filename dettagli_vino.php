@@ -1,6 +1,6 @@
 <!--DA MODIFICARE GRAFICAMENTE AD ESEMPIO IL BOTTONE E IL TESTO DI FIANCO ALLE IMMAGINI-->
 <?php
-
+$pagina="Dettagli vino";
 include('session_check.php');
 include('header_inc.php');
 
