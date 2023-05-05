@@ -1,13 +1,11 @@
-<!--DA MODIFICARE GRAFICAMENTE PARTE RESPONSIVE PER IL MOBILE E COSA APPARE CON LA FUNZIONE DI JS CHE VERIFICA CARRELLO VUOTO-->
 
 <?php
 $pagina="carrello";
+include('session_check.php');
+$conn=db_connect();
 ?>
 
 <?php
-include('session_check.php');
-$conn=db_connect();
-
 if(verifica_session($conn,$_SESSION['id']??0)) {
     include('header_inc.php');
     $id=$_SESSION['id'];
@@ -173,8 +171,4 @@ productRow.children('.product-line-price').each(function () {
 }
 
 </script>
-<?php include('_footer_inc.php');
-        }else{
-            header("location: login.php");
-        }
-?>
+<?php include('_footer_inc.php');?>
