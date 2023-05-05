@@ -1,23 +1,23 @@
-<?php
+<?php 
 $idVigneto=$_GET['id'];
 $NomeVigneto=$_GET['vigneto'];
-
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
+$pagina=$NomeVigneto;
+include('../session_check.php');
 $conn=db_connect();
-$interventi=seleziona_interventi($conn,$idVigneto);
-$vitigni=select_vitigno($conn,$idVigneto);
-$prodotti=select_prodottichimici($conn);
-
-//chart
-$output=array();
-$output=fill_chart($conn,$idVigneto);
-$sistemico=$output[0];
-$contatto=$output[1];
-$citotropico=$output[2];
 ?>
-<?php include('header_dashboard.php');?>
+<?php
+if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
+    include('header_dashboard.php');
+    $interventi=seleziona_interventi($conn,$idVigneto);
+    $vitigni=select_vitigno($conn,$idVigneto);
+    $prodotti=select_prodottichimici($conn);
+    //chart
+    $output=array();
+    $output=fill_chart($conn,$idVigneto);
+    $sistemico=$output[0];
+    $contatto=$output[1];
+    $citotropico=$output[2];
+?>
         <h1><?=$NomeVigneto?></h1>
         <hr class="posth1" style="border-color: #ffd900;">
         <h3>Interventi effettuati</h3>
@@ -139,7 +139,11 @@ $citotropico=$output[2];
     
 </body>
 </html>
-
+<?php 
+    }else{
+        header("location: ../login_admin.php");
+    }
+    ?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

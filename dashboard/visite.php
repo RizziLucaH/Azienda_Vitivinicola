@@ -1,19 +1,23 @@
-<?php
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
+<?php 
+$pagina="Visite";
+include('../session_check.php');
 $conn=db_connect();
-$visite=seleziona_visite($conn);
-#region Pagination
-$data = array();
-while ($row = $visite->fetch_assoc()) {
-    $data[] = $row;
-}
-$perPage = 10;
-$groups = array_chunk($data, $perPage);
-#endregion
 ?>
-<?php include('header_dashboard.php');?>
+
+<?php
+if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
+    include('header_dashboard.php');
+    $visite=seleziona_visite($conn);
+    #region Pagination
+    $data = array();
+    while ($row = $visite->fetch_assoc()) {
+        $data[] = $row;
+    }
+    $perPage = 10;
+    $groups = array_chunk($data, $perPage);
+    #endregion
+?>
+
 
         <h1>Visite</h1>
         
@@ -49,6 +53,11 @@ $groups = array_chunk($data, $perPage);
     </div>
 </body>
 </html>
+<?php 
+    }else{
+        header("location: ../login_admin.php");
+    }
+    ?>
 
 <script>
 var currentPage = 0;

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Admin - <?=$pagina?></title>
+	<link rel="icon" href="../img/icoPaoloni.png" type="image/png">
+    
     <link rel="stylesheet" href="../style/styledashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -69,7 +71,7 @@
     </div>
     <!---Sidebar di log out-->
     <div class="LOsidebar bottom-0 start-0">
-    <a href="logout.php"><img style="object-fit:contain;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE" class="full"></a>
+    <a href="logout_dashboard.php"><img style="object-fit:contain;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE" class="full"></a>
 
     </div>
 

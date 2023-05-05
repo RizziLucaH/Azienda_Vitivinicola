@@ -1,5 +1,5 @@
 <?php 
-$pagina="Admin - Dashboard";
+$pagina="Dashboard";
 include('../session_check.php');
 $conn=db_connect();
 ?>
