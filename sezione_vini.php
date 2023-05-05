@@ -14,23 +14,24 @@ $result=sel_bottiglie($conn);
 
 
 
-<!-- LINK AGGIUNTIVI -->
+<?php // LINK AGGIUNTIVI ?>
 <link rel="stylesheet" href="style/styleSezioneVini2.css">
-<!-- -------------------------------------------------------------------------------------- -->
+<?php
+/* -------------------------------------------------------------------------------------- 
 
-
-	<!-- ---------------------------------------------------------------------------------------------------- -->
-	<!-- ------------------------------------FILTRA/ORDINA--------------------------------------------------- -->
-	<!-- ---------------------------------------------------------------------------------------------------- -->
-	
+	---------------------------------------------------------------------------------------------------- 
+	------------------------------------FILTRA/ORDINA--------------------------------------------------- 
+	---------------------------------------------------------------------------------------------------- 
+*/?>
 	<div class="container-xl" >
 		<hr class="mt-5">
 		<div class="row align-items-start">
 			<div class="col-3 mt-5 pt-3 filtra">
-				
-				<!-- ----------------------------------------------------------------- -->
-				<!-- ----------------------------PREZZO------------------------------- -->
-				<!-- ----------------------------------------------------------------- -->
+				<?php /*
+				----------------------------------------------------------------- 
+				----------------------------PREZZO------------------------------- 
+				----------------------------------------------------------------- */
+				?>
 				<header>
 					<h6>Prezzo</h6>
 				</header>
@@ -55,11 +56,11 @@ $result=sel_bottiglie($conn);
 
 				<hr style="border: 1px solid black;">
 				
-
-				<!-- ----------------------------------------------------------------- -->
-				<!-- --------------------------QUANTITA------------------------------- -->
-				<!-- ----------------------------------------------------------------- -->
-
+<?php
+				// ----------------------------------------------------------------- 
+				// --------------------------QUANTITA------------------------------- 
+				// ----------------------------------------------------------------- 
+?>
 				<header>
 					<h6>Anno Produzione</h6>
 				</header>
@@ -70,43 +71,43 @@ $result=sel_bottiglie($conn);
 
 				<hr style="border: 1px solid black;">
 
-
-				<!-- ----------------------------------------------------------------- -->
-				<!-- --------------------------TIPO----------------------------------- -->
-				<!-- ----------------------------------------------------------------- -->
-
+<?php
+				// ----------------------------------------------------------------- 
+				// --------------------------TIPO----------------------------------- 
+				// ----------------------------------------------------------------- 
+?>
 				<header>
 					<h6>Tipo</h6>
 				</header>
 
 					<div class="form-check mb-3">
 	
-						<!-- Bianco -->
+						<?php //Bianco ?>
 						<input id="CK_bianco" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="bianco" ? "checked" :"") ?> data-tipo="bianco" onclick="FiltraTipo()" >
 						<label for="CK_bianco">Bianco</label>
 						<br>
 	
-						<!-- Spumante -->
+						<?php //Spumante  ?>
 						<input id="CK_spumante" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="spumante" ? "checked" :"") ?> data-tipo="spumante" onclick="FiltraTipo()" >
 						<label for="CK_spumante">Spumante</label>
 						<br>
 
-						<!-- Rosso -->
+						<?php //Rosso ?>
 						<input id="CK_rosso" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosso" ? "checked" :"") ?> data-tipo="rosso" onclick="FiltraTipo()" >
 						<label for="CK_rosso">Rosso</label>
 						<br>
 
-						<!-- Rosé -->
+						<?php //Rosé ?>
 						<input id="CK_rosé" class="form-check-input mt-0" type="checkbox" value="" <?=($tipo=="rosé" ? "checked" :"") ?> data-tipo="rosè" onclick="FiltraTipo()" >
 						<label for="CK_rosé">Rosé</label>
 						<br>
 
-						<!-- Grappa -->
+						<?php //Grappa ?>
 						<input id="CK_grappa" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" data-tipo="grappa" >
 						<label for="CK_grappa">Grappa</label>
 						<br>
 
-						<!-- Vino dolce -->
+						<?php //Vino dolce ?>
 						<input id="CK_passito" class="form-check-input mt-0" type="checkbox" value="" onclick="FiltraTipo()" data-tipo="vino dolce" >
 						<label for="CK_passito">Passito</label>
 						<br>
@@ -120,15 +121,14 @@ $result=sel_bottiglie($conn);
 					<input id="cerca" type="text" class="form-control" style="border-radius: 0 10px 10px 0;" placeholder="Cerca" aria-label="Cerca" aria-describedby="basic-addon1" oninput="FiltraNome()">
 				</div>
 
-				<!-- CARD -->
+				<?php //CARD ?>
 				
 				<div class="row row-cols-1 row-cols-md-3 g-4">
 				<?php if($result->num_rows>0){
 					while($row=$result->fetch_assoc()){  ?>
-							<div class="vini" data-tipoN="<?=$row['tipoN'] ?>" data-tipoS="<?=$row['tipoS'] ?>" data-anno="<?=$row['anno']?>" class="col bottiglia">
+							<div class="vini" data-tipoN="<?=$row['tipoN'] //tipo di vino ?>" data-tipoS="<?=$row['tipoS'] //tipi speciali di vino ?>" data-anno="<?=$row['anno']?>" class="col bottiglia">
 								<a style="text-decoration: none;" href="dettagli_vino.php?idB=<?=$row['idB']?>">
 									<figure class="card ">
-										<!--<img src="img/LineaFrati/4_bot_F.png" alt="">-->
 										<img src="<?=$row["path"]?>" alt="">
 										<figcaption>
 											<p id="nomevino" class="h6 text-dark "><?=$row['nomevino'] ?></p>
@@ -180,6 +180,7 @@ $result=sel_bottiglie($conn);
 <script>
 	function FiltraPrezzo(){
 		$(document).ready(function(){
+			/*seleziono i valori*/ 
 			let min=$("#minimo").val();
 			let max=$("#massimo").val();
 			let arrayP=$("p[id=prezzo]");
@@ -190,8 +191,6 @@ $result=sel_bottiglie($conn);
 					$(value).closest("div").css("display","none");
 				}
 				else{$(value).closest("div").css("display","inline-block");}
-				/*console.log(min);
-				console.log(max);*/
 			})
 
 		});
@@ -202,6 +201,7 @@ $result=sel_bottiglie($conn);
 			let arrayN=$("p[id=nomevino]");
 			let cerca=$("#cerca").val();
 
+			/*Se il nome è uguale faccio vedere */
 			$.each(arrayN,function(index,value){
 				if($(value).html().toLowerCase().indexOf(cerca.toLowerCase())== -1){$(value).closest("div").hide();} else{$(value).closest("div").show();}
 			});
@@ -219,14 +219,15 @@ $result=sel_bottiglie($conn);
 				{
 					$(vino).show();
 				} else {$(vino).hide();}
-				if(checked.length==0){$(vino).show();}
+				if(checked.length==0){$(vino).show();}  /*Se non seleziono nulla li faccio vedere tutti */
 			});
 	}
 
 	function FiltraAnno(){
 		$(document).ready(function(){
+			FiltraTipo();
 			let anno=$("#anno").val();
-			let vini=$("div.bottiglia");
+			let vini=$(".vini");
 
 			$.each(vini,function(index,value){
 				if($(value).attr("data-anno")<anno){
@@ -250,6 +251,7 @@ $result=sel_bottiglie($conn);
 </script>
 
 <script>
+	/*Li inserisco qui così si eseguono quando la pagina si carica */
 	FiltraTipo();
 	FiltraAnno();
 </script>

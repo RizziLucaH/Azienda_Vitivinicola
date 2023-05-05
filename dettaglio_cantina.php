@@ -19,7 +19,6 @@ $comune=$row[0]['comune'];
 $coord=$row[0]['coordinate'];
 $desc=$row[0]['descrizione'];
 $copertina=$row[0]['path'];
-/*DA FINIRE, NICO AGGIUNGI IMG AL DB PER FAVORE*/ 
 $conn-> close();
 ?>
 
@@ -32,7 +31,7 @@ $conn-> close();
 <link rel="stylesheet" href=" style/styleDettagli.css">
 
 <div>
-
+<?php //DISPLAY INFO ?>
 	<div class="grid product">
 		<div class="column-xs-12 column-md-7">
 			<div class="product-gallery">
