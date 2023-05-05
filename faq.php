@@ -10,7 +10,7 @@ include('header_inc.php');
 <section class="faq-section">
 <div class="container">
     <div class="row">
-            <!-- ***** FAQ Start ***** -->
+            <?php // ***** FAQ Start ***** ?>
             <div class="col-md-6 offset-md-3">
                 <div class="faq-title text-center pb-3">
                     <h2>FAQ</h2>
