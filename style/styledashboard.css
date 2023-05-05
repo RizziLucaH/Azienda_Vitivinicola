@@ -99,3 +99,9 @@ img.full {
     width: auto;
     height: auto;
 } */
+
+.scrolltable{
+    width:750px;
+    height:400px;
+    overflow:scroll;
+}
