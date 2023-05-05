@@ -3,13 +3,16 @@
 <?php
 $pagina="carrello";
 ?>
+
 <?php
 include('session_check.php');
-include('header_inc.php');
-
 $conn=db_connect();
 
-$rows=visualizza_carrello($conn,$_SESSION['id']);
+if(verifica_session($conn,$_SESSION['id']??0)) {
+    include('header_inc.php');
+    $id=$_SESSION['id'];
+    $rows=visualizza_carrello($conn,$_SESSION['id']);
+
 ?>
 
 <link rel="stylesheet" href=" style/styleCarrello.css">
@@ -170,4 +173,8 @@ productRow.children('.product-line-price').each(function () {
 }
 
 </script>
-<?php include('_footer_inc.php');?>
+<?php include('_footer_inc.php');
+        }else{
+            header("location: login.php");
+        }
+?>
