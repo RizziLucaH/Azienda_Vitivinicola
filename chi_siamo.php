@@ -12,6 +12,7 @@ include('header_inc.php');
 		<link rel="stylesheet" href="style/styleChiSiamo.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
+	<?php //CARD ?>
 		<section class="hero-section">
 		<div class="card-grid">
 			<a class="card" href="#">
@@ -45,6 +46,7 @@ include('header_inc.php');
 		<div>
 		</section>
 
+	<?php //STORIA ?>
 	</div>
 	<div class="col-1"></div>
 	<div style="width: 70%; margin: auto;">

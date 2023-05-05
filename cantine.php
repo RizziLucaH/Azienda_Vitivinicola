@@ -11,13 +11,9 @@ $conn=db_connect();
 $result=info_cantine($conn);
 ?>
 
-<!-- Card cantina -->
+<?php // Card cantina ?>
 <link rel="stylesheet/less" type="text/css" href=" style/styleCantine.less" />
 <script src="https://cdn.jsdelivr.net/npm/less" ></script>
-<!-- -------------------------------------------------------------------------------------- -->
-
-
-
 	<div>
 		<h1 class="title">Le Nostre Cantine</h1>
 		<div class="slider" x-data="{start: true, end: false}">
@@ -31,10 +27,6 @@ $result=info_cantine($conn);
 					</div>
 				<?php
 				}?>
-			<!-- <div class="slider__nav">
-				<button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth * -1, behavior: 'smooth'});" x-bind:class="start ? '' : 'slider__nav__button--active'">Previous</button>
-				<button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth, behavior: 'smooth'});" x-bind:class="end ? '' : 'slider__nav__button--active'">Next</button>
-			</div> -->
 		</div>
     </div>
 	</div>
