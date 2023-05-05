@@ -63,10 +63,10 @@ include('header_inc.php');
                                     </div>
                                 </div>
                             </div>
-                            W&M
-                            <br>
-                            Winers & miners united
                         </div>
+                        W&M
+                        <br>
+                        Winers & miners united
                     </div>
                 </div>
         </div>
