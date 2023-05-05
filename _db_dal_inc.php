@@ -469,15 +469,15 @@ function seleziona_visite($conn)
     $result=$conn->query($sql);
     return $result;
 }
-function Prima_query($conn){
-    $sql="SELECT `nome` FROM `cantina` 
-        inner join bottiglia b on b.idCantina=cantina.idCantina
-        INNER JOIN richiesto on b.idB=richiesto.idB
-        WHERE b.nomevino like 'Paradiso' and richiesto.idA=(SELECT idA from aziendacliente  where aziendacliente.nome like 'Il Mulino')";
-    $result=$conn->query($sql);
-    $rows=$result->fetch_all(MYSQLI_ASSOC);
-    return $rows;
-}
+// function Prima_query($conn){
+//     $sql="SELECT `nome` FROM `cantina` 
+//         inner join bottiglia b on b.idCantina=cantina.idCantina
+//         INNER JOIN richiesto on b.idB=richiesto.idB
+//         WHERE b.nomevino="dato" and richiesto.idA=(SELECT idA from aziendacliente  where aziendacliente.nome="dato")";
+//     $conn->query($sql);
+//     $rows=$result->fetch_all(MYSQLI_ASSOC);
+//     return $rows;
+// }
 function Seconda_query($conn){
     $sql="SELECT v1.idVigneto,v1.nome
     FROM vigneto v1
@@ -546,5 +546,11 @@ function Quinta_query($conn){
     $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
+}
+
+function apri_ticket($conn,$Mailticket,$TipoRichiesta,$Oggetto,$Descrizione){
+    $aggiungiticket="INSERT INTO `ticket`(`mail`, `tipo`, `oggetto`, `descrizione`) VALUES ('$Mailticket','$TipoRichiesta','$Oggetto','$Descrizione')";
+    $conn->query($aggiungiticket);
+
 }
 ?>
