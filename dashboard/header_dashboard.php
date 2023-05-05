@@ -69,7 +69,7 @@
     </div>
     <!---Sidebar di log out-->
     <div class="LOsidebar bottom-0 start-0">
-    <a href="dashboard.php"><img style="object-fit:contain;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE" class="full"></a>
+    <a href="logout.php"><img style="object-fit:contain;" src="../img/Dashboard/log-out-icon.png" alt="ERRORE" class="full"></a>
 
     </div>
 

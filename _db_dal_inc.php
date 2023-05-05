@@ -191,6 +191,12 @@ function verifica_session($conn,$id){
     $result=$conn->query($sql);
     return mysqli_fetch_array($result);
 }
+
+function verifica_session_admin($conn,$mail){
+    $sql="SELECT * FROM utenteadmin where mail like '$mail' ";
+    $result=$conn->query($sql);
+    return mysqli_fetch_array($result);
+}
 function sel_dettagli_utente($conn,$id)
     {
 
@@ -469,15 +475,15 @@ function seleziona_visite($conn)
     $result=$conn->query($sql);
     return $result;
 }
-// function Prima_query($conn){
-//     $sql="SELECT `nome` FROM `cantina` 
-//         inner join bottiglia b on b.idCantina=cantina.idCantina
-//         INNER JOIN richiesto on b.idB=richiesto.idB
-//         WHERE b.nomevino="dato" and richiesto.idA=(SELECT idA from aziendacliente  where aziendacliente.nome="dato")";
-//     $conn->query($sql);
-//     $rows=$result->fetch_all(MYSQLI_ASSOC);
-//     return $rows;
-// }
+function Prima_query($conn){
+    $sql="SELECT `nome` FROM `cantina` 
+        inner join bottiglia b on b.idCantina=cantina.idCantina
+        INNER JOIN richiesto on b.idB=richiesto.idB
+        WHERE b.nomevino like 'Paradiso' and richiesto.idA=(SELECT idA from aziendacliente  where aziendacliente.nome like 'Il Mulino')";
+    $conn->query($sql);
+    $rows=$result->fetch_all(MYSQLI_ASSOC);
+    return $rows;
+}
 function Seconda_query($conn){
     $sql="SELECT v1.idVigneto,v1.nome
     FROM vigneto v1

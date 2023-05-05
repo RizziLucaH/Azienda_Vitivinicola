@@ -105,3 +105,7 @@ img.full {
     height:400px;
     overflow:scroll;
 }
+
+h3{
+    padding-left: 10px;
+}
