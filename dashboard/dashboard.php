@@ -3,6 +3,7 @@
 require('../_db_dal_inc.php');
 require('../_config_inc.php');
 $conn=db_connect();
+$Prima_query=Prima_query($conn);
 $Seconda_query=Seconda_query($conn);
 $Terza_query=Terza_query($conn);
 $Quarta_query=Quarta_query($conn);
@@ -54,6 +55,7 @@ $Quinta_query=Quinta_query($conn);
           <div class="col-6 statisticadashboard" >
             <div class="card">
                 <h3>Quarta Query</h3>
+                <div class="scrolltable">
                 <table class="table">
                 <thead>
                     <th>Nome Vino</th>
@@ -72,12 +74,14 @@ $Quinta_query=Quinta_query($conn);
                     <?php }?>
                   </tbody>
                 </table>
+                </div>
               </div>
           </div>
           
           <div class="col-6 statisticadashboard" >
           <div class="card">
             <h3>Quinta Query</h3>
+            <div class="scrolltable">
             <table class="table">
               <thead>
                 <th>Nome Vigneto</th>
@@ -90,12 +94,10 @@ $Quinta_query=Quinta_query($conn);
                 <?php }?>
               </tbody>
                 </table>
-              </div>
+            </div>
+            </div>
           </div>
-          
-          <div class="col-5 statisticadashboard" >
 
-          </div>
         </div>
     </div>
 
