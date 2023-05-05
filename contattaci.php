@@ -16,55 +16,55 @@ include('header_inc.php');
 				<div class="row">
 					<div class="booking-form" style="border-radius: 20px;">
 	
-						<form method="post" action="visitaci_act.php" >
+						<form method="post" action="contattaci_act.php" >
 							<div class="form-header">
 								<h2>Contattaci</h2>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-								<div class="form-group">
-									<span class="form-label">Nome</span>
-									<input class="form-control" name="nomevisitatore" type="text" placeholder="Inserisci il nome">
-								</div>
-							</div>
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="form-group">
 									<span class="form-label">Cognome</span>
-									<input class="form-control" name="cognomevisitatore" type="text" placeholder="Inserisci il cognome">
-								</div>
+									<input class="form-control" name="cognometicket" type="text" placeholder="Inserisci il cognome">
 								</div>
 							</div>
+						</div> -->
+						
+						<div class="form-group">
+							<span class="form-label">Email</span>
+							<input class="form-control" name="mailticket" type="email" placeholder="Inserisci la tua email">
+						</div>
+						
+						<div class="row">
 							
-							<div class="form-group">
-								<span class="form-label">Email</span>
-								<input class="form-control" name="mailvisitatore" type="email" placeholder="Inserisci la tua email">
-							</div>
-	
-							<div class="row">
-								
-								<div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">Tipo di richiesta</span>
-										<select name="orariovisita" class="form-control">
-											<option>Prodotti</option>
-											<option>Pagamenti</option>
-											<option>Account</option>
-											<option>Segnalazione Bug</option>
-											<option>Altro</option>
-										</select>
-									</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<span class="form-label">Tipo di richiesta</span>
+									<select name="tiporichiesta" class="form-control">
+										<option>Prodotti</option>
+										<option>Pagamenti</option>
+										<option>Account</option>
+										<option>Segnalazione Bug</option>
+										<option>Altro</option>
+									</select>
 								</div>
 							</div>
-							<div class="row">
-								
-								
-									<div class="form-group">
-										<span class="form-label">Descrizione</span>
-										<textarea class="form-control" name="" id="" cols="" rows="10"></textarea>
-										<!-- <input class="form-control" name="mailvisitatore" type="text" placeholder="Inserisci la tua email"> -->
-									</div>
-								
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+							<div class="form-group">
+								<span class="form-label">Oggetto</span>
+								<input class="form-control" name="oggetto" type="text" placeholder="Inserisci il nome">
 							</div>
+						</div>
+						<div class="row">
+							
+							
+								<div class="form-group">
+									<span class="form-label">Descrizione</span>
+									<textarea class="form-control" name="descrizione" id="" cols="" rows="10"></textarea>
+									<!-- <input class="form-control" name="mailticket" type="text" placeholder="Inserisci la tua email"> -->
+								</div>
+							
+						</div>
 	
 							<div class="form-btn">
 								<button class="submit-btn">Apri ticket</button>

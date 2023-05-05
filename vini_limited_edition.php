@@ -14,16 +14,16 @@ include('header_inc.php');
                     <a href="#" class="hover-target">LINEA FRATI</a>
                 </li>
                 <li class="case-study-name">                            	
-                    <a href="#" class="hover-target">Ego di Luca</a>
+                    <a href="dettagli_vino.php?idB=45" class="hover-target">Ego di Luca</a>
                 </li>
                 <li class="case-study-name">                                         	
-                    <a href="#" class="hover-target">La Gatta Rossa</a>
+                    <a href="dettagli_vino.php?idB=38" class="hover-target">La Gatta Rossa</a>
                 </li>
                 <li class="case-study-name">                                        	
-                    <a href="#" class="hover-target">Cingolo di Tommaso</a>
+                    <a href="dettagli_vino.php?idB=8" class="hover-target">Cingolo di Tommaso</a>
                 </li>
                 <li class="case-study-name">                                         	
-                    <a href="#" class="hover-target">Barolo Davide</a>
+                    <a href="dettagli_vino.php?idB=2" class="hover-target">Barolo Davide</a>
                 </li>
             </ul>
             <ul class="case-study-images">
