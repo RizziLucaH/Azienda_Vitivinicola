@@ -37,7 +37,6 @@ include('header_inc.php');
                     <div class="hero-number-back">LINEA FRATI</div> 
                     <div class="hero-number">FRATI</div> 
                     <div class="hero-number-fixed">04</div> 
-                    <div class="case-study-title">graphic design, interaction</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div> 
@@ -45,25 +44,21 @@ include('header_inc.php');
                     <div class="hero-number-back">L</div> 
                     <div class="hero-number">01</div> 
                     <div class="hero-number-fixed">04</div> 
-                    <div class="case-study-title">graphic design, interaction</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div> 
                     <div class="hero-number-back">N</div> 
                     <div class="hero-number">02</div>  
-                    <div class="case-study-title">advertising, art direction</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div>
                     <div class="hero-number-back">T</div>  
                     <div class="hero-number">03</div> 
-                    <div class="case-study-title">photography, retouching</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div> 
                     <div class="hero-number-back">D</div> 
                     <div class="hero-number">04</div> 
-                    <div class="case-study-title">photography, advertising</div> 
                 </li>
             </ul>	
         </div>
