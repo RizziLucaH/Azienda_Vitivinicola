@@ -1,14 +1,16 @@
 <?php
 $pagina="Vini Limited Edition";
-?>
 
-<?php
+//avvio session, require _db_dal_inc.php, avvio _config_inc.php
 include('session_check.php');
+
 include('header_inc.php');
 ?>
 
 	<div >
         <div class="section">
+
+            <?php //LISTA NOMI VINI?>
             <ul class="case-study-wrapper">
                 <li class="case-study-name">                            	
                     <a href="#" class="hover-target">LINEA FRATI</a>
@@ -26,6 +28,8 @@ include('header_inc.php');
                     <a href="dettagli_vino.php?idB=2" class="hover-target">Barolo Davide</a>
                 </li>
             </ul>
+
+            <?php //LISTA FOOTER PER OGNI VINO?>
             <ul class="case-study-images">
                 <li>
                     <div class="img-hero-background"></div> 
@@ -59,21 +63,15 @@ include('header_inc.php');
             </ul>	
         </div>
         
-        <!-- Page cursor
-        ================================================== -->
-        
+
+        <?php //INDICATORE VINO SELEZIONATO?>
         <div class='cursor' id="cursor"></div>
         <div class='cursor2' id="cursor2"></div>
         <div class='cursor3' id="cursor3"></div> 
 
-<!-- Link to page
-    ================================================== -->
+    </div>
 
-    
-    
-
-</div>
-
+<?php //aggiunta script ?>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 <script src="js/function.js"></script>
