@@ -26,7 +26,7 @@ if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
                         <tr>
                             <th>Nome</th>
                             <th>Comune</th>
-                            <th>Estensione(km^2)</th>
+                            <th>Estensione(Hm^2)</th>
                         </tr>
                     </thead>
                     <tbody>
