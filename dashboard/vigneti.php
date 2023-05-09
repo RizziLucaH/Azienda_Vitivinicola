@@ -1,20 +1,22 @@
-
-
-<?php  
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
+<?php 
+$pagina="Vigneti";
+include('../session_check.php');
 $conn=db_connect();
-$vigneti=seleziona_vigneti($conn);
-
-$data = array();
-while ($row = $vigneti->fetch_assoc()) {
-    $data[] = $row;
-}
-$perPage = 10;
-$groups = array_chunk($data, $perPage);
 ?>
-<?php include('header_dashboard.php');?>
+
+<?php
+if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
+    include('header_dashboard.php');
+    $vigneti=seleziona_vigneti($conn);
+
+    $data = array();
+    while ($row = $vigneti->fetch_assoc()) {
+        $data[] = $row;
+    }
+    $perPage = 10;
+    $groups = array_chunk($data, $perPage);
+?>
+
         <h1>Vigneti</h1>
         
         <hr class="posth1" style="border-color: #ffd900;">
@@ -42,6 +44,11 @@ $groups = array_chunk($data, $perPage);
     </div>
 </body>
 </html>
+<?php 
+    }else{
+        header("location: ../login_admin.php");
+    }
+    ?>
 
 
 

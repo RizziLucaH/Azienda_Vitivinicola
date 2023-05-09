@@ -1,9 +1,13 @@
-<?php
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
+<?php 
+$pagina="Prodotti chimici";
+include('../session_check.php');
 $conn=db_connect();
-$prodotti=seleziona_prodottichimici($conn);
+?>
+
+<?php
+if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
+    include('header_dashboard.php');
+    $prodotti=seleziona_prodottichimici($conn);
 
 #region Alert
 $alert=$_GET['a'];
@@ -28,7 +32,7 @@ $groups = array_chunk($data, $perPage);
 #endregion
 ?>
 
-<?php include('header_dashboard.php');?>
+
         <h1>Prodotti chimici</h1>
         <hr class="posth1" style="border-color: #ffd900;">
         <div class="row">
@@ -74,6 +78,11 @@ $groups = array_chunk($data, $perPage);
     </div>
 </body>
 </html>
+<?php 
+    }else{
+        header("location: ../login_admin.php");
+    }
+?>
 
 
 <script>

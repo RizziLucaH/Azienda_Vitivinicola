@@ -1,8 +1,15 @@
-<?php include('header_dashboard.php');?>
-<?php
+
+<?php 
+$pagina="Admin - Certificazioni";
+include('../session_check.php');
 $conn=db_connect();
-$success=Certificazioni_si($conn);
-$nosuccess=Certificazioni_no($conn);
+?>
+
+<?php
+if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
+    include('header_dashboard.php');
+    $success=Certificazioni_si($conn);
+    $nosuccess=Certificazioni_no($conn);
 
 #region Pagination cert_si
 $datasi = array();
@@ -19,9 +26,8 @@ while ($row = $nosuccess->fetch_assoc()) {
 }
 $groupno = array_chunk($datano, $perPage);
 #endregion
+?>
 
-
-    ?>
         <h1>Certificazioni</h1>
         <hr class="posth1" style="border-color: #ffd900;">
 
@@ -80,7 +86,11 @@ $groupno = array_chunk($datano, $perPage);
 </body>
 
 </html>
-
+<?php 
+    }else{
+        header("location: ../login_admin.php");
+    }
+    ?>
 <script>
 var currentPage = 0;
 var groupsi = <?php echo json_encode($groupsi); ?>;

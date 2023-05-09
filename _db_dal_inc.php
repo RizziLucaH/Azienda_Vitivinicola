@@ -325,7 +325,6 @@ function vendite_clienti($conn){
     return $rows;
 }
 
-
 function verifica_admin($conn,$mail,$password){
     $mail=$conn->real_escape_string($mail);
     $password=$conn->real_escape_string($password);
@@ -337,7 +336,7 @@ function verifica_admin($conn,$mail,$password){
     {
         while($row=mysqli_fetch_array($result))
         {
-            if(password_verify($password,$row['password']))
+            if($password==$row['password'])
             {
                 return $row;
             }
@@ -480,7 +479,7 @@ function Prima_query($conn){
         inner join bottiglia b on b.idCantina=cantina.idCantina
         INNER JOIN richiesto on b.idB=richiesto.idB
         WHERE b.nomevino like 'Paradiso' and richiesto.idA=(SELECT idA from aziendacliente  where aziendacliente.nome like 'Il Mulino')";
-    $conn->query($sql);
+    $result=$conn->query($sql);
     $rows=$result->fetch_all(MYSQLI_ASSOC);
     return $rows;
 }

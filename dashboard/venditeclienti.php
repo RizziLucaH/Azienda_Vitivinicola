@@ -1,21 +1,25 @@
-<?php  
-
-require('../_db_dal_inc.php');
-require('../_config_inc.php');
-
+<?php 
+$pagina="Vendite";
+include('../session_check.php');
 $conn=db_connect();
-$vendite=vendite_clienti($conn);
+?>
 
-$dati_chart=count_vini($conn);
-$valore_rossi=$dati_chart[0];
-$valore_bianchi=$dati_chart[1];
-$valore_spumanti=$dati_chart[2];
-$valore_vinidolci=$dati_chart[3];
-$valore_grappe=$dati_chart[4];
+<?php
+if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
+    include('header_dashboard.php');
+    $conn=db_connect();
+    $vendite=vendite_clienti($conn);
+
+    $dati_chart=count_vini($conn);
+    $valore_rossi=$dati_chart[0];
+    $valore_bianchi=$dati_chart[1];
+    $valore_spumanti=$dati_chart[2];
+    $valore_vinidolci=$dati_chart[3];
+    $valore_grappe=$dati_chart[4];
+
 ?>
 
 
-<?php include('header_dashboard.php');?>
 
         <h1>Vendite</h1>
         
@@ -57,6 +61,11 @@ $valore_grappe=$dati_chart[4];
 </body>
 
 </html>
+<?php 
+    }else{
+        header("location: ../login_admin.php");
+    }
+    ?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

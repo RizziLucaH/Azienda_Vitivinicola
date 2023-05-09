@@ -11,5 +11,5 @@ session_unset();
 session_destroy();
 
 //TORNA ALLA PAGINA PRINCIPALE PER UTENTI PUBBLICI
-header('location: index.php');
+header('location: ../index.php');
 ?>
