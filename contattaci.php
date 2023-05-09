@@ -50,9 +50,10 @@ include('header_inc.php');
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-							<div class="form-group">
-								<span class="form-label">Oggetto</span>
-								<input class="form-control" name="oggetto" type="text" placeholder="Inserisci il nome">
+								<div class="form-group">
+									<span class="form-label">Oggetto</span>
+									<input class="form-control" name="oggetto" type="text" placeholder="Oggetto">
+								</div>
 							</div>
 						</div>
 						<div class="row">

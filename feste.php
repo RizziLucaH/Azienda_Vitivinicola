@@ -9,7 +9,7 @@ include('header_inc.php');
 <link rel="stylesheet" href="./style/styleVisitaci.css">
 <link rel="stylesheet"  href="./style/stylePopUp.css">
 
-
+<?php //Form per richieste ?>
 <div id="booking" class="sectionform m-4" style="border-radius: 20px;">
 		<div class="sectionform-center">
 			<div class="container">

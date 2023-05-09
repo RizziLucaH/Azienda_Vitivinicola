@@ -1,14 +1,16 @@
 <?php
 $pagina="Vini Limited Edition";
-?>
 
-<?php
+//avvio session, require _db_dal_inc.php, avvio _config_inc.php
 include('session_check.php');
+
 include('header_inc.php');
 ?>
 
 	<div >
         <div class="section">
+
+            <?php //LISTA NOMI VINI?>
             <ul class="case-study-wrapper">
                 <li class="case-study-name">                            	
                     <a href="#" class="hover-target">LINEA FRATI</a>
@@ -26,6 +28,8 @@ include('header_inc.php');
                     <a href="dettagli_vino.php?idB=2" class="hover-target">Barolo Davide</a>
                 </li>
             </ul>
+
+            <?php //LISTA FOOTER PER OGNI VINO?>
             <ul class="case-study-images">
                 <li>
                     <div class="img-hero-background"></div> 
@@ -33,7 +37,6 @@ include('header_inc.php');
                     <div class="hero-number-back">LINEA FRATI</div> 
                     <div class="hero-number">FRATI</div> 
                     <div class="hero-number-fixed">04</div> 
-                    <div class="case-study-title">graphic design, interaction</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div> 
@@ -41,44 +44,34 @@ include('header_inc.php');
                     <div class="hero-number-back">L</div> 
                     <div class="hero-number">01</div> 
                     <div class="hero-number-fixed">04</div> 
-                    <div class="case-study-title">graphic design, interaction</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div> 
                     <div class="hero-number-back">N</div> 
                     <div class="hero-number">02</div>  
-                    <div class="case-study-title">advertising, art direction</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div>
                     <div class="hero-number-back">T</div>  
                     <div class="hero-number">03</div> 
-                    <div class="case-study-title">photography, retouching</div> 
                 </li>
                 <li>
                     <div class="img-hero-background"></div> 
                     <div class="hero-number-back">D</div> 
                     <div class="hero-number">04</div> 
-                    <div class="case-study-title">photography, advertising</div> 
                 </li>
             </ul>	
         </div>
         
-        <!-- Page cursor
-        ================================================== -->
-        
+
+        <?php //INDICATORE VINO SELEZIONATO?>
         <div class='cursor' id="cursor"></div>
         <div class='cursor2' id="cursor2"></div>
         <div class='cursor3' id="cursor3"></div> 
 
-<!-- Link to page
-    ================================================== -->
+    </div>
 
-    
-    
-
-</div>
-
+<?php //aggiunta script ?>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 <script src="js/function.js"></script>
