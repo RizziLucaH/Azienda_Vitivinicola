@@ -16,7 +16,7 @@ include('header_inc.php');
 		<section class="hero-section">
 		<div class="card-grid">
 			<a class="card" href="#">
-			<div class="card__background" style="background-image: url(img/Paoloni/luca.JPG)"></div>
+			<div class="card__background" style="background-image: url(img/Paoloni/luca.jpg)"></div>
 			<div class="card__content">
 				<p class="card__category">Project Manager</p>
 				<h3 class="card__heading">Lvca Il Brillante</h3>

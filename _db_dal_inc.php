@@ -56,7 +56,7 @@ function verifica_user($conn,$mail,$password){
 }
 
 function prenotazione_visita($conn, $nome,$cognome,$datanascita,$mail,$datavisita,$orario,$nomecantina,$numeropartecipanti){
-    $cercaidcant="SELECT idCantina FROM cantina where nome='$nomecantina'";
+    $cercaidcant="SELECT idCantina FROM cantina where nome='$nomecantina";
     $res=$conn->query($cercaidcant);
     $row=$res->fetch_assoc();
     $idCantina=$row['idCantina'];
@@ -141,7 +141,7 @@ function visualizza_carrello($conn,$idUP)
     $sql="SELECT v.idB,b.nomevino,b.prezzo,v.numerobottiglie,b.descrizione, i.path as path 
     FROM vendita v
     INNER join bottiglia b on v.idB=b.idB
-    inner join immaginebottiglia i on B.idB=i.idB
+    inner join immaginebottiglia i on b.idB=i.idB
     where i.principale <> 0 AND v.idUP=? AND v.acquistato=?";
     $zero=0;
     $query = $conn->prepare($sql); 
@@ -252,7 +252,11 @@ function sel_bottiglie($conn){
 }
 
 function ordini_utente($conn,$idUP){
-    $sql="SELECT * from vendita WHERE idUP='$idUP'";
+    $sql="SELECT v.idVendita, b.nomevino, v.tipopacco,v.numerobottiglie, v.prezzodettaglio, v.data
+    from vendita v
+    inner join bottiglia b on v.idB=b.idB
+    WHERE idUP='$idUP' and acquistato=1";
+    
     $result=$conn->query($sql);
     return $result;
 }
@@ -557,5 +561,11 @@ function apri_ticket($conn,$Mailticket,$TipoRichiesta,$Oggetto,$Descrizione){
     $aggiungiticket="INSERT INTO `ticket`(`mail`, `tipo`, `oggetto`, `descrizione`) VALUES ('$Mailticket','$TipoRichiesta','$Oggetto','$Descrizione')";
     $conn->query($aggiungiticket);
 
+}
+
+function seleziona_ticket($conn){
+    $sql="SELECT * FROM ticket";
+    $result=$conn->query($sql);
+    return $result;
 }
 ?>

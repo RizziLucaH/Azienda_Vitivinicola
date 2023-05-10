@@ -41,9 +41,9 @@ include('header_inc.php');
 
 					<?php //seconda slide ?>
 					<div class="carousel-item " >
-						<div class="row d-flex align-items-center justify-content-center">
-							<img src="img/Vini/LineaFrati/4_bott_F_index.png"  alt="Chicago" class=" " style="border-radius: 30px;" width="90%" >
-							<a href="vini_limited_edition.php" style="position: absolute; width: 10%;" class="btn btn-outline-warning">Scopri</a>
+						<div class="row d-flex align-items-center justify-content-center ">
+							<img src="img/Vini/LineaFrati/4_bott_F_index.png"  alt="Chicago" class="pippo my-auto" style="border-radius: 30px; " width="90%" >
+							<a href="vini_limited_edition.php" style="position: absolute; width:100px" class="btn btn-outline-warning">Scopri</a>
 						</div>
 					</div>
 
@@ -51,7 +51,7 @@ include('header_inc.php');
 					<div class="carousel-item">
 						<div class="row">
 							<div class="row d-flex align-items-center justify-content-center">
-								<img src="img/Cantine/cantina_pantelleria_prova.png"  alt="Chicago" class=" " style="border-radius: 30px;" width="89%" >
+								<img src="img/Cantine/cantina_pantelleria_prova.png"  alt="Chicago" class="pippo my-auto ml-3 " style="border-radius: 30px;" width="89%" >
 							</div>
 
 							<div style="position: absolute; width: 30%; margin-top: 20%; margin-left: 5%; " class="text-center"   >
@@ -72,12 +72,12 @@ include('header_inc.php');
 		</div>
 
 		<?php //BEST-SELLER ?>
-		<div class="">
+		<div class="" >
 			<h1 class="m-5" style="color: #e9da03;">I nostri bestseller</h1>
-			<div class="d-flex justify-content-center align-items-center">
+			<div class="d-flex justify-content-center align-items-center ">
 
 				<?php //primo best-seller ?>
-				<a href="vini_limited_edition.php">
+				<a href="vini_limited_edition.php" style="text-decoration:none">
 					<figure class="card mx-4  ">
 						<img src="img/Vini/LineaFrati/2_bott_F.png" alt="">
 						<figcaption>
@@ -88,7 +88,7 @@ include('header_inc.php');
 				</a>
 
 				<?php //secondo best-seller ?>
-				<a href="vini_limited_edition.php">
+				<a href="vini_limited_edition.php" style="text-decoration:none">
 					<figure class="card mx-4 ">
 						<img src="./img/Vini/LineaFrati/1_bott_F.png" alt="">
 						<figcaption>
@@ -99,7 +99,7 @@ include('header_inc.php');
 				</a>
 
 				<?php //terzo best-seller ?>
-				<a href="vini_limited_edition.php">
+				<a href="vini_limited_edition.php" style="text-decoration:none">
 					<figure class="card mx-4 ">
 						<img src="img/Vini/LineaFrati/3_bott.png" alt="">
 						<figcaption>
@@ -110,7 +110,7 @@ include('header_inc.php');
 				</a>
 
 				<?php //quarto best-seller ?>
-				<a href="vini_limited_edition.php">
+				<a href="vini_limited_edition.php" style="text-decoration:none">
 					<figure class="card mx-4">
 						<img src="img/Vini/LineaFrati/4_bot_F.png" alt="">
 						<figcaption>
@@ -154,6 +154,34 @@ include('header_inc.php');
 	.card:hover{
 		grid-template-rows: 1fr 6rem;
 	}
+
+
+	
+@media (max-width: 767px) { 
+
+	.card{
+		width: 10rem;
+		height: 10rem;
+		display: grid;
+		grid-template-rows: 1fr 0;
+		transition: grid-template-rows 400ms;
+		overflow: hidden;
+		background-color: #d2c900;
+	}
+
+	.card img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+
+	}
+
+	.card:hover{
+		grid-template-rows: 1fr 6rem;
+	}
+
+	
+}
 </style>
 
 <?php include('_footer_inc.php');?>

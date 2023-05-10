@@ -75,6 +75,7 @@ if(verifica_session($conn,$_SESSION['id']??0)) {
                     <thead>
                         <tr>
                         <th scope="col">Numero Ordine</th>
+                        <th scope="col">Nome</th>
                         <th scope="col">Tipo Pacco</th>
                         <th scope="col">Numero Bottiglia</th>
                         <th scope="col">Prezzo</th>
@@ -85,6 +86,7 @@ if(verifica_session($conn,$_SESSION['id']??0)) {
                         <?php while($rowO=$ordini->fetch_assoc()){?> 
                             <tr>
                             <th><?=$rowO['idVendita'] ?></th>
+                            <th><?=$rowO['nomevino'] ?></th>
                             <td><?=$rowO['tipopacco'] ?></td>
                             <td><?=$rowO['numerobottiglie'] ?></td>
                             <td><?=$rowO['prezzoingrosso'] ?>€</td>

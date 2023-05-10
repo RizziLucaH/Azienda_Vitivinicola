@@ -1,5 +1,5 @@
-    <footer>
-        <div class=" mt-4" style="display:flex; background-color:#14151a; text-decoration:none; color:white;"> <!--  my-5 = margine, verticale, valore -->
+    <footer >
+        <div class=" mt-4 quandosonopiccolino" style=" background-color:#14151a; text-decoration:none;width:100%; color:white;"> <!--  my-5 = margine, verticale, valore -->
             
             <?php //iMMAGINI ?>
             <div class="text-center">
@@ -21,35 +21,37 @@
             </div>
 
             <?php //DATI CREATORI ?>
-            <pre class="py-5 px-4" style="color:white">
-                @2022 ISII G. Marconi
-                created by: Frati Paoloni S.r.l
-                
-                EMAIL: fratipaoloni@gmail.com
-            </pre>
+            <div>
+
+                <p class="py-5 "class="" style="color:white">
+                    @2022 ISII G. Marconi <br>
+                    created by: Frati Paoloni S.r.l
+                    <br>
+                    EMAIL: fratipaoloni@gmail.com
+                </p>
+            </div>
             
             <?php //LINK PAGINE FOOTER ?>
-            <div class="border-start pl-5">
+            <div class=" pl-3">
                 
                 <?php //faq ?>
-                <button class="btn btn-warning mr-4 mt-5" style="width: 100%;">
-                    <a href="faq.php" style="color:black;">FAQ</a><br>
-                </button>
-                <br>
+                <a href="faq.php" >
+                <button class="btn btn-warning  mt-3" style="width: 100%;">FAQ</button>
+                </a><br>
 
                 <?php //chi siamo?>
-                <button class="btn btn-warning mr-4 mt-3" style="width: 100%;">
-                    <a href="chi_siamo.php" style="color:black;">CHI SIAMO</a><br>
-                </button>
-                <br>
-
+                <a href="chi_siamo.php" >
+                <button class="btn btn-warning  mt-3" style="width: 100%;">CHI SIAMO</button>
+                </a><br>
                 <?php //contattaci ?>
-                <button class="btn btn-warning mr-4 mt-3" style="width: 100%;">
-                    <a href="contattaci.php" style="color:black">CONTATTACI</a>    
-                </button>
+                <a href="contattaci.php" >
+                <button class="btn btn-warning  mt-3" style="width: 100%;">CONTATTACI</button>
+                </a><br>
 
             </div>
         </div>
     </footer>
 </body>
 </html>
+
+

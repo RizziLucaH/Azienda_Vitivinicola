@@ -73,7 +73,7 @@ if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
         <br>
         <br>
         <div class="row">
-          <div class="col-6 statisticadashboard" >
+          <div class="col-8 statisticadashboard" >
             <div class="card">
                 <h3>Quarta Query</h3>
                 <div class="scrolltable">
@@ -99,7 +99,7 @@ if(verifica_session_admin($conn,$_SESSION['mail']??0)) {
               </div>
           </div>
           
-          <div class="col-6 statisticadashboard" >
+          <div class="col-2 statisticadashboard"  >
             <div class="card">
               <h3>Quinta Query</h3>
                 <div class="scrolltable">

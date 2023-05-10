@@ -1,11 +1,12 @@
 
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);     
+
 $pagina="carrello";
 include('session_check.php');
 $conn=db_connect();
-?>
 
-<?php
 if(verifica_session($conn,$_SESSION['id']??0)) {
     include('header_inc.php');
     $id=$_SESSION['id'];
