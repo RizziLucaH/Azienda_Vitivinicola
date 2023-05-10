@@ -67,6 +67,12 @@
                 </a>
             </li>
             <hr class="separatore">
+            <li style="list-style-type: none;">
+                <a href="richiesteclienti.php">
+                    <span class="text">Richieste</span>
+                </a>
+            </li>
+            <hr class="separatore">
         </ul>
     </div>
     <!---Sidebar di log out-->

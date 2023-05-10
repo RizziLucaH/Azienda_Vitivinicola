@@ -14,7 +14,7 @@ $Oggetto=$_POST['oggetto'];
 $Descrizione=$_POST['descrizione'];
 
 //---Richiamo la funzione---
-apri_ticket($conn,$Mailticket,$TipoRichiesta,$Oggetto,$Descrizione);
+apri_ticket($conn,$MailTicket,$TipoRichiesta,$Oggetto,$Descrizione);
 
 header("location: confermaprenotazione.php");
 
